@@ -14,6 +14,17 @@
 		455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2DE1E847438000C88A9 /* Assets.xcassets */; };
 		455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2E01E847438000C88A9 /* LaunchScreen.storyboard */; };
 		455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2EB1E847E36000C88A9 /* Constants.swift */; };
+		455FF2F01E848F73000C88A9 /* BGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2EF1E848F73000C88A9 /* BGView.swift */; };
+		45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D01E85C8C7003DB276 /* map_retro.json */; };
+		45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D21E85C8E4003DB276 /* map_silver.json */; };
+		45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D41E85C90B003DB276 /* map_mirkwood.json */; };
+		45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D61E85C91D003DB276 /* map_electric.json */; };
+		45C8D7D91E85DF6E003DB276 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7D81E85DF6E003DB276 /* MainViewController.swift */; };
+		45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DA1E85F905003DB276 /* Workout.swift */; };
+		45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */; };
+		45C8D7DF1E85FB60003DB276 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DE1E85FB60003DB276 /* Location.swift */; };
+		45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */; };
+		45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +36,17 @@
 		455FF2E11E847438000C88A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		455FF2E31E847438000C88A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		455FF2EB1E847E36000C88A9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		455FF2EF1E848F73000C88A9 /* BGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGView.swift; sourceTree = "<group>"; };
+		45C8D7D01E85C8C7003DB276 /* map_retro.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_retro.json; sourceTree = "<group>"; };
+		45C8D7D21E85C8E4003DB276 /* map_silver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_silver.json; sourceTree = "<group>"; };
+		45C8D7D41E85C90B003DB276 /* map_mirkwood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_mirkwood.json; sourceTree = "<group>"; };
+		45C8D7D61E85C91D003DB276 /* map_electric.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_electric.json; sourceTree = "<group>"; };
+		45C8D7D81E85DF6E003DB276 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		45C8D7DA1E85F905003DB276 /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		45C8D7DE1E85FB60003DB276 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
 		4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,11 +94,12 @@
 			isa = PBXGroup;
 			children = (
 				455FF2D71E847438000C88A9 /* AppDelegate.swift */,
-				455FF2D91E847438000C88A9 /* ViewController.swift */,
-				455FF2DB1E847438000C88A9 /* Main.storyboard */,
+				455FF2EE1E847F64000C88A9 /* View Controllers */,
+				455FF2ED1E847F5E000C88A9 /* Storyboards */,
 				455FF2DE1E847438000C88A9 /* Assets.xcassets */,
-				455FF2E01E847438000C88A9 /* LaunchScreen.storyboard */,
 				455FF2EA1E847E26000C88A9 /* Supporting Files */,
+				45C8D7E01E85FC66003DB276 /* Objects */,
+				45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */,
 			);
 			path = RUN;
 			sourceTree = "<group>";
@@ -84,10 +107,52 @@
 		455FF2EA1E847E26000C88A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				45C8D7CF1E85C8A2003DB276 /* Map Styles */,
 				455FF2E31E847438000C88A9 /* Info.plist */,
 				455FF2EB1E847E36000C88A9 /* Constants.swift */,
+				455FF2EF1E848F73000C88A9 /* BGView.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		455FF2ED1E847F5E000C88A9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				455FF2DB1E847438000C88A9 /* Main.storyboard */,
+				455FF2E01E847438000C88A9 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		455FF2EE1E847F64000C88A9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				455FF2D91E847438000C88A9 /* ViewController.swift */,
+				45C8D7D81E85DF6E003DB276 /* MainViewController.swift */,
+				45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */,
+				45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		45C8D7CF1E85C8A2003DB276 /* Map Styles */ = {
+			isa = PBXGroup;
+			children = (
+				45C8D7D01E85C8C7003DB276 /* map_retro.json */,
+				45C8D7D21E85C8E4003DB276 /* map_silver.json */,
+				45C8D7D41E85C90B003DB276 /* map_mirkwood.json */,
+				45C8D7D61E85C91D003DB276 /* map_electric.json */,
+			);
+			name = "Map Styles";
+			sourceTree = "<group>";
+		};
+		45C8D7E01E85FC66003DB276 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				45C8D7DA1E85F905003DB276 /* Workout.swift */,
+				45C8D7DE1E85FB60003DB276 /* Location.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		9B955E0F10076A2221F22E82 /* Pods */ = {
@@ -163,9 +228,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */,
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
+				45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */,
 				455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */,
 				455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */,
+				45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */,
+				45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,8 +307,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				455FF2DA1E847438000C88A9 /* ViewController.swift in Sources */,
+				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
+				45C8D7DF1E85FB60003DB276 /* Location.swift in Sources */,
+				45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */,
+				45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */,
+				455FF2F01E848F73000C88A9 /* BGView.swift in Sources */,
 				455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */,
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
+				45C8D7D91E85DF6E003DB276 /* MainViewController.swift in Sources */,
+				45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
