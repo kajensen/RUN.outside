@@ -160,15 +160,21 @@ class ViewController: UIViewController {
     func setupView(_ state: State, animated: Bool) {
         self.state = state
         prepareTransitionState(state)
-        UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
-            self.transitionState(state)
-            self.updateView()
-            self.view.layoutIfNeeded()
-        }) { (completed) in
-            if completed {
-                self.finalizeState(state)
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.transitionState(state)
                 self.updateView()
+                self.view.layoutIfNeeded()
+            }) { (completed) in
+                if completed {
+                    self.finalizeState(state)
+                    self.updateView()
+                }
             }
+        } else {
+            transitionState(state)
+            finalizeState(state)
+            updateView()
         }
     }
     
@@ -329,13 +335,13 @@ extension ViewController: WorkoutManagerDelegate {
     func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState) {
         switch state {
         case .none:
-            toggleWorkoutButton.setTitle("Start Workout", for: .normal)
+            toggleWorkoutButton.setTitle("START RUN", for: .normal)
             endWorkoutButton.isHidden = true
         case .paused:
-            toggleWorkoutButton.setTitle("Resume Workout", for: .normal)
+            toggleWorkoutButton.setTitle("RESUME RUN", for: .normal)
             endWorkoutButton.isHidden = false
         case .running:
-            toggleWorkoutButton.setTitle("Pause Workout", for: .normal)
+            toggleWorkoutButton.setTitle("PAUSE RUN", for: .normal)
             endWorkoutButton.isHidden = true
         }
     }

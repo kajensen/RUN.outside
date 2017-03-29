@@ -83,17 +83,20 @@ class WorkoutManager: NSObject {
     }
     
     func resume() {
+        guard let _ = workout else { return }
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
         state = .running
     }
     
     func pause() {
+        guard let _ = workout else { return }
         timer?.invalidate()
         lastActiveLocation = nil
         state = .paused
     }
     
     func toggle() {
+        guard let _ = workout else { return }
         if state == .paused {
             resume()
         } else if state == .running {

@@ -144,4 +144,17 @@ extension WorkoutsViewController: UITableViewDataSource, UITableViewDelegate {
         delegate?.workoutsViewControllerDidSelect(self, workout: workout)
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        guard let workout = self.workouts?[indexPath.row] else {
+            return []
+        }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
+            guard let realm = try? Realm() else { return }
+            try? realm.write {
+                realm.delete(workout)
+            }
+        })
+        return [deleteAction]
+    }
+    
 }
