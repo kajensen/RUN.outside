@@ -28,6 +28,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var workoutsViewContraint: NSLayoutConstraint!
     @IBOutlet weak var workoutViewContraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewContraint: NSLayoutConstraint!
+    weak var workoutViewController: WorkoutViewController?
+    weak var workoutsViewController: WorkoutsViewController?
+    weak var settingsViewController: SettingsViewController?
     
     var polyline: GMSPolyline?
     
@@ -62,20 +65,26 @@ class ViewController: UIViewController {
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
         workoutManager.delegate = self
+        timeLabel.text = nil
+        distanceLabel.text = nil
+        distanceUnitsLabel.text = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedWorkouts" {
             if let vc = segue.destination as? WorkoutsViewController {
                 vc.delegate = self
+                workoutsViewController = vc
             }
         } else if segue.identifier == "embedSettings" {
             if let vc = segue.destination as? SettingsViewController {
                 vc.delegate = self
+                settingsViewController = vc
             }
         } else if segue.identifier == "embedWorkout" {
             if let vc = segue.destination as? WorkoutViewController {
                 vc.delegate = self
+                workoutViewController = vc
             }
         }
     }
@@ -198,6 +207,7 @@ extension ViewController {
     }
     
     func showWorkout(_ workout: Workout) {
+        workoutViewController?.workout = workout
         setupView(.past, animated: true)
         polyline = nil
         resetMap(false)
@@ -232,6 +242,10 @@ extension ViewController {
             bounds = bounds.includingCoordinate(location.coordinate)
         }
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
+        timeLabel.text = TimeInterval(workout.totalTimeActive).formatted()
+        let distanceString = Utils.distanceString(meters: workout.totalDistance).components(separatedBy: " ")
+        distanceLabel.text = distanceString.first
+        distanceUnitsLabel.text = distanceString.last?.uppercased()
     }
     
     @IBAction func settingsTapped(_ sender: Any) {
@@ -259,17 +273,17 @@ extension ViewController {
 
 extension ViewController: WorkoutManagerDelegate {
     
-    func workoutMangerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval) {
+    func workoutManagerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval) {
         timeLabel.text = timeElapsed.formatted()
     }
 
-    func workoutMangerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance) {
+    func workoutManagerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance) {
         let distanceString = Utils.distanceString(meters: distanceTraveled).components(separatedBy: " ")
         distanceLabel.text = distanceString.first
         distanceUnitsLabel.text = distanceString.last?.uppercased()
     }
     
-    func workoutMangerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation) {
+    func workoutManagerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation) {
         switch state {
         case .live, .none:
             if workoutManager.state != .paused {
@@ -278,9 +292,10 @@ extension ViewController: WorkoutManagerDelegate {
         default:
             break
         }
+        workoutsViewController?.updateWeatherIfNeeded(coordinate: location.coordinate)
     }
     
-    func workoutMangerDidUpdate(_ workoutManager: WorkoutManager, from originalLocation: CLLocation?, to location: CLLocation) {
+    func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from originalLocation: CLLocation?, to location: CLLocation) {
         if let polyline = polyline, let originalLocation = originalLocation {
             let mutablePath: GMSMutablePath
             if let path = polyline.path {
@@ -311,7 +326,7 @@ extension ViewController: WorkoutManagerDelegate {
         self.polyline = polyline
     }
     
-    func workoutMangerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState) {
+    func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState) {
         switch state {
         case .none:
             toggleWorkoutButton.setTitle("Start Workout", for: .normal)

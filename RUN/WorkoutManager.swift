@@ -10,11 +10,11 @@ import UIKit
 import CoreLocation
 
 protocol WorkoutManagerDelegate: class {
-    func workoutMangerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation)
-    func workoutMangerDidUpdate(_ workoutManager: WorkoutManager, from originalLocation: CLLocation?, to location: CLLocation)
-    func workoutMangerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval)
-    func workoutMangerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance)
-    func workoutMangerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState)
+    func workoutManagerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation)
+    func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from originalLocation: CLLocation?, to location: CLLocation)
+    func workoutManagerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval)
+    func workoutManagerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance)
+    func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState)
 }
 
 class WorkoutManager: NSObject {
@@ -30,18 +30,18 @@ class WorkoutManager: NSObject {
     private var lastActiveLocation: CLLocation?
     private (set) var state: WorkoutState = .none {
         didSet {
-            delegate?.workoutMangerDidChangeState(self, state: state)
+            delegate?.workoutManagerDidChangeState(self, state: state)
         }
     }
     
     var timeElapsed: TimeInterval = 0 {
         didSet {
-            delegate?.workoutMangerDidChangeTime(self, timeElapsed: timeElapsed)
+            delegate?.workoutManagerDidChangeTime(self, timeElapsed: timeElapsed)
         }
     }
     var distanceTraveled: CLLocationDistance = 0 {
         didSet {
-            delegate?.workoutMangerDidChangeDistance(self, distanceTraveled: distanceTraveled)
+            delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: distanceTraveled)
         }
     }
     var netElevation: CLLocationDistance = 0
@@ -69,7 +69,7 @@ class WorkoutManager: NSObject {
             }
             netElevation += elevationDiff
         }
-        delegate?.workoutMangerDidUpdate(self, from: lastActiveLocation, to: location)
+        delegate?.workoutManagerDidUpdate(self, from: lastActiveLocation, to: location)
         lastActiveLocation = location
     }
     
@@ -102,9 +102,9 @@ class WorkoutManager: NSObject {
     }
     
     func end() -> Workout? {
-        // TODO
         state = .none
         let completedWorkout = self.workout
+        completedWorkout?.endDate = Date()
         completedWorkout?.totalTimeActive = timeElapsed
         completedWorkout?.totalDistance = distanceTraveled
         completedWorkout?.totalPositiveElevation = totalPositiveElevation
@@ -142,7 +142,7 @@ extension WorkoutManager: CLLocationManagerDelegate {
             addLocation(location)
         }
         if let currentLocation = locations.last {
-            delegate?.workoutMangerDidMove(self, to: currentLocation)
+            delegate?.workoutManagerDidMove(self, to: currentLocation)
         }
     }
     

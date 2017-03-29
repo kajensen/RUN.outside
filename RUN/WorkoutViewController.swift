@@ -16,8 +16,15 @@ protocol WorkoutViewControllerDelegate: class {
 class WorkoutViewController: UIViewController {
     
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     
     weak var delegate: WorkoutViewControllerDelegate?
+    var workout: Workout? {
+        didSet {
+            configure()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +39,11 @@ class WorkoutViewController: UIViewController {
     
     @IBAction func closeTapped(_ sender: Any) {
         delegate?.workoutViewControllerTappedClose(self)
+    }
+    
+    func configure() {
+        titleLabel.text = workout?.title
+        subTitleLabel.text = workout?.endDate?.timeAgo()
     }
     
 }

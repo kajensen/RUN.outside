@@ -28,6 +28,11 @@ class Workout: Object {
     dynamic var totalTimeActive: Double = 0
     var locations = List<Location>()
 
+    var title: String? {
+        guard let startDate = startDate else { return nil }
+        return Workout.dateFormatter.string(from: startDate)
+    }
+    
     convenience init(startDate: Date) {
         self.init()
         self.startDate = startDate
@@ -62,15 +67,14 @@ class Workout: Object {
         let thumbRect = rect
         for (_, location) in locations.enumerated() {
             let coordinate = location.coordinate
-            
             let point = CGPoint(x: maxLng - coordinate.longitude + lngPadding, y: maxLat - coordinate.latitude + latPadding)
             let thumbPoint = point.convert(fromRect: mapRect, toRect: thumbRect)
-            print(point, thumbPoint)
-
-            if location.startsNewSegment {
-                context.move(to: thumbPoint)
-            } else {
-                context.addLine(to: thumbPoint)
+            if !thumbPoint.x.isNaN && !thumbPoint.y.isNaN {
+                if location.startsNewSegment {
+                    context.move(to: thumbPoint)
+                } else {
+                    context.addLine(to: thumbPoint)
+                }
             }
         }
         

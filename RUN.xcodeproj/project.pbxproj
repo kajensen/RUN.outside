@@ -19,6 +19,7 @@
 		456291851E89A606007A609D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456291841E89A606007A609D /* Util.swift */; };
 		45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411AB1E8B08A7005A2FFB /* WorkoutTableViewCell.swift */; };
 		45C411AE1E8B08A7005A2FFB /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C411AC1E8B08A7005A2FFB /* WorkoutTableViewCell.xib */; };
+		45C411B11E8B329C005A2FFB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411B01E8B329C005A2FFB /* API.swift */; };
 		45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D01E85C8C7003DB276 /* map_retro.json */; };
 		45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D21E85C8E4003DB276 /* map_silver.json */; };
 		45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D41E85C90B003DB276 /* map_mirkwood.json */; };
@@ -45,6 +46,7 @@
 		456291841E89A606007A609D /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		45C411AB1E8B08A7005A2FFB /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		45C411AC1E8B08A7005A2FFB /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
+		45C411B01E8B329C005A2FFB /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		45C8D7D01E85C8C7003DB276 /* map_retro.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_retro.json; sourceTree = "<group>"; };
 		45C8D7D21E85C8E4003DB276 /* map_silver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_silver.json; sourceTree = "<group>"; };
 		45C8D7D41E85C90B003DB276 /* map_mirkwood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_mirkwood.json; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				45C8D7CF1E85C8A2003DB276 /* Map Styles */,
 				455FF2E31E847438000C88A9 /* Info.plist */,
 				455FF2EB1E847E36000C88A9 /* Constants.swift */,
+				45C411B01E8B329C005A2FFB /* API.swift */,
 				455FF2EF1E848F73000C88A9 /* BGView.swift */,
 				456291821E89A5BF007A609D /* Settings.swift */,
 				456291841E89A606007A609D /* Util.swift */,
@@ -333,6 +336,7 @@
 				45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */,
 				45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */,
 				455FF2F01E848F73000C88A9 /* BGView.swift in Sources */,
+				45C411B11E8B329C005A2FFB /* API.swift in Sources */,
 				455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */,
 				456291851E89A606007A609D /* Util.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
@@ -463,7 +467,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JSQ8N76B4C;
 				INFOPLIST_FILE = RUN/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.RUN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -478,7 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JSQ8N76B4C;
 				INFOPLIST_FILE = RUN/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.RUN;
 				PRODUCT_NAME = "$(TARGET_NAME)";

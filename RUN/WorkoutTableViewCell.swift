@@ -40,9 +40,7 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     func configure(with workout: Workout) {
-        if let startDate = workout.startDate {
-            dateLabel.text = Workout.dateFormatter.string(from: startDate)
-        }
+        dateLabel.text = workout.title
         timeElapsedLabel.text = TimeInterval(workout.totalTimeActive).formatted()
         distanceLabel.text = Utils.distanceString(meters: workout.totalDistance)
         elevationLabel.text = "\(Utils.distanceString(meters: workout.totalPositiveElevation)) (+\(Utils.distanceString(meters: workout.netElevation)))"
