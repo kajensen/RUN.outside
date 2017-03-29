@@ -10,4 +10,5 @@ target :RUN do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'iRate'
+    pod 'MGSwipeTableCell'
 end

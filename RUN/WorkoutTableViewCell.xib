@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzs-QL-bRY" customClass="RoundedView" customModule="RUN" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="304" height="63.5"/>
+                        <rect key="frame" x="8" y="4" width="304" height="63.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOR-Ww-tDq">
                                 <rect key="frame" x="63.5" y="8" width="43.5" height="21"/>
@@ -78,8 +78,8 @@
                 <constraints>
                     <constraint firstAttribute="leadingMargin" secondItem="zzs-QL-bRY" secondAttribute="leading" id="1JS-d5-Mgx"/>
                     <constraint firstItem="zzs-QL-bRY" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="96E-hh-sLO"/>
-                    <constraint firstAttribute="topMargin" secondItem="zzs-QL-bRY" secondAttribute="top" id="EwC-JV-W5I"/>
-                    <constraint firstAttribute="bottom" secondItem="zzs-QL-bRY" secondAttribute="bottom" id="jMH-Of-lfs"/>
+                    <constraint firstItem="zzs-QL-bRY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="EwC-JV-W5I"/>
+                    <constraint firstItem="zzs-QL-bRY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SKp-GR-LLF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var workoutsView: UIView!
     @IBOutlet weak var workoutsViewOverlay: UIView!
+    @IBOutlet weak var settingsViewOverlay: UIView!
     @IBOutlet weak var centerActionView: UIView!
     @IBOutlet weak var settingsActionView: UIView!
     @IBOutlet weak var settingsView: UIView!
@@ -80,6 +81,9 @@ class ViewController: UIViewController {
         let sPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ViewController.settingsViewPanned(_:)))
         sPanGestureRecognizer.delegate = self
         settingsView.addGestureRecognizer(sPanGestureRecognizer)
+        
+        let sTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.settingsViewTapped(_:)))
+        settingsViewOverlay.addGestureRecognizer(sTapGestureRecognizer)
     }
     
     override func viewDidLayoutSubviews() {
@@ -112,25 +116,12 @@ class ViewController: UIViewController {
     }
     
     func updateView() {
-        if state == .none {
-            if isShowingWorkoutsView {
-                workoutsViewOverlay.isUserInteractionEnabled = true
-                for actionView in actionViews {
-                    actionView.isUserInteractionEnabled = false
-                }
-            } else {
-                workoutsViewOverlay.isUserInteractionEnabled = false
-                for actionView in actionViews {
-                    actionView.isUserInteractionEnabled = true
-                }
-            }
-            for actionView in actionViews {
-                actionView.alpha = percentShowingWorkoutsView
-            }
-            workoutsViewController?.tableView?.panGestureRecognizer.isEnabled = isShowingWorkoutsView
-            workoutsViewOverlay.alpha = 1 - percentShowingWorkoutsView
-        }
+        workoutsViewOverlay.isUserInteractionEnabled = isShowingWorkoutsView
+        settingsViewOverlay.isUserInteractionEnabled = isShowingSettingsView
+        workoutsViewOverlay.alpha = percentShowingWorkoutsView
+        settingsViewOverlay.alpha = percentShowingSettingsView
         settingsViewController?.tableView?.panGestureRecognizer.isEnabled = isShowingSettingsView
+        workoutsViewController?.tableView?.panGestureRecognizer.isEnabled = isShowingWorkoutsView
         //workoutStatsView.alpha = percentShowingworkoutsView
     }
 
@@ -177,7 +168,7 @@ class ViewController: UIViewController {
             }
         }
         settingsViewConstraint.constant = settingsViewHiddenConstant
-        workoutsViewOverlay.alpha = 1 - percentShowingWorkoutsView
+        workoutsViewOverlay.alpha = percentShowingWorkoutsView
     }
     
     func finalizeState(_ state: State) {
@@ -259,6 +250,7 @@ extension ViewController {
         workoutManager.pause()
         UIView.animate(withDuration: 0.25, animations: {
             self.settingsViewConstraint.constant = self.settingsViewFullConstant
+            self.updateView()
             self.view.layoutIfNeeded()
         }) { (completed) in
             if completed {
@@ -365,7 +357,7 @@ extension ViewController: WorkoutsViewControllerDelegate {
         return workoutsViewContraint.constant == workoutsViewFullConstant
     }
     var percentShowingWorkoutsView: CGFloat {
-        return workoutsViewContraint.constant/workoutsViewDefaultConstant
+        return (workoutsViewHiddenConstant - workoutsViewContraint.constant)/workoutsViewHiddenConstant
     }
     
     func workoutsViewPanned(_ panGesture: UIPanGestureRecognizer) {
@@ -381,7 +373,6 @@ extension ViewController: WorkoutsViewControllerDelegate {
             panGesture.setTranslation(.zero, in: view)
             break
         case .ended:
-            print(panGesture.velocity(in: view))
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.25, animations: {
                 if (self.workoutsViewContraint.constant < (self.workoutsViewFullConstant + self.workoutsViewHiddenConstant)/4) {
@@ -465,13 +456,22 @@ extension ViewController: SettingsViewControllerDelegate {
     var isShowingSettingsView: Bool {
         return settingsViewConstraint.constant == settingsViewFullConstant
     }
+    var percentShowingSettingsView: CGFloat {
+        return settingsViewConstraint.constant/settingsViewFullConstant
+    }
     
     func settingsViewControllerTappedClose(_ vc: SettingsViewController) {
+        closeSettings()
+    }
+    
+    func closeSettings() {
         UIView.animate(withDuration: 0.25, animations: {
             self.settingsViewConstraint.constant = self.settingsViewHiddenConstant
+            self.updateView()
             self.view.layoutIfNeeded()
         }) { (completed) in
             if completed {
+                self.updateView()
             }
         }
     }
@@ -509,6 +509,16 @@ extension ViewController: SettingsViewControllerDelegate {
         }
     }
     
+    func settingsViewTapped(_ tapGesture: UITapGestureRecognizer) {
+        switch (tapGesture.state) {
+        case .ended:
+            closeSettings()
+            break
+        default:
+            break
+        }
+    }
+    
 }
 
 extension ViewController: GMSMapViewDelegate {
@@ -518,24 +528,25 @@ extension ViewController: GMSMapViewDelegate {
 extension ViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        var shouldRecognize = false
         if let tableView = workoutsViewController?.tableView,
             otherGestureRecognizer == tableView.panGestureRecognizer {
             let translation = tableView.panGestureRecognizer.translation(in: tableView)
             if translation.y > 0 && tableView.contentOffset.y <= 0 {
-                return true
+                shouldRecognize = true
             } else {
-                return !tableView.panGestureRecognizer.isEnabled
+                shouldRecognize = !tableView.panGestureRecognizer.isEnabled
             }
         } else if let tableView = settingsViewController?.tableView,
             otherGestureRecognizer == tableView.panGestureRecognizer {
             let translation = tableView.panGestureRecognizer.translation(in: tableView)
             if translation.y < 0 && (tableView.contentOffset.y + tableView.bounds.height) >= tableView.contentSize.height {
-                return true
+                shouldRecognize = true
             } else {
-                return !tableView.panGestureRecognizer.isEnabled
+                shouldRecognize = !tableView.panGestureRecognizer.isEnabled
             }
         }
-        return false
+        return shouldRecognize
     }
     
 }

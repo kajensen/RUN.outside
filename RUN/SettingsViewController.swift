@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
         self.versionLabel.translatesAutoresizingMaskIntoConstraints = false
         tableFooterView.addSubview(self.versionLabel)
         self.versionLabel.centerXAnchor.constraint(equalTo: tableFooterView.centerXAnchor).isActive = true
-        self.versionLabel.centerYAnchor.constraint(equalTo: tableFooterView.centerYAnchor).isActive = true
+        self.versionLabel.centerYAnchor.constraint(equalTo: tableFooterView.centerYAnchor, constant: -8).isActive = true
         return tableFooterView
     }()
     

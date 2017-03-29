@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class WorkoutTableViewCell: UITableViewCell {
+protocol WorkoutTableViewCellDelegate: class {
+    func workoutTableViewCellTappedDelete(_ cell: WorkoutTableViewCell)
+}
+
+class WorkoutTableViewCell: MGSwipeTableCell {
     
     static let rowHeight: CGFloat = 72
     static let nibName = "WorkoutTableViewCell"
@@ -18,9 +23,18 @@ class WorkoutTableViewCell: UITableViewCell {
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var elevationLabel: UILabel!
+    
+    weak var aDelegate: WorkoutTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        let rightButton = MGSwipeButton(title: "Delete", icon: UIImage(named: "trash"), backgroundColor: UIColor.red, padding: 32) { (cell) -> Bool in
+            guard let cell = cell as? WorkoutTableViewCell else { return false }
+            cell.aDelegate?.workoutTableViewCellTappedDelete(cell)
+            return true
+        }
+        rightButton.tintColor = UIColor.white
+        rightButtons = [rightButton]
         prepareForReuse()
     }
     
