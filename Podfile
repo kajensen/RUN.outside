@@ -9,4 +9,5 @@ target :RUN do
     pod 'RealmSwift'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'iRate'
 end

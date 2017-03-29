@@ -463,7 +463,7 @@ extension ViewController: SettingsViewControllerDelegate {
         return -20
     }
     var settingsViewFullConstant: CGFloat {
-        return 220
+        return 300 - 20
     }
     
     func settingsViewControllerTappedClose(_ vc: SettingsViewController) {

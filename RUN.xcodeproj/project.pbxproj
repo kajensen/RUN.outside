@@ -22,6 +22,13 @@
 		45C411B11E8B329C005A2FFB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411B01E8B329C005A2FFB /* API.swift */; };
 		45C411B31E8B3DFA005A2FFB /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411B21E8B3DFA005A2FFB /* RoundedView.swift */; };
 		45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411B41E8B420A005A2FFB /* RoundedButton.swift */; };
+		45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411B71E8B507A005A2FFB /* ActionTableViewCell.swift */; };
+		45C411BC1E8B507A005A2FFB /* ActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C411B81E8B507A005A2FFB /* ActionTableViewCell.xib */; };
+		45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411B91E8B507A005A2FFB /* CustomizationTableViewCell.swift */; };
+		45C411BE1E8B507A005A2FFB /* CustomizationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C411BA1E8B507A005A2FFB /* CustomizationTableViewCell.xib */; };
+		45C411C21E8B50A6005A2FFB /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411C11E8B50A6005A2FFB /* Style.swift */; };
+		45C411C51E8B5189005A2FFB /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C411C31E8B5189005A2FFB /* ReviewTableViewCell.swift */; };
+		45C411C61E8B5189005A2FFB /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C411C41E8B5189005A2FFB /* ReviewTableViewCell.xib */; };
 		45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D01E85C8C7003DB276 /* map_retro.json */; };
 		45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D21E85C8E4003DB276 /* map_silver.json */; };
 		45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */ = {isa = PBXBuildFile; fileRef = 45C8D7D41E85C90B003DB276 /* map_mirkwood.json */; };
@@ -51,6 +58,13 @@
 		45C411B01E8B329C005A2FFB /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		45C411B21E8B3DFA005A2FFB /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		45C411B41E8B420A005A2FFB /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		45C411B71E8B507A005A2FFB /* ActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCell.swift; sourceTree = "<group>"; };
+		45C411B81E8B507A005A2FFB /* ActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionTableViewCell.xib; sourceTree = "<group>"; };
+		45C411B91E8B507A005A2FFB /* CustomizationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizationTableViewCell.swift; sourceTree = "<group>"; };
+		45C411BA1E8B507A005A2FFB /* CustomizationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomizationTableViewCell.xib; sourceTree = "<group>"; };
+		45C411C11E8B50A6005A2FFB /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		45C411C31E8B5189005A2FFB /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		45C411C41E8B5189005A2FFB /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		45C8D7D01E85C8C7003DB276 /* map_retro.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_retro.json; sourceTree = "<group>"; };
 		45C8D7D21E85C8E4003DB276 /* map_silver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_silver.json; sourceTree = "<group>"; };
 		45C8D7D41E85C90B003DB276 /* map_mirkwood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_mirkwood.json; sourceTree = "<group>"; };
@@ -108,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				455FF2D71E847438000C88A9 /* AppDelegate.swift */,
-				45C411AF1E8B08AA005A2FFB /* WorkoutTableViewCell */,
+				45C411B61E8B5037005A2FFB /* Cells */,
 				455FF2EE1E847F64000C88A9 /* View Controllers */,
 				455FF2ED1E847F5E000C88A9 /* Storyboards */,
 				455FF2DE1E847438000C88A9 /* Assets.xcassets */,
@@ -130,6 +144,7 @@
 				45C411B21E8B3DFA005A2FFB /* RoundedView.swift */,
 				45C411B41E8B420A005A2FFB /* RoundedButton.swift */,
 				456291821E89A5BF007A609D /* Settings.swift */,
+				45C411C11E8B50A6005A2FFB /* Style.swift */,
 				456291841E89A606007A609D /* Util.swift */,
 			);
 			name = "Supporting Files";
@@ -162,6 +177,44 @@
 				45C411AC1E8B08A7005A2FFB /* WorkoutTableViewCell.xib */,
 			);
 			name = WorkoutTableViewCell;
+			sourceTree = "<group>";
+		};
+		45C411B61E8B5037005A2FFB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				45C411C71E8B518E005A2FFB /* ReviewTableViewCell */,
+				45C411BF1E8B507F005A2FFB /* ActionTableViewCell */,
+				45C411C01E8B5085005A2FFB /* CustomizationTableViewCell */,
+				45C411AF1E8B08AA005A2FFB /* WorkoutTableViewCell */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		45C411BF1E8B507F005A2FFB /* ActionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				45C411B71E8B507A005A2FFB /* ActionTableViewCell.swift */,
+				45C411B81E8B507A005A2FFB /* ActionTableViewCell.xib */,
+			);
+			name = ActionTableViewCell;
+			sourceTree = "<group>";
+		};
+		45C411C01E8B5085005A2FFB /* CustomizationTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				45C411B91E8B507A005A2FFB /* CustomizationTableViewCell.swift */,
+				45C411BA1E8B507A005A2FFB /* CustomizationTableViewCell.xib */,
+			);
+			name = CustomizationTableViewCell;
+			sourceTree = "<group>";
+		};
+		45C411C71E8B518E005A2FFB /* ReviewTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				45C411C31E8B5189005A2FFB /* ReviewTableViewCell.swift */,
+				45C411C41E8B5189005A2FFB /* ReviewTableViewCell.xib */,
+			);
+			name = ReviewTableViewCell;
 			sourceTree = "<group>";
 		};
 		45C8D7CF1E85C8A2003DB276 /* Map Styles */ = {
@@ -261,10 +314,13 @@
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
 				45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */,
 				455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */,
+				45C411BC1E8B507A005A2FFB /* ActionTableViewCell.xib in Resources */,
 				455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */,
 				45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */,
+				45C411BE1E8B507A005A2FFB /* CustomizationTableViewCell.xib in Resources */,
 				45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */,
 				45C411AE1E8B08A7005A2FFB /* WorkoutTableViewCell.xib in Resources */,
+				45C411C61E8B5189005A2FFB /* ReviewTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				455FF2DA1E847438000C88A9 /* ViewController.swift in Sources */,
+				45C411C21E8B50A6005A2FFB /* Style.swift in Sources */,
 				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
 				45C8D7DF1E85FB60003DB276 /* Location.swift in Sources */,
 				45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */,
@@ -346,10 +403,13 @@
 				455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */,
 				45C411B31E8B3DFA005A2FFB /* RoundedView.swift in Sources */,
 				456291851E89A606007A609D /* Util.swift in Sources */,
+				45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
 				45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */,
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
+				45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */,
 				45C8D7D91E85DF6E003DB276 /* WorkoutsViewController.swift in Sources */,
+				45C411C51E8B5189005A2FFB /* ReviewTableViewCell.swift in Sources */,
 				456291831E89A5BF007A609D /* Settings.swift in Sources */,
 				45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */,
 			);

@@ -216,3 +216,51 @@ extension Date {
     }
     
 }
+
+extension UIColor {
+    
+    var rgb: (red:CGFloat, green:CGFloat, blue:CGFloat, alpha:CGFloat)? {
+        var fRed : CGFloat = 0
+        var fGreen : CGFloat = 0
+        var fBlue : CGFloat = 0
+        var fAlpha: CGFloat = 0
+        if self.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
+            return (red:fRed, green:fGreen, blue:fBlue, alpha:fAlpha)
+        } else {
+            return nil
+        }
+    }
+    
+    convenience init(hex: String) {
+        var r: CGFloat = 1
+        var g: CGFloat = 1
+        var b: CGFloat = 1
+        let a: CGFloat = 1
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = hex.substring(from: start)
+            if hexColor.characters.count == 6 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt32 = 0
+                if scanner.scanHexInt32(&hexNumber) {
+                    r = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    g = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    b = CGFloat(hexNumber & 0x000000ff) / 255
+                }
+            }
+        }
+        self.init(red: r, green: g, blue: b, alpha: a)
+    }
+    
+    convenience init?(startingColor: UIColor, endingColor: UIColor, percentage: CGFloat) {
+        guard let startingRGB = startingColor.rgb, let endingRGB = endingColor.rgb else {
+            return nil
+        }
+        let red = (1.0-percentage)*startingRGB.red + percentage*endingRGB.red
+        let green = (1.0-percentage)*startingRGB.green + percentage*endingRGB.green
+        let blue = (1.0-percentage)*startingRGB.blue + percentage*endingRGB.blue
+        let alpha = (1.0-percentage)*startingRGB.alpha + percentage*endingRGB.alpha
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+}
