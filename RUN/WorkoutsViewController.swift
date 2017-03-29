@@ -11,8 +11,8 @@ import RealmSwift
 import CoreLocation
 
 protocol WorkoutsViewControllerDelegate: class {
+    func workoutsViewControllerDidClose(_ vc: WorkoutsViewController, workout: Workout?)
     func workoutsViewControllerDidSelect(_ vc: WorkoutsViewController, workout: Workout)
-    func workoutsViewPanned(_ panGesture: UIPanGestureRecognizer)
 }
 
 class WorkoutsViewController: UIViewController {
@@ -50,8 +50,7 @@ class WorkoutsViewController: UIViewController {
         super.viewDidLoad()
         tableView.rowHeight = WorkoutTableViewCell.rowHeight
         tableView.register(UINib(nibName: WorkoutTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: WorkoutTableViewCell.nibName)
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(WorkoutsViewController.viewPanned(_:)))
-        topView.addGestureRecognizer(panGestureRecognizer)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
         temperatureLabel.text = nil
         weatherInfoLabel.text = nil
         distanceLabel.text = nil
@@ -86,10 +85,6 @@ class WorkoutsViewController: UIViewController {
         distanceLabel.text = Utils.distanceString(meters: totalDistance)
         let totalNumWorkouts = workouts?.count ?? 0
         workoutsInfoLabel.text = "\(totalNumWorkouts) run\(totalNumWorkouts == 1 ? "" : "s") this \(timeSpan.title)"
-    }
-
-    func viewPanned(_ panGesture: UIPanGestureRecognizer) {
-        delegate?.workoutsViewPanned(panGesture)
     }
     
     func setupWorkoutsNotification() {
@@ -126,7 +121,6 @@ class WorkoutsViewController: UIViewController {
 
 extension WorkoutsViewController: UITableViewDataSource, UITableViewDelegate {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let workouts = workouts else { return 0 }
         return workouts.count
@@ -142,6 +136,14 @@ extension WorkoutsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let workout = workouts![indexPath.row]
+        show(workout)
+    }
+    
+    func show(_ workout: Workout) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: WorkoutViewController.storyboardId) as? WorkoutViewController else { return }
+        vc.workout = workout
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: false)
         delegate?.workoutsViewControllerDidSelect(self, workout: workout)
     }
     
@@ -156,6 +158,14 @@ extension WorkoutsViewController: UITableViewDataSource, UITableViewDelegate {
             }
         })
         return [deleteAction]
+    }
+    
+}
+
+extension WorkoutsViewController: WorkoutViewControllerDelegate {
+    
+    func workoutViewControllerTappedClose(_ vc: WorkoutViewController) {
+        delegate?.workoutsViewControllerDidClose(self, workout: nil)
     }
     
 }

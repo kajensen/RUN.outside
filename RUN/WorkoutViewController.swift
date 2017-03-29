@@ -10,40 +10,32 @@ import UIKit
 
 protocol WorkoutViewControllerDelegate: class {
     func workoutViewControllerTappedClose(_ vc: WorkoutViewController)
-    func workoutViewPanned(_ panGesture: UIPanGestureRecognizer)
 }
 
 class WorkoutViewController: UIViewController {
+    
+    static let storyboardId = "WorkoutViewController"
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     
     weak var delegate: WorkoutViewControllerDelegate?
-    var workout: Workout? {
-        didSet {
-            configure()
-        }
-    }
+    var workout: Workout?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(WorkoutViewController.viewPanned(_:)))
-        topView.addGestureRecognizer(panGestureRecognizer)
+        configure()
     }
-    
-    func viewPanned(_ panGesture: UIPanGestureRecognizer) {
-        delegate?.workoutViewPanned(panGesture)
-    }
-    
     @IBAction func closeTapped(_ sender: Any) {
         delegate?.workoutViewControllerTappedClose(self)
+        navigationController?.popViewController(animated: true)
     }
     
     func configure() {
-        titleLabel.text = workout?.title
-        subTitleLabel.text = workout?.endDate?.timeAgo()
+        guard let workout = workout, !workout.isInvalidated else { return }
+        titleLabel.text = workout.title
+        subTitleLabel.text = workout.endDate?.timeAgo()
     }
     
 }

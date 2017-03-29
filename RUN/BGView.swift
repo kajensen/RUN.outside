@@ -21,9 +21,9 @@ class BGView: UIView {
     }
     
     func commonInit() {
-        let effect = UIBlurEffect(style: .dark)
+        let effect = UIBlurEffect(style: .light)
         let view = UIVisualEffectView(effect: effect)
-        view.backgroundColor = UIColor.white.withAlphaComponent(0.75)
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(view, at: 0)
         view.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

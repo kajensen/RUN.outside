@@ -10,7 +10,7 @@ import UIKit
 
 class WorkoutTableViewCell: UITableViewCell {
     
-    static let rowHeight: CGFloat = 60
+    static let rowHeight: CGFloat = 72
     static let nibName = "WorkoutTableViewCell"
     
     @IBOutlet weak var routeImageView: UIImageView!

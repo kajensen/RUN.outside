@@ -13,13 +13,11 @@ import MessageUI
 
 protocol SettingsViewControllerDelegate: class {
     func settingsViewControllerTappedClose(_ vc: SettingsViewController)
-    func settingsViewPanned(_ panGesture: UIPanGestureRecognizer)
 }
 
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bottomView: UIView!
     
     weak var delegate: SettingsViewControllerDelegate?
 
@@ -47,13 +45,13 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         //registerForThemeChange()
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SettingsViewController.viewPanned(_:)))
-        bottomView.addGestureRecognizer(panGestureRecognizer)
     }
     
-    func viewPanned(_ panGesture: UIPanGestureRecognizer) {
-        delegate?.settingsViewPanned(panGesture)
+    var preferredViewSize: CGSize? {
+        guard isViewLoaded else {
+            return nil
+        }
+        return CGSize(width: view.bounds.width, height: tableView.contentSize.height)
     }
     
     @IBAction func closeTapped(_ sender: Any) {

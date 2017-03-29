@@ -17,8 +17,11 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var workoutsView: UIView!
     @IBOutlet weak var workoutsViewOverlay: UIView!
-    @IBOutlet weak var actionView: UIView!
+    @IBOutlet weak var centerActionView: UIView!
+    @IBOutlet weak var settingsActionView: UIView!
+    @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var workoutStatsView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceUnitsLabel: UILabel!
@@ -26,14 +29,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var toggleWorkoutButton: UIButton!
     @IBOutlet weak var endWorkoutButton: UIButton!
     @IBOutlet weak var workoutsViewContraint: NSLayoutConstraint!
-    @IBOutlet weak var workoutViewContraint: NSLayoutConstraint!
-    @IBOutlet weak var settingsViewContraint: NSLayoutConstraint!
-    weak var workoutViewController: WorkoutViewController?
+    @IBOutlet weak var settingsViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsViewHeightConstraint: NSLayoutConstraint!
     weak var workoutsViewController: WorkoutsViewController?
     weak var settingsViewController: SettingsViewController?
     
-    var polyline: GMSPolyline?
-    
+    var actionViews: [UIView] {
+        return [centerActionView, settingsActionView]
+    }
     var defaultViews: [UIView?] {
         return [workoutsViewOverlay]
     }
@@ -44,6 +47,8 @@ class ViewController: UIViewController {
     lazy var workoutManager: WorkoutManager = {
         return WorkoutManager(delegate: self)
     }()
+    
+    var polyline: GMSPolyline?
     
     var state: State = .none {
         didSet {
@@ -67,6 +72,21 @@ class ViewController: UIViewController {
         distanceLabel.text = nil
         distanceUnitsLabel.text = nil
         registerForThemeChange()
+        
+        let wPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ViewController.workoutsViewPanned(_:)))
+        wPanGestureRecognizer.delegate = self
+        workoutsView.addGestureRecognizer(wPanGestureRecognizer)
+        
+        let sPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ViewController.settingsViewPanned(_:)))
+        sPanGestureRecognizer.delegate = self
+        settingsView.addGestureRecognizer(sPanGestureRecognizer)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let size = settingsViewController?.preferredViewSize {
+            settingsViewHeightConstraint.constant = min(view.bounds.height, size.height)
+        }
     }
     
     override func configureTheme() {
@@ -78,7 +98,8 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedWorkouts" {
-            if let vc = segue.destination as? WorkoutsViewController {
+            if let nc = segue.destination as? UINavigationController,
+                let vc = nc.childViewControllers.first as? WorkoutsViewController {
                 vc.delegate = self
                 workoutsViewController = vc
             }
@@ -87,35 +108,43 @@ class ViewController: UIViewController {
                 vc.delegate = self
                 settingsViewController = vc
             }
-        } else if segue.identifier == "embedWorkout" {
-            if let vc = segue.destination as? WorkoutViewController {
-                vc.delegate = self
-                workoutViewController = vc
-            }
         }
     }
     
     func updateView() {
-        guard state == .none else { return }
-        if isShowingWorkoutsView {
-            workoutsViewOverlay.isUserInteractionEnabled = true
-            actionView.isUserInteractionEnabled = false
-        } else {
-            workoutsViewOverlay.isUserInteractionEnabled = false
-            actionView.isUserInteractionEnabled = true
+        if state == .none {
+            if isShowingWorkoutsView {
+                workoutsViewOverlay.isUserInteractionEnabled = true
+                for actionView in actionViews {
+                    actionView.isUserInteractionEnabled = false
+                }
+            } else {
+                workoutsViewOverlay.isUserInteractionEnabled = false
+                for actionView in actionViews {
+                    actionView.isUserInteractionEnabled = true
+                }
+            }
+            for actionView in actionViews {
+                actionView.alpha = percentShowingWorkoutsView
+            }
+            workoutsViewController?.tableView?.panGestureRecognizer.isEnabled = isShowingWorkoutsView
+            workoutsViewOverlay.alpha = 1 - percentShowingWorkoutsView
         }
-        actionView.alpha = percentShowingWorkoutsView
+        settingsViewController?.tableView?.panGestureRecognizer.isEnabled = isShowingSettingsView
         //workoutStatsView.alpha = percentShowingworkoutsView
-        workoutsViewOverlay.alpha = 1 - percentShowingWorkoutsView
     }
 
     func prepareTransitionState(_ state: State) {
         switch state {
         case .none:
-            actionView.isHidden = false
+            for actionView in actionViews {
+                actionView.isHidden = false
+            }
             toggleWorkoutButton.isHidden = false
         case .live:
-            actionView.isHidden = false
+            for actionView in actionViews {
+                actionView.isHidden = false
+            }
             workoutStatsView.isHidden = false
             toggleWorkoutButton.isHidden = false
         case .past:
@@ -127,21 +156,27 @@ class ViewController: UIViewController {
         switch state {
         case .none:
             workoutsViewContraint.constant = workoutsViewDefaultConstant
-            workoutViewContraint.constant = workoutViewHiddenConstant
-            actionView.alpha = 1
+            //workoutViewContraint.constant = workoutViewHiddenConstant
+            for actionView in actionViews {
+                actionView.alpha = 1
+            }
             workoutStatsView.alpha = 0
         case .live:
             workoutsViewContraint.constant = workoutsViewHiddenConstant
-            workoutViewContraint.constant = workoutViewHiddenConstant
-            actionView.alpha = 1
+            //workoutViewContraint.constant = workoutViewHiddenConstant
+            for actionView in actionViews {
+                actionView.alpha = 1
+            }
             workoutStatsView.alpha = 1
         case .past:
-            workoutsViewContraint.constant = workoutsViewHiddenConstant
-            workoutViewContraint.constant = workoutViewDefaultConstant
+            workoutsViewContraint.constant = workoutsViewDefaultConstant
+            //workoutViewContraint.constant = workoutViewDefaultConstant
             workoutStatsView.alpha = 1
-            actionView.alpha = 0
+            for actionView in actionViews {
+                actionView.alpha = 0
+            }
         }
-        settingsViewContraint.constant = settingsViewHiddenConstant
+        settingsViewConstraint.constant = settingsViewHiddenConstant
         workoutsViewOverlay.alpha = 1 - percentShowingWorkoutsView
     }
     
@@ -155,7 +190,9 @@ class ViewController: UIViewController {
             endWorkoutButton.isHidden = true
             //endWorkoutButton.alpha = 0
         case .past:
-            actionView.isHidden = true
+            for actionView in actionViews {
+                actionView.isHidden = true
+            }
             endWorkoutButton.isHidden = true
             toggleWorkoutButton.isHidden = true
             //endWorkoutButton.alpha = 0
@@ -214,59 +251,18 @@ extension ViewController {
             try? realm?.write {
                 realm?.add(workout)
             }
-            showWorkout(workout)
+            workoutsViewController?.show(workout)
         }
-    }
-    
-    func showWorkout(_ workout: Workout) {
-        workoutViewController?.workout = workout
-        setupView(.past, animated: true)
-        polyline = nil
-        resetMap(false)
-        var bounds = GMSCoordinateBounds()
-        var previousLocation: Location?
-        for location in workout.locations {
-            if let polyline = polyline,
-                let previousLocation = previousLocation, !location.startsNewSegment {
-                let mutablePath: GMSMutablePath
-                if let path = polyline.path {
-                    mutablePath = GMSMutablePath(path: path)
-                } else {
-                    mutablePath = GMSMutablePath()
-                }
-                mutablePath.add(location.coordinate)
-                polyline.path = mutablePath
-                var spans = polyline.spans ?? []
-                let style = GMSStrokeStyle.gradient(from: previousLocation.speed.color, to: location.speed.color)
-                let span = GMSStyleSpan(style: style)
-                spans.append(span)
-                polyline.spans = spans
-                polyline.map = mapView
-            } else {
-                let path = GMSMutablePath()
-                path.add(location.coordinate)
-                let newPolyline = GMSPolyline(path: path)
-                newPolyline.map = mapView
-                newPolyline.spans = [GMSStyleSpan(color: CLLocationSpeed(location.speed).color)]
-                polyline = newPolyline
-            }
-            previousLocation = location
-            bounds = bounds.includingCoordinate(location.coordinate)
-        }
-        mapView.animate(with: GMSCameraUpdate.fit(bounds))
-        timeLabel.text = TimeInterval(workout.totalTimeActive).formatted()
-        let distanceString = Utils.distanceString(meters: workout.totalDistance).components(separatedBy: " ")
-        distanceLabel.text = distanceString.first
-        distanceUnitsLabel.text = distanceString.last?.uppercased()
     }
     
     @IBAction func settingsTapped(_ sender: Any) {
         workoutManager.pause()
         UIView.animate(withDuration: 0.25, animations: {
-            self.settingsViewContraint.constant = self.settingsViewFullConstant
+            self.settingsViewConstraint.constant = self.settingsViewFullConstant
             self.view.layoutIfNeeded()
         }) { (completed) in
             if completed {
+                self.updateView()
             }
         }
     }
@@ -410,56 +406,50 @@ extension ViewController: WorkoutsViewControllerDelegate {
         showWorkout(workout)
     }
     
-}
-
-extension ViewController: WorkoutViewControllerDelegate {
-    
-    var workoutViewDefaultConstant: CGFloat {
-        return workoutViewFullConstant
-    }
-    var workoutViewHiddenConstant: CGFloat {
-        return view.bounds.height
-    }
-    var workoutViewFullConstant: CGFloat {
-        return view.bounds.height - 264
-    }
-    
-    func workoutViewControllerTappedClose(_ vc: WorkoutViewController) {
-        selectedWorkout = nil
-        setupView(.none, animated: true)
-    }
-    
-    func workoutViewPanned(_ panGesture: UIPanGestureRecognizer) {
-        switch (panGesture.state) {
-        case .began:
-            break
-        case .changed:
-            var newConstant = workoutViewContraint.constant + panGesture.translation(in: view).y
-            newConstant = min(newConstant, workoutViewDefaultConstant)
-            newConstant = max(newConstant, workoutViewFullConstant)
-            workoutViewContraint.constant = newConstant
-            updateView()
-            panGesture.setTranslation(.zero, in: view)
-            break
-        case .ended:
-            view.layoutIfNeeded()
-            UIView.animate(withDuration: 0.25, animations: {
-                if (self.workoutViewContraint.constant < (self.workoutViewFullConstant + self.workoutViewHiddenConstant)/2) {
-                    self.workoutViewContraint.constant = self.workoutViewFullConstant
+    func showWorkout(_ workout: Workout) {
+        setupView(.past, animated: true)
+        polyline = nil
+        resetMap(false)
+        var bounds = GMSCoordinateBounds()
+        var previousLocation: Location?
+        for location in workout.locations {
+            if let polyline = polyline,
+                let previousLocation = previousLocation, !location.startsNewSegment {
+                let mutablePath: GMSMutablePath
+                if let path = polyline.path {
+                    mutablePath = GMSMutablePath(path: path)
                 } else {
-                    self.workoutViewContraint.constant = self.workoutViewDefaultConstant
+                    mutablePath = GMSMutablePath()
                 }
-                self.updateView()
-                self.view.layoutIfNeeded()
-            }) { (completed) in
-                if completed {
-                    self.updateView()
-                }
+                mutablePath.add(location.coordinate)
+                polyline.path = mutablePath
+                var spans = polyline.spans ?? []
+                let style = GMSStrokeStyle.gradient(from: previousLocation.speed.color, to: location.speed.color)
+                let span = GMSStyleSpan(style: style)
+                spans.append(span)
+                polyline.spans = spans
+                polyline.map = mapView
+            } else {
+                let path = GMSMutablePath()
+                path.add(location.coordinate)
+                let newPolyline = GMSPolyline(path: path)
+                newPolyline.strokeWidth = 4
+                newPolyline.map = mapView
+                newPolyline.spans = [GMSStyleSpan(color: CLLocationSpeed(location.speed).color)]
+                polyline = newPolyline
             }
-            break
-        default:
-            break
+            previousLocation = location
+            bounds = bounds.includingCoordinate(location.coordinate)
         }
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
+        timeLabel.text = TimeInterval(workout.totalTimeActive).formatted()
+        let distanceString = Utils.distanceString(meters: workout.totalDistance).components(separatedBy: " ")
+        distanceLabel.text = distanceString.first
+        distanceUnitsLabel.text = distanceString.last?.uppercased()
+    }
+    
+    func workoutsViewControllerDidClose(_ vc: WorkoutsViewController, workout: Workout?) {
+        setupView(.none, animated: true)
     }
     
 }
@@ -470,12 +460,15 @@ extension ViewController: SettingsViewControllerDelegate {
         return -20
     }
     var settingsViewFullConstant: CGFloat {
-        return 300 - 20
+        return settingsViewHeightConstraint.constant - 28
+    }
+    var isShowingSettingsView: Bool {
+        return settingsViewConstraint.constant == settingsViewFullConstant
     }
     
     func settingsViewControllerTappedClose(_ vc: SettingsViewController) {
         UIView.animate(withDuration: 0.25, animations: {
-            self.settingsViewContraint.constant = self.settingsViewHiddenConstant
+            self.settingsViewConstraint.constant = self.settingsViewHiddenConstant
             self.view.layoutIfNeeded()
         }) { (completed) in
             if completed {
@@ -488,20 +481,20 @@ extension ViewController: SettingsViewControllerDelegate {
         case .began:
             break
         case .changed:
-            var newConstant = settingsViewContraint.constant + panGesture.translation(in: view).y
+            var newConstant = settingsViewConstraint.constant + panGesture.translation(in: view).y
             newConstant = min(newConstant, settingsViewFullConstant)
             newConstant = max(newConstant, settingsViewHiddenConstant)
-            settingsViewContraint.constant = newConstant
+            settingsViewConstraint.constant = newConstant
             updateView()
             panGesture.setTranslation(.zero, in: view)
             break
         case .ended:
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.25, animations: {
-                if (self.settingsViewContraint.constant < (self.settingsViewFullConstant + self.settingsViewHiddenConstant)/2) {
-                    self.settingsViewContraint.constant = self.settingsViewHiddenConstant
+                if (self.settingsViewConstraint.constant < (self.settingsViewFullConstant + self.settingsViewHiddenConstant)/2) {
+                    self.settingsViewConstraint.constant = self.settingsViewHiddenConstant
                 } else {
-                    self.settingsViewContraint.constant = self.settingsViewFullConstant
+                    self.settingsViewConstraint.constant = self.settingsViewFullConstant
                 }
                 self.updateView()
                 self.view.layoutIfNeeded()
@@ -520,4 +513,29 @@ extension ViewController: SettingsViewControllerDelegate {
 
 extension ViewController: GMSMapViewDelegate {
     // TODO
+}
+
+extension ViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let tableView = workoutsViewController?.tableView,
+            otherGestureRecognizer == tableView.panGestureRecognizer {
+            let translation = tableView.panGestureRecognizer.translation(in: tableView)
+            if translation.y > 0 && tableView.contentOffset.y <= 0 {
+                return true
+            } else {
+                return !tableView.panGestureRecognizer.isEnabled
+            }
+        } else if let tableView = settingsViewController?.tableView,
+            otherGestureRecognizer == tableView.panGestureRecognizer {
+            let translation = tableView.panGestureRecognizer.translation(in: tableView)
+            if translation.y < 0 && (tableView.contentOffset.y + tableView.bounds.height) >= tableView.contentSize.height {
+                return true
+            } else {
+                return !tableView.panGestureRecognizer.isEnabled
+            }
+        }
+        return false
+    }
+    
 }

@@ -10,6 +10,16 @@ import UIKit
 
 class RoundedButton: UIButton {
 
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -21,7 +31,7 @@ class RoundedButton: UIButton {
     }
     
     func commonInit() {
-        layer.cornerRadius = 4
+        layer.cornerRadius = cornerRadius
     }
 
 }

@@ -25,7 +25,8 @@ class Style {
         let theme = Settings.theme
         UITableView.appearance().backgroundColor = UIColor.clear
         UITableViewCell.appearance().backgroundColor = UIColor.clear
-        
+        UITableView.appearance().separatorColor = UIColor.clear
+
         //UIVisualEffectView.appearance().add
 
 /*        // VIEWS
