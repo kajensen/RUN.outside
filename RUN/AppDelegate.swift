@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import GoogleMaps
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         GMSServices.provideAPIKey(Constants.googleMapsApiKey)
+        
         
         return true
     }

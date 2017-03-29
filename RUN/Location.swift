@@ -17,6 +17,7 @@ class Location: Object {
     dynamic var horizontal​Accuracy: Double = 0
     dynamic var vertical​Accuracy: Double = 0
     dynamic var course: Double = 0
+    dynamic var speed: Double = 0
     dynamic var startsNewSegment: Bool = false
     dynamic var timestamp: Date!
     
@@ -32,6 +33,7 @@ class Location: Object {
         self.horizontal​Accuracy = location.horizontalAccuracy
         self.vertical​Accuracy = location.verticalAccuracy
         self.course = location.course
+        self.speed = location.speed
         self.startsNewSegment = startsNewSegment
         self.timestamp = location.timestamp
     }

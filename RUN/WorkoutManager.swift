@@ -10,8 +10,8 @@ import UIKit
 import CoreLocation
 
 protocol WorkoutManagerDelegate: class {
-    func workoutMangerDidStart(_ workoutManager: WorkoutManager, location: CLLocationCoordinate2D, speed: Double)
-    func workoutMangerDidAddSegment(_ workoutManager: WorkoutManager, location: CLLocationCoordinate2D, speed: Double)
+    func workoutMangerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation)
+    func workoutMangerDidUpdate(_ workoutManager: WorkoutManager, from originalLocation: CLLocation?, to location: CLLocation)
     func workoutMangerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval)
     func workoutMangerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance)
     func workoutMangerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState)
@@ -24,11 +24,11 @@ class WorkoutManager: NSObject {
     }
     
     let locationManager = CLLocationManager()
-    private let workout = Workout()
+    var workout: Workout?
     private var timer: Timer?
     weak var delegate: WorkoutManagerDelegate?
     private var lastActiveLocation: CLLocation?
-    private var state: WorkoutState = .none {
+    private (set) var state: WorkoutState = .none {
         didSet {
             delegate?.workoutMangerDidChangeState(self, state: state)
         }
@@ -44,6 +44,8 @@ class WorkoutManager: NSObject {
             delegate?.workoutMangerDidChangeDistance(self, distanceTraveled: distanceTraveled)
         }
     }
+    var netElevation: CLLocationDistance = 0
+    var totalPositiveElevation: CLLocationDistance = 0
     
     convenience init(delegate: WorkoutManagerDelegate) {
         self.init()
@@ -53,15 +55,21 @@ class WorkoutManager: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         self.delegate = delegate
-        start()
     }
     
     fileprivate func addLocation(_ location: CLLocation) {
         guard state == .running else { return }
-        workout.addLocation(location, startsNewSegment: lastActiveLocation == nil)
+        let startsNewSegment = lastActiveLocation == nil
+        workout?.addLocation(location, startsNewSegment: startsNewSegment)
         if let lastActiveLocation = lastActiveLocation {
             distanceTraveled += lastActiveLocation.distance(from: location)
+            let elevationDiff = location.altitude - lastActiveLocation.altitude
+            if elevationDiff > 0 {
+                totalPositiveElevation += elevationDiff
+            }
+            netElevation += elevationDiff
         }
+        delegate?.workoutMangerDidUpdate(self, from: lastActiveLocation, to: location)
         lastActiveLocation = location
     }
     
@@ -69,7 +77,12 @@ class WorkoutManager: NSObject {
         timeElapsed += 0.1
     }
     
-    func start() {
+    func start(_ workout: Workout) {
+        self.workout = workout
+        resume()
+    }
+    
+    func resume() {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
         state = .running
     }
@@ -82,20 +95,43 @@ class WorkoutManager: NSObject {
     
     func toggle() {
         if state == .paused {
-            start()
+            resume()
         } else if state == .running {
             pause()
         }
     }
     
-    func end() -> Workout {
+    func end() -> Workout? {
         // TODO
         state = .none
-        workout.totalTimeActive = timeElapsed
-        workout.totalDistance = distanceTraveled
-        return workout
+        let completedWorkout = self.workout
+        completedWorkout?.totalTimeActive = timeElapsed
+        completedWorkout?.totalDistance = distanceTraveled
+        completedWorkout?.totalPositiveElevation = totalPositiveElevation
+        completedWorkout?.netElevation = netElevation
+        reset()
+        return completedWorkout
+    }
+    
+    func reset() {
+        workout = nil
+        timeElapsed = 0
+        distanceTraveled = 0
     }
 
+}
+
+
+extension CLLocationSpeed {
+    var color: UIColor {
+        if self > 3.5 {
+            return UIColor.green
+        } else if self > 3 {
+            return UIColor.yellow
+        } else {
+            return UIColor.red
+        }
+    }
 }
 
 extension WorkoutManager: CLLocationManagerDelegate {
@@ -104,6 +140,9 @@ extension WorkoutManager: CLLocationManagerDelegate {
         // ususally just one location but could be multiple
         for location in locations {
             addLocation(location)
+        }
+        if let currentLocation = locations.last {
+            delegate?.workoutMangerDidMove(self, to: currentLocation)
         }
     }
     
