@@ -23,6 +23,11 @@ class Style {
     
     class func configure() {
         let theme = Settings.theme
+        UITableView.appearance().backgroundColor = UIColor.clear
+        UITableViewCell.appearance().backgroundColor = UIColor.clear
+        
+        //UIVisualEffectView.appearance().add
+
 /*        // VIEWS
         UITableView.appearance().separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         UITableView.appearance().backgroundColor = theme.primaryBackgroundColor
@@ -227,6 +232,15 @@ class Style {
                 return primaryBackgroundColor
             default:
                 return primaryButtonColor
+            }
+        }
+        
+        var mapStyle: String {
+            switch self {
+            case .moonlight:
+                return "map_mirkwood"
+            default:
+                return "map_retro"
             }
         }
         

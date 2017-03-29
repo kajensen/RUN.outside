@@ -58,9 +58,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let styleURL = Bundle.main.url(forResource: "map_mirkwood", withExtension: "json") {
-            mapView.mapStyle = try? GMSMapStyle(contentsOfFileURL: styleURL)
-        }
+
         setupView(.none, animated: false)
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
@@ -68,6 +66,14 @@ class ViewController: UIViewController {
         timeLabel.text = nil
         distanceLabel.text = nil
         distanceUnitsLabel.text = nil
+        registerForThemeChange()
+    }
+    
+    override func configureTheme() {
+        let theme = Settings.theme
+        if let styleURL = Bundle.main.url(forResource: theme.mapStyle, withExtension: "json") {
+            mapView.mapStyle = try? GMSMapStyle(contentsOfFileURL: styleURL)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -351,7 +357,7 @@ extension ViewController: WorkoutManagerDelegate {
 extension ViewController: WorkoutsViewControllerDelegate {
     
     var workoutsViewDefaultConstant: CGFloat {
-        return view.bounds.height - 100
+        return view.bounds.height - 64 - 20
     }
     var workoutsViewHiddenConstant: CGFloat {
         return view.bounds.height
@@ -379,9 +385,10 @@ extension ViewController: WorkoutsViewControllerDelegate {
             panGesture.setTranslation(.zero, in: view)
             break
         case .ended:
+            print(panGesture.velocity(in: view))
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.25, animations: {
-                if (self.workoutsViewContraint.constant < (self.workoutsViewFullConstant + self.workoutsViewHiddenConstant)/2) {
+                if (self.workoutsViewContraint.constant < (self.workoutsViewFullConstant + self.workoutsViewHiddenConstant)/4) {
                     self.workoutsViewContraint.constant = self.workoutsViewFullConstant
                 } else {
                     self.workoutsViewContraint.constant = self.workoutsViewDefaultConstant
@@ -408,13 +415,13 @@ extension ViewController: WorkoutsViewControllerDelegate {
 extension ViewController: WorkoutViewControllerDelegate {
     
     var workoutViewDefaultConstant: CGFloat {
-        return view.bounds.height - 100
+        return workoutViewFullConstant
     }
     var workoutViewHiddenConstant: CGFloat {
         return view.bounds.height
     }
     var workoutViewFullConstant: CGFloat {
-        return view.bounds.height - 200
+        return view.bounds.height - 264
     }
     
     func workoutViewControllerTappedClose(_ vc: WorkoutViewController) {

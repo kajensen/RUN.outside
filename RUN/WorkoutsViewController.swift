@@ -84,7 +84,8 @@ class WorkoutsViewController: UIViewController {
             }
         }
         distanceLabel.text = Utils.distanceString(meters: totalDistance)
-        workoutsInfoLabel.text = "\(workouts?.count ?? 0) runs this \(timeSpan.title)"
+        let totalNumWorkouts = workouts?.count ?? 0
+        workoutsInfoLabel.text = "\(totalNumWorkouts) run\(totalNumWorkouts == 1 ? "" : "s") this \(timeSpan.title)"
     }
 
     func viewPanned(_ panGesture: UIPanGestureRecognizer) {

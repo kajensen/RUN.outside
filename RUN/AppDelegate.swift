@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         GMSServices.provideAPIKey(Constants.googleMapsApiKey)
         
+        Style.configure()
         
         return true
     }

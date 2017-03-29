@@ -32,6 +32,9 @@ class Utils {
     
     static var temperatureFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 1
+        formatter.numberFormatter = numberFormatter
         return formatter
     }()
     

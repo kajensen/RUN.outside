@@ -21,9 +21,9 @@ class BGView: UIView {
     }
     
     func commonInit() {
-        let effect = UIBlurEffect(style: .light)
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let effect = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: effect)
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.75)
         view.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(view, at: 0)
         view.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -34,10 +34,10 @@ class BGView: UIView {
         view.layer.borderWidth = 0.5
         view.layer.cornerRadius = 8
         view.layer.masksToBounds = true
-        layer.shadowColor = UIColor.darkGray.cgColor
+        /*layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 4
         layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowOffset = CGSize(width: 1, height: 1)*/
     }
 
 }
