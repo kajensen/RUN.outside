@@ -102,146 +102,76 @@ class Style {
     }
     
     enum Theme: Int {
-        case reddit, moonlight, trees, narwhal, bacon, gold
-        static var all: [Theme] {
-            var all: [Theme] = [.reddit, .moonlight, .trees, .narwhal, .bacon]
-            if Settings.PRO.isPRO {
-                all.append(.gold)
-            }
-            return all
-        }
+        case retro, silver, mirkwood, electric
+        static let all: [Theme] = [.retro, .silver, .mirkwood, .electric]
+
         var stringValue: String {
             switch self {
-            case .reddit:
-                return "Reddit"
-            case .moonlight:
-                return "Moonlight"
-            case .trees:
-                return "Trees"
-            case .narwhal:
-                return "Narwhal"
-            case .bacon:
-                return "Bacon"
-            case .gold:
-                return "Gold"
+            case .retro:
+                return "Retro"
+            case .silver:
+                return "Silver"
+            case .mirkwood:
+                return "Mirkwood"
+            case .electric:
+                return "Electric"
             }
         }
         
         var primaryTextColor: UIColor {
             switch self {
-            case .reddit, .trees, .narwhal, .bacon:
+            case .retro, .silver:
                 return UIColor.black
-            case .moonlight:
+            case .mirkwood, .electric:
                 return UIColor.white
-            case .gold:
-                return Color.goldYellow
             }
         }
         
         var secondaryTextColor: UIColor {
-            return Color.silverGray
-        }
-        
-        var primaryBackgroundColor: UIColor {
             switch self {
-            case .reddit, .trees, .narwhal, .bacon, .gold:
-                return Color.cloudsGray
-            case .moonlight:
-                return Color.moonlightBlue
+            case .retro, .silver:
+                return UIColor.darkGray
+            case .mirkwood, .electric:
+                return UIColor.lightGray
             }
         }
         
-        var secondaryBackgroundColor: UIColor {
-            switch self {
-            case .reddit, .trees, .narwhal, .bacon, .gold:
-                return UIColor.white
-            case .moonlight:
-                return Color.asphaltBlue
-            }
+        var greenColor: UIColor {
+            return UIColor.green
         }
         
-        var primaryButtonColor: UIColor {
-            switch self {
-            case .reddit:
-                return Color.belizeHoleBlue
-            case .moonlight:
-                return Color.silverGray
-            case .trees:
-                return Color.turquoiseGreen
-            case .narwhal:
-                return Color.peterRiverBlue
-            case .bacon:
-                return Color.carrotOrange
-            case .gold:
-                return Color.sunFlowerYellow
-            }
-        }
-        
-        var secondaryButtonColor: UIColor {
-            return primaryButtonColor
-        }
-        
-        var upvoteColor: UIColor {
-            switch self {
-            case .reddit:
-                return Color.carrotOrange
-            case .moonlight:
-                return Color.sunOrange
-            case .trees:
-                return Color.emeraldGreen
-            case .narwhal:
-                return Color.sunOrange
-            case .bacon:
-                return Color.turquoiseGreen
-            case .gold:
-                return Color.turquoiseGreen
-            }
-        }
-        
-        var downvoteColor: UIColor {
-            switch self {
-            case .reddit:
-                return Color.peterRiverBlue
-            case .moonlight:
-                return Color.amethystPurple
-            case .trees:
-                return Color.peterRiverBlue
-            case .narwhal:
-                return Color.amethystPurple
-            case .bacon:
-                return Color.peterRiverBlue
-            case .gold:
-                return Color.peterRiverBlue
-            }
-        }
-        
-        var barColor: UIColor {
-            return primaryBackgroundColor
+        var redColor: UIColor {
+            return UIColor.red
         }
         
         var barStyle: UIBarStyle {
-            return .black
+            switch self {
+            case .retro, .silver:
+                return .default
+            case .mirkwood, .electric:
+                return .black
+            }
         }
         
         var statusBarStyle: UIStatusBarStyle {
-            return .lightContent
-        }
-        
-        var alertTextColor: UIColor {
             switch self {
-            case .moonlight:
-                return primaryBackgroundColor
-            default:
-                return primaryButtonColor
+            case .retro, .silver:
+                return .default
+            case .mirkwood, .electric:
+                return .lightContent
             }
         }
         
         var mapStyle: String {
             switch self {
-            case .moonlight:
-                return "map_mirkwood"
-            default:
+            case .retro:
                 return "map_retro"
+            case .silver:
+                return "map_ilver"
+            case .mirkwood:
+                return "map_mirkwood"
+            case .electric:
+                return "map_electric"
             }
         }
         
@@ -252,22 +182,21 @@ class Style {
 class RSAlertController: UIAlertController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.tintColor = Settings.theme.alertTextColor
+        view.tintColor = Settings.theme.primaryTextColor
     }
 }
 
 class RSActivityViewController: UIActivityViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.tintColor = Settings.theme.alertTextColor
+        view.tintColor = Settings.theme.primaryTextColor
     }
 }
 
 class RSSafariViewController: SFSafariViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.tintColor = Settings.theme.primaryButtonColor
-        navigationController?.navigationBar.tintColor = Settings.theme.primaryButtonColor
+        view.tintColor = Settings.theme.primaryTextColor
     }
 }
 

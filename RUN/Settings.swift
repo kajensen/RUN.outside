@@ -25,7 +25,7 @@ class Settings: NSObject {
     
     class var theme: Style.Theme {
         get {
-            return Style.Theme(rawValue: UserDefaults.standard.integer(forKey: Keys.theme)) ?? .reddit
+            return Style.Theme(rawValue: UserDefaults.standard.integer(forKey: Keys.theme)) ?? .retro
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: Keys.theme)
