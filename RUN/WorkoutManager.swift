@@ -173,7 +173,9 @@ extension WorkoutManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // ususally just one location but could be multiple
         for location in locations {
-            addLocationUpdate(location)
+            if location.horizontalAccuracy != -1 && location.horizontalAccuracy < 20 {
+                addLocationUpdate(location)
+            }
         }
         if let currentLocation = locations.last {
             delegate?.workoutManagerDidMove(self, to: currentLocation)

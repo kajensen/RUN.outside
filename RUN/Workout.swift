@@ -51,7 +51,7 @@ class Workout: Object {
     }
     
     var statusText: String {
-        return "\(totalTimeActive.spoken()), \(Utils.distanceString(meters: totalDistance))"
+        return "\(currentTimeActive.spoken()), \(Utils.distanceString(meters: totalDistance))"
     }
     
     convenience init(startDate: Date) {

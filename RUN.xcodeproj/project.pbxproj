@@ -12,14 +12,15 @@
 		453B43461E8D59010005F8DA /* SelectSpeedScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */; };
 		453B43481E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B43471E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift */; };
 		453B434A1E8D85610005F8DA /* WorkoutLap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B43491E8D85610005F8DA /* WorkoutLap.swift */; };
+		453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B434B1E8DA97B0005F8DA /* SplashViewController.swift */; };
 		454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */; };
 		454A15D21E8CA5370098FB1E /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15D11E8CA5370098FB1E /* SpeechManager.swift */; };
-		454A15D91E8CAB240098FB1E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15D81E8CAB240098FB1E /* HealthKit.framework */; };
 		454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */; };
 		454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */; };
 		454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */; };
+		455783391E8DAD5B000B177A /* hero.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 455783381E8DAD59000B177A /* hero.mp4 */; };
 		455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D71E847438000C88A9 /* AppDelegate.swift */; };
-		455FF2DA1E847438000C88A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D91E847438000C88A9 /* ViewController.swift */; };
+		455FF2DA1E847438000C88A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D91E847438000C88A9 /* MapViewController.swift */; };
 		455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2DB1E847438000C88A9 /* Main.storyboard */; };
 		455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2DE1E847438000C88A9 /* Assets.xcassets */; };
 		455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2E01E847438000C88A9 /* LaunchScreen.storyboard */; };
@@ -56,16 +57,17 @@
 		453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSpeedScaleViewController.swift; sourceTree = "<group>"; };
 		453B43471E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLapDistanceTableViewController.swift; sourceTree = "<group>"; };
 		453B43491E8D85610005F8DA /* WorkoutLap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutLap.swift; sourceTree = "<group>"; };
+		453B434B1E8DA97B0005F8DA /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateDistanceTableViewController.swift; sourceTree = "<group>"; };
 		454A15D11E8CA5370098FB1E /* SpeechManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		454A15D51E8CAB1D0098FB1E /* RUN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RUN.entitlements; sourceTree = "<group>"; };
-		454A15D81E8CAB240098FB1E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateTimeTableViewController.swift; sourceTree = "<group>"; };
+		455783381E8DAD59000B177A /* hero.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hero.mp4; sourceTree = "<group>"; };
 		455FF2D41E847438000C88A9 /* RUN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		455FF2D71E847438000C88A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		455FF2D91E847438000C88A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		455FF2D91E847438000C88A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		455FF2DC1E847438000C88A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		455FF2DE1E847438000C88A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		455FF2E11E847438000C88A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				454A15D91E8CAB240098FB1E /* HealthKit.framework in Frameworks */,
 				082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */,
 				454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */,
 			);
@@ -119,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */,
-				454A15D81E8CAB240098FB1E /* HealthKit.framework */,
 				4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */,
 			);
 			name = Frameworks;
@@ -175,6 +175,7 @@
 		455FF2EA1E847E26000C88A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				455783381E8DAD59000B177A /* hero.mp4 */,
 				453B43431E8CD0EF0005F8DA /* silence.m4a */,
 				45C8D7CF1E85C8A2003DB276 /* Map Styles */,
 				455FF2E31E847438000C88A9 /* Info.plist */,
@@ -202,11 +203,12 @@
 		455FF2EE1E847F64000C88A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				455FF2D91E847438000C88A9 /* ViewController.swift */,
+				455FF2D91E847438000C88A9 /* MapViewController.swift */,
 				45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */,
 				45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */,
 				45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */,
 				454A15CE1E8C8E200098FB1E /* Select */,
+				453B434B1E8DA97B0005F8DA /* SplashViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -331,7 +333,7 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
@@ -366,6 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455783391E8DAD5B000B177A /* hero.mp4 in Resources */,
 				45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */,
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
 				45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */,
@@ -449,7 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455FF2DA1E847438000C88A9 /* ViewController.swift in Sources */,
+				455FF2DA1E847438000C88A9 /* MapViewController.swift in Sources */,
 				454A15D21E8CA5370098FB1E /* SpeechManager.swift in Sources */,
 				453B43481E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift in Sources */,
 				454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */,
@@ -468,6 +471,7 @@
 				456291851E89A606007A609D /* Util.swift in Sources */,
 				45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
+				453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */,
 				45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */,
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
 				45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */,
