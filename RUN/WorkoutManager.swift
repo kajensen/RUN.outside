@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol WorkoutManagerDelegate: class {
     func workoutManagerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation)
-    func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from originalLocation: CLLocation?, to location: CLLocation)
+    func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from previousEvent: WorkoutEvent?, to newEvent: WorkoutEvent)
     func workoutManagerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval)
     func workoutManagerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance)
     func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState)
@@ -69,9 +69,9 @@ class WorkoutManager: NSObject {
     }
     
     fileprivate func addLocationUpdate(_ location: CLLocation) {
-        guard state == .running else { return }
-        workout?.addEvent(location, type: .locationUpdate)
-        //delegate?.workoutManagerDidUpdate(self, from: lastActiveLocation, to: location)
+        guard let workout = workout, state == .running else { return }
+        let update = workout.addEvent(location, type: .locationUpdate)
+        delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         //lastActiveLocation = location
     }
     
@@ -100,7 +100,8 @@ class WorkoutManager: NSObject {
         }
         if nextLap > 0 && workout.totalDistance > nextLap {
             print("starting new lap")
-            workout.newLap(location: location)
+            let update = workout.newLap(location: location)
+            delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
             nextLap += Settings.lapDistance
         }
     }
@@ -109,7 +110,10 @@ class WorkoutManager: NSObject {
         guard let location = locationManager.location else {
             return false
         }
-        self.workout = Workout(startDate: Date(), location: location)
+        let workout = Workout(startDate: Date())
+        let update = workout.newLap(location: location)
+        delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
+        self.workout = workout
         speechManager.playWhiteNoise()
         nextTimeUpdate = Settings.audioUpdateTime
         nextDistanceUpdate = Settings.audioUpdateDistance
@@ -121,14 +125,16 @@ class WorkoutManager: NSObject {
     
     func resume() {
         guard let workout = workout, let location = locationManager.location else { return }
-        workout.addEvent(location, type: .resume)
+        let update = workout.addEvent(location, type: .resume)
+        delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         //lastActiveDate = Date()
         state = .running
     }
     
     func pause() {
         guard let workout = workout, let location = locationManager.location else { return }
-        workout.addEvent(location, type: .pause)
+        let update = workout.addEvent(location, type: .pause)
+        delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         //timeElapsed = currentTimeElapsed // lock it in
         //lastActiveLocation = nil
         //lastActiveDate = nil

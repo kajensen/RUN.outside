@@ -54,15 +54,15 @@ class Workout: Object {
         return "\(totalTimeActive.spoken()), \(Utils.distanceString(meters: totalDistance))"
     }
     
-    convenience init(startDate: Date, location: CLLocation) {
+    convenience init(startDate: Date) {
         self.init()
         self.startDate = startDate
-        self.newLap(location: location)
     }
 
-    func newLap(location: CLLocation) {
+    func newLap(location: CLLocation) -> (newEvent: WorkoutEvent, previousEvent: WorkoutEvent?) {
         currentLap?.end()
         laps.append(WorkoutLap(startDate: Date(), location: location))
+        return addEvent(location, type: .resume)
     }
     
     func end() {
@@ -70,7 +70,8 @@ class Workout: Object {
         self.endDate = Date()
     }
     
-    func addEvent(_ location: CLLocation, type: WorkoutEvent.WorkoutEventType) {
+    func addEvent(_ location: CLLocation, type: WorkoutEvent.WorkoutEventType) -> (newEvent: WorkoutEvent, previousEvent: WorkoutEvent?) {
+        let previousEvent = currentLap?.events.last
         let newEvent = WorkoutEvent(location: location, type: type)
         if let lastEvent = currentLap?.events.last, lastEvent.workoutEventType != .pause {
             let altitudeDifference = newEvent.altitudeDifference(to: lastEvent)
@@ -89,6 +90,7 @@ class Workout: Object {
         case .resume:
             lastActiveDate = Date()
         }
+        return (newEvent, previousEvent)
     }
     
     func pathImageForSize(rect: CGRect) -> UIImage? {
