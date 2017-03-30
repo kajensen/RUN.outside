@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var settingsActionView: BGView!
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var workoutStatsView: BGView!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceUnitsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -98,6 +99,7 @@ class ViewController: UIViewController {
         let theme = Settings.theme
         distanceLabel.textColor = theme.primaryTextColor
         distanceUnitsLabel.textColor = theme.secondaryTextColor
+        statusLabel.textColor = theme.secondaryTextColor
         timeLabel.textColor = theme.primaryTextColor
         timeInfoLabel.textColor = theme.secondaryTextColor
         if let styleURL = Bundle.main.url(forResource: theme.mapStyle, withExtension: "json") {
@@ -151,6 +153,7 @@ class ViewController: UIViewController {
         case .past:
             workoutStatsView.isHidden = false
         }
+        statusLabel.isHidden = true
     }
     
     func transitionState(_ state: State) {
@@ -341,12 +344,15 @@ extension ViewController: WorkoutManagerDelegate {
         case .none:
             toggleWorkoutButton.setTitle("START RUN", for: .normal)
             endWorkoutButton.isHidden = true
+            statusLabel.isHidden = true
         case .paused:
             toggleWorkoutButton.setTitle("RESUME RUN", for: .normal)
             endWorkoutButton.isHidden = false
+            statusLabel.isHidden = false
         case .running:
             toggleWorkoutButton.setTitle("PAUSE RUN", for: .normal)
             endWorkoutButton.isHidden = true
+            statusLabel.isHidden = true
         }
     }
     

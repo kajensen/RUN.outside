@@ -177,6 +177,23 @@ extension TimeInterval {
         return text
     }
     
+    public func spoken() -> String {
+        var text = ""
+        if dayComponent > 0 {
+            text += " \(dayComponent) day\(dayComponent == 1 ? "" : "s")"
+        }
+        if hourComponent > 0 {
+            text += " \(hourComponent) hour\(hourComponent == 1 ? "" : "s")"
+        }
+        if minuteComponent > 0 {
+            text += " \(minuteComponent) minute\(minuteComponent == 1 ? "" : "s")"
+        }
+        if secondComponent > 0 {
+            text += " \(secondComponent) second\(secondComponent == 1 ? "" : "s")"
+        }
+        return text
+    }
+    
 }
 
 

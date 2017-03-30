@@ -25,7 +25,7 @@ class SelectUpdateDistanceTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         tableView.rowHeight = SelectUpdateTimeTableViewController.rowHeight
-        tableView.backgroundColor = Settings.theme.primaryTextColor
+        //tableView.backgroundColor = Settings.theme.primaryTextColor
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

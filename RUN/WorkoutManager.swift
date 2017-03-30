@@ -23,29 +23,36 @@ class WorkoutManager: NSObject {
         case none, running, paused
     }
     
+    let speechManager = SpeechManager()
     let locationManager = CLLocationManager()
+    
     var workout: Workout?
     private var timer: Timer?
+    
     weak var delegate: WorkoutManagerDelegate?
+    
     private var lastActiveLocation: CLLocation?
+    private var lastActiveDate: Date?
     private (set) var state: WorkoutState = .none {
         didSet {
             delegate?.workoutManagerDidChangeState(self, state: state)
         }
     }
     
-    var timeElapsed: TimeInterval = 0 {
-        didSet {
-            delegate?.workoutManagerDidChangeTime(self, timeElapsed: timeElapsed)
+    private (set) var timeElapsed: TimeInterval = 0
+    var currentTimeElapsed: TimeInterval {
+        var currentTimeElapsed = timeElapsed
+        if let lastActiveDate = lastActiveDate, lastActiveDate.timeIntervalSinceNow < 0 {
+            currentTimeElapsed += -lastActiveDate.timeIntervalSinceNow
         }
+        return currentTimeElapsed
     }
-    var distanceTraveled: CLLocationDistance = 0 {
-        didSet {
-            delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: distanceTraveled)
-        }
-    }
-    var netElevation: CLLocationDistance = 0
-    var totalPositiveElevation: CLLocationDistance = 0
+    private (set) var distanceTraveled: CLLocationDistance = 0
+    private (set) var netElevation: CLLocationDistance = 0
+    private (set) var totalPositiveElevation: CLLocationDistance = 0
+    //
+    private (set) var nextDistanceUpdate: CLLocationDistance = 0
+    private (set) var nextTimeUpdate: TimeInterval = 0
     
     convenience init(delegate: WorkoutManagerDelegate) {
         self.init()
@@ -55,6 +62,9 @@ class WorkoutManager: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         self.delegate = delegate
+        nextDistanceUpdate = Settings.audioUpdateDistance
+        Settings.audioUpdateTime = 5
+        nextTimeUpdate = Settings.audioUpdateTime
     }
     
     fileprivate func addLocation(_ location: CLLocation) {
@@ -74,7 +84,26 @@ class WorkoutManager: NSObject {
     }
     
     func timerFired(_ sender: Any) {
-        timeElapsed += 0.1
+        updateTimeElapsed()
+        updateDistanceTraveled()
+    }
+    
+    func updateTimeElapsed() {
+        delegate?.workoutManagerDidChangeTime(self, timeElapsed: currentTimeElapsed)
+        if nextTimeUpdate > 0 && currentTimeElapsed > nextTimeUpdate {
+            print("updating time")
+            speechManager.speak(currentTimeElapsed.spoken())
+            nextTimeUpdate += Settings.audioUpdateTime
+        }
+    }
+    
+    func updateDistanceTraveled() {
+        delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: distanceTraveled)
+        if nextDistanceUpdate > 0 && distanceTraveled > nextDistanceUpdate {
+            print("updating distance")
+            speechManager.speak("updating distance")
+            nextDistanceUpdate += Settings.audioUpdateDistance
+        }
     }
     
     func start(_ workout: Workout) {
@@ -85,13 +114,16 @@ class WorkoutManager: NSObject {
     func resume() {
         guard let _ = workout else { return }
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
+        lastActiveDate = Date()
         state = .running
     }
     
     func pause() {
         guard let _ = workout else { return }
         timer?.invalidate()
+        timeElapsed = currentTimeElapsed // lock it in
         lastActiveLocation = nil
+        lastActiveDate = nil
         state = .paused
     }
     
@@ -106,6 +138,9 @@ class WorkoutManager: NSObject {
     
     func end() -> Workout? {
         state = .none
+        if let lastActiveDate = lastActiveDate, lastActiveDate.timeIntervalSinceNow > 0 {
+            timeElapsed += lastActiveDate.timeIntervalSinceNow
+        }
         let completedWorkout = self.workout
         completedWorkout?.endDate = Date()
         completedWorkout?.totalTimeActive = timeElapsed
@@ -120,6 +155,10 @@ class WorkoutManager: NSObject {
         workout = nil
         timeElapsed = 0
         distanceTraveled = 0
+        netElevation = 0
+        totalPositiveElevation = 0
+        nextDistanceUpdate = 0
+        nextTimeUpdate = 0
     }
 
 }
@@ -134,6 +173,8 @@ extension WorkoutManager: CLLocationManagerDelegate {
         if let currentLocation = locations.last {
             delegate?.workoutManagerDidMove(self, to: currentLocation)
         }
+        updateTimeElapsed()
+        updateDistanceTraveled()
     }
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {

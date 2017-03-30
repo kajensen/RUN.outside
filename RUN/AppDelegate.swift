@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Style.configure()
         
+        application.isIdleTimerDisabled = false
+        
         return true
     }
 
