@@ -522,20 +522,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Ab-gR-C8o">
-                                        <rect key="frame" x="15" y="17" width="40" height="30"/>
+                                        <rect key="frame" x="15" y="19.5" width="25" height="25"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTR-FG-hWE">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
-                                                <state key="normal" title="Share"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTR-FG-hWE">
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                <state key="normal" image="Upload-50 (1)"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-Nu-caG">
-                                        <rect key="frame" x="321" y="17" width="39" height="30"/>
+                                        <rect key="frame" x="335" y="19.5" width="25" height="25"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuC-bE-v0D">
-                                                <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
-                                                <state key="normal" title="Close"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuC-bE-v0D">
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                <state key="normal" image="Close Window-50"/>
                                                 <connections>
                                                     <action selector="closeTapped:" destination="8Dw-bB-5hH" eventType="touchUpInside" id="4tA-jc-WEc"/>
                                                 </connections>
@@ -597,7 +597,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Close Window-50" width="25" height="25"/>
         <image name="Near Me-64" width="32" height="32"/>
         <image name="Settings-64" width="32" height="32"/>
+        <image name="Upload-50 (1)" width="25" height="25"/>
     </resources>
 </document>

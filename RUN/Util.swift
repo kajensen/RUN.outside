@@ -160,7 +160,7 @@ extension TimeInterval {
         return Int(fracPart * 10)
     }
     
-    public func formatted() -> String {
+    public func formatted(_ includeMillisecond: Bool = true) -> String {
         var text = ""
         if dayComponent > 0 {
             text += "\(dayComponent)d "
@@ -169,7 +169,7 @@ extension TimeInterval {
             text += String(format: "%@:", hourComponent < 10 ? "0" + String(hourComponent) : String(hourComponent))
         }
         text += String(format: "%@:", minuteComponent < 10 ? "0" + String(minuteComponent) : String(minuteComponent))
-        if hourComponent > 0 {
+        if hourComponent > 0 || includeMillisecond == false {
             text += String(format: "%@", secondComponent < 10 ? "0" + String(secondComponent) : String(secondComponent))
         } else {
             text += String(format: "%@.", secondComponent < 10 ? "0" + String(secondComponent) : String(secondComponent))

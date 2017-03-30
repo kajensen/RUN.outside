@@ -43,7 +43,7 @@ class CustomizationTableViewCell: UITableViewCell {
     func configure(audioUpdateTime: Double) {
         titleLabel.text = "Audio Update every..."
         if audioUpdateTime > 0 {
-            subTitleLabel.text = TimeInterval(audioUpdateTime).formatted()
+            subTitleLabel.text = TimeInterval(audioUpdateTime).formatted(false)
         } else {
             subTitleLabel.text = "Off"
         }

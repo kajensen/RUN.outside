@@ -45,6 +45,14 @@ class Settings: NSObject {
         }
     }
     
+    class var audioUpdateDistances: [Double] {
+        var audioUpdateDistances: [Double] = []
+        for i in [0.1, 0.2, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 10] {
+            audioUpdateDistances.append(Utils.distanceForLocale*i)
+        }
+        return audioUpdateDistances
+    }
+    
     class var audioUpdateTime: Double {
         get {
             return UserDefaults.standard.double(forKey: Keys.AudioUpdateTime)
@@ -53,6 +61,10 @@ class Settings: NSObject {
             UserDefaults.standard.set(newValue, forKey: Keys.AudioUpdateTime)
             UserDefaults.standard.synchronize()
         }
+    }
+    
+    class var audioUpdateTimes: [TimeInterval] {
+        return [30, 60, 90, 120, 180, 240, 300, 360, 420, 480, 540, 600, 900, 1800]
     }
     
     class var hasAgreedToTerms: Bool {

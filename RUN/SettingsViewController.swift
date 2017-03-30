@@ -181,9 +181,20 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 return
             }
             switch indexPath.row {
-                // TODO
+            case 0:
+                selectTheme(cell)
             default:
                 break
+            }
+        case 1:
+            guard let cell = tableView.cellForRow(at: indexPath) as? CustomizationTableViewCell else {
+                return
+            }
+            switch indexPath.row {
+            case 0:
+                selectUpdateTime(cell)
+            default:
+                selectUpdateDistance(cell)
             }
         case 2:
             switch indexPath.row {
@@ -202,24 +213,28 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return
         }
     }
-    /*
+    
     private func selectTheme(_ cell: CustomizationTableViewCell) {
         let vc = SelectThemeTableViewController()
         vc.delegate = self
-        vc.selectedTheme = Settings.theme
-        addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(Style.Theme.all.count)*SelectThemeTableViewController.rowHeight))
+        addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(vc.themes.count)*SelectThemeTableViewController.rowHeight))
         present(vc, animated: true, completion: nil)
     }
     
-    
-    private func selectCommentSort(_ cell: CustomizationTableViewCell) {
-        let vc = SelectCommentSortTableViewController()
+    private func selectUpdateTime(_ cell: CustomizationTableViewCell) {
+        let vc = SelectUpdateTimeTableViewController()
         vc.delegate = self
-        vc.selectedCommentSort = Settings.defaultCommentSort
-        addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(Settings.CommentSort.all.count)*SelectCommentSortTableViewController.rowHeight))
+        addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(vc.updateTimes.count)*SelectUpdateTimeTableViewController.rowHeight))
         present(vc, animated: true, completion: nil)
-    }*/
+    }
 
+    private func selectUpdateDistance(_ cell: CustomizationTableViewCell) {
+        let vc = SelectUpdateDistanceTableViewController()
+        vc.delegate = self
+        addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(vc.updateDistances.count)*SelectUpdateDistanceTableViewController.rowHeight))
+        present(vc, animated: true, completion: nil)
+    }
+    
     func addPopover(to vc: UIViewController, from cell: CustomizationTableViewCell, size: CGSize) {
         vc.modalPresentationStyle = .popover
         vc.preferredContentSize = size
@@ -232,21 +247,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-/*
-extension SettingsViewController: SelectCommentSortTableViewControllerDelegate {
-    func selectCommentSortTableViewControllerDidSelect(_ vc: SelectCommentSortTableViewController, commentSort: Settings.CommentSort) {
-        if commentSort == .mine {
-            guard User.currentUser != nil else {
-                promptLogin("view your comments")
-                return
-            }
-        }
-        Settings.defaultCommentSort = commentSort
-        vc.dismiss(animated: true, completion: nil)
-        tableView.reloadRows(at: [IndexPath(row: 1, section: 3)], with: .automatic)
-    }
-}
-
 extension SettingsViewController: SelectThemeTableViewControllerDelegate {
     func selectThemeTableViewControllerDidSelect(_ vc: SelectThemeTableViewController, theme: Style.Theme) {
         vc.dismiss(animated: true) {
@@ -255,12 +255,23 @@ extension SettingsViewController: SelectThemeTableViewControllerDelegate {
     }
 }
 
-extension SettingsViewController: SelectRecentHistoryIntervalTableViewControllerDelegate {
-    func selectRecentHistoryIntervalTableViewControllerDidSelect(_ vc: SelectRecentHistoryIntervalTableViewController, interval: Settings.RecentHistoryInterval) {
-        Settings.defaultRecentHistoryInterval = interval
-        tableView.reloadRows(at: [IndexPath(row: 3, section: 3)], with: .automatic)
+extension SettingsViewController: SelectUpdateTimeTableViewControllerDelegate {
+    func selectUpdateTimeTableViewControllerDidSelect(_ vc: SelectUpdateTimeTableViewController, updateTime: TimeInterval) {
+        vc.dismiss(animated: true) {
+            Settings.audioUpdateTime = updateTime
+            self.tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        }
     }
-}*/
+}
+
+extension SettingsViewController: SelectUpdateDistanceTableViewControllerDelegate {
+    func selectUpdateDistanceTableViewControllerDidSelect(_ vc: SelectUpdateDistanceTableViewController, updateDistance: Double) {
+        vc.dismiss(animated: true) {
+            Settings.audioUpdateDistance = updateDistance
+            self.tableView.reloadRows(at: [IndexPath(row: 1, section: 1)], with: .automatic)
+        }
+    }
+}
 
 extension SettingsViewController: MFMailComposeViewControllerDelegate {
     

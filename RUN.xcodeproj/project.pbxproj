@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */; };
+		454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */; };
+		454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */; };
+		454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */; };
 		455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D71E847438000C88A9 /* AppDelegate.swift */; };
 		455FF2DA1E847438000C88A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D91E847438000C88A9 /* ViewController.swift */; };
 		455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2DB1E847438000C88A9 /* Main.storyboard */; };
@@ -42,6 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateDistanceTableViewController.swift; sourceTree = "<group>"; };
+		454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectThemeTableViewController.swift; sourceTree = "<group>"; };
+		454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateTimeTableViewController.swift; sourceTree = "<group>"; };
 		455FF2D41E847438000C88A9 /* RUN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		455FF2D71E847438000C88A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		455FF2D91E847438000C88A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +104,16 @@
 				4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		454A15CE1E8C8E200098FB1E /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */,
+				454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */,
+				454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */,
+			);
+			name = Select;
 			sourceTree = "<group>";
 		};
 		455FF2CB1E847437000C88A9 = {
@@ -166,6 +182,7 @@
 				45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */,
 				45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */,
 				45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */,
+				454A15CE1E8C8E200098FB1E /* Select */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -393,9 +410,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				455FF2DA1E847438000C88A9 /* ViewController.swift in Sources */,
+				454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */,
 				45C411C21E8B50A6005A2FFB /* Style.swift in Sources */,
 				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
 				45C8D7DF1E85FB60003DB276 /* Location.swift in Sources */,
+				454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */,
 				45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */,
 				45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */,
 				455FF2F01E848F73000C88A9 /* BGView.swift in Sources */,
@@ -409,6 +428,7 @@
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
 				45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */,
 				45C8D7D91E85DF6E003DB276 /* WorkoutsViewController.swift in Sources */,
+				454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */,
 				45C411C51E8B5189005A2FFB /* ReviewTableViewCell.swift in Sources */,
 				456291831E89A5BF007A609D /* Settings.swift in Sources */,
 				45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */,
