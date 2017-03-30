@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */; };
+		453B43441E8CD15D0005F8DA /* silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 453B43431E8CD0EF0005F8DA /* silence.m4a */; };
 		454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */; };
 		454A15D21E8CA5370098FB1E /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15D11E8CA5370098FB1E /* SpeechManager.swift */; };
-		454A15D41E8CA8730098FB1E /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 454A15D31E8CA8730098FB1E /* ding.mp3 */; };
 		454A15D91E8CAB240098FB1E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15D81E8CAB240098FB1E /* HealthKit.framework */; };
 		454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */; };
-		454A15E11E8CBDCD0098FB1E /* silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 454A15E01E8CBB760098FB1E /* silence.m4a */; };
 		454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */; };
 		454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */; };
 		455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D71E847438000C88A9 /* AppDelegate.swift */; };
@@ -50,13 +49,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		453B43431E8CD0EF0005F8DA /* silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.m4a; sourceTree = "<group>"; };
 		454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateDistanceTableViewController.swift; sourceTree = "<group>"; };
 		454A15D11E8CA5370098FB1E /* SpeechManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
-		454A15D31E8CA8730098FB1E /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
 		454A15D51E8CAB1D0098FB1E /* RUN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RUN.entitlements; sourceTree = "<group>"; };
 		454A15D81E8CAB240098FB1E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		454A15E01E8CBB760098FB1E /* silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.m4a; sourceTree = "<group>"; };
 		454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateTimeTableViewController.swift; sourceTree = "<group>"; };
 		455FF2D41E847438000C88A9 /* RUN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,8 +167,7 @@
 		455FF2EA1E847E26000C88A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				454A15E01E8CBB760098FB1E /* silence.m4a */,
-				454A15D31E8CA8730098FB1E /* ding.mp3 */,
+				453B43431E8CD0EF0005F8DA /* silence.m4a */,
 				45C8D7CF1E85C8A2003DB276 /* Map Styles */,
 				455FF2E31E847438000C88A9 /* Info.plist */,
 				455FF2EB1E847E36000C88A9 /* Constants.swift */,
@@ -366,10 +363,9 @@
 				455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */,
 				45C411BC1E8B507A005A2FFB /* ActionTableViewCell.xib in Resources */,
 				455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */,
-				454A15E11E8CBDCD0098FB1E /* silence.m4a in Resources */,
+				453B43441E8CD15D0005F8DA /* silence.m4a in Resources */,
 				45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */,
 				45C411BE1E8B507A005A2FFB /* CustomizationTableViewCell.xib in Resources */,
-				454A15D41E8CA8730098FB1E /* ding.mp3 in Resources */,
 				45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */,
 				45C411AE1E8B08A7005A2FFB /* WorkoutTableViewCell.xib in Resources */,
 				45C411C61E8B5189005A2FFB /* ReviewTableViewCell.xib in Resources */,

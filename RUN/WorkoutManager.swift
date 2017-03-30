@@ -62,9 +62,6 @@ class WorkoutManager: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         self.delegate = delegate
-        nextDistanceUpdate = Settings.audioUpdateDistance
-        Settings.audioUpdateTime = 5
-        nextTimeUpdate = Settings.audioUpdateTime
     }
     
     fileprivate func addLocation(_ location: CLLocation) {
@@ -88,11 +85,15 @@ class WorkoutManager: NSObject {
         updateDistanceTraveled()
     }
     
+    var statusText: String {
+        return "\(currentTimeElapsed.spoken()), \(Utils.distanceString(meters: distanceTraveled))"
+    }
+    
     func updateTimeElapsed() {
         delegate?.workoutManagerDidChangeTime(self, timeElapsed: currentTimeElapsed)
         if nextTimeUpdate > 0 && currentTimeElapsed > nextTimeUpdate {
             print("updating time")
-            speechManager.speak(currentTimeElapsed.spoken())
+            speechManager.speak(statusText)
             nextTimeUpdate += Settings.audioUpdateTime
         }
     }
@@ -101,13 +102,17 @@ class WorkoutManager: NSObject {
         delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: distanceTraveled)
         if nextDistanceUpdate > 0 && distanceTraveled > nextDistanceUpdate {
             print("updating distance")
-            speechManager.speak("updating distance")
+            speechManager.speak(statusText)
             nextDistanceUpdate += Settings.audioUpdateDistance
         }
     }
     
     func start(_ workout: Workout) {
         self.workout = workout
+        speechManager.playWhiteNoise()
+        Settings.audioUpdateTime = 15
+        nextTimeUpdate = Settings.audioUpdateTime
+        nextDistanceUpdate = Settings.audioUpdateDistance
         resume()
     }
     
@@ -138,12 +143,9 @@ class WorkoutManager: NSObject {
     
     func end() -> Workout? {
         state = .none
-        if let lastActiveDate = lastActiveDate, lastActiveDate.timeIntervalSinceNow > 0 {
-            timeElapsed += lastActiveDate.timeIntervalSinceNow
-        }
         let completedWorkout = self.workout
         completedWorkout?.endDate = Date()
-        completedWorkout?.totalTimeActive = timeElapsed
+        completedWorkout?.totalTimeActive = currentTimeElapsed
         completedWorkout?.totalDistance = distanceTraveled
         completedWorkout?.totalPositiveElevation = totalPositiveElevation
         completedWorkout?.netElevation = netElevation

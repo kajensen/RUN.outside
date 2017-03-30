@@ -15,35 +15,32 @@ class SpeechManager: NSObject {
     
     override init() {
         super.init()
-        //playWhiteNoise()
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVAudioSessionRouteChange, object: nil, queue: OperationQueue.main) { (notification) in
-            self.synthesizer = AVSpeechSynthesizer()
-        }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVAudioSessionInterruption, object: nil, queue: OperationQueue.main) { (notification) in
-            self.synthesizer = AVSpeechSynthesizer()
-        }
     }
     
     func playWhiteNoise() {
+        prepareAudioSession()
         if let url = Bundle.main.url(forResource: "silence", withExtension: "m4a") {
             let audioPlayer = try? AVAudioPlayer(contentsOf: url)
             audioPlayer?.prepareToPlay()
-            audioPlayer?.numberOfLoops = -1
+            audioPlayer?.numberOfLoops = 1
             audioPlayer?.play()
         }
     }
     
     func speak(_ announcement: String, in language: String = "en-US") {
-        prepareAudioSession()
-        if let synthesizer = self.synthesizer, synthesizer.isSpeaking {
-            return
+        DispatchQueue.main.async {
+            self.prepareAudioSession()
+            if let synthesizer = self.synthesizer, synthesizer.isSpeaking {
+                return
+            }
+            let utterance = AVSpeechUtterance(string: announcement.lowercased())
+            utterance.voice = AVSpeechSynthesisVoice(language: language)
+            let newSynthesizer = AVSpeechSynthesizer()
+            newSynthesizer.delegate = self
+            newSynthesizer.speak(utterance)
+            self.synthesizer = newSynthesizer
+            //self.playWhiteNoise()
         }
-        let utterance = AVSpeechUtterance(string: announcement.lowercased())
-        utterance.voice = AVSpeechSynthesisVoice(language: language)
-        let newSynthesizer = AVSpeechSynthesizer()
-        newSynthesizer.delegate = self
-        newSynthesizer.speak(utterance)
-        self.synthesizer = newSynthesizer
     }
     
     private func prepareAudioSession() {
@@ -64,5 +61,14 @@ extension SpeechManager: AVSpeechSynthesizerDelegate {
             self.synthesizer = nil
             try? session.setActive(false)
         }
+    }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
+        print("paused")
+    }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        print("canceled")
+    }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
+        print("continued")
     }
 }
