@@ -17,6 +17,7 @@ class Settings: NSObject {
     class Keys {
         static let AudioUpdateDistance = "AudioUpdateDistance"
         static let AudioUpdateTime = "AudioUpdateTime"
+        static let LapDistance = "LapDistance"
         static let SpeedRateSlow = "SpeedRateSlow"
         static let SpeedRateMedium = "SpeedRateMedium"
         static let SpeedRateFast = "SpeedRateFast"
@@ -36,6 +37,24 @@ class Settings: NSObject {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Settings.Keys.theme), object: nil)
             Style.configure()
         }
+    }
+    
+    class var lapDistance: Double {
+        get {
+            return UserDefaults.standard.double(forKey: Keys.LapDistance)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.LapDistance)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    class var lapDistances: [Double] {
+        var lapDistances: [Double] = []
+        for i in [0, 0.1, 0.2, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 10] {
+            lapDistances.append(Utils.distanceForLocale*i)
+        }
+        return lapDistances
     }
     
     class var audioUpdateDistance: Double {

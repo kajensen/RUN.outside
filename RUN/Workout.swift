@@ -22,31 +22,82 @@ class Workout: Object {
 
     dynamic var startDate: Date?
     dynamic var endDate: Date?
-    dynamic var netElevation: Double = 0
-    dynamic var totalPositiveElevation: Double = 0
+    dynamic var netAltitude: Double = 0
+    dynamic var totalPositiveAltitude: Double = 0
     dynamic var totalDistance: Double = 0
-    dynamic var totalTimeActive: Double = 0
-    var events = List<WorkoutEvent>()
-
+    dynamic var totalTimeActive: TimeInterval = 0
+    var laps = List<WorkoutLap>()
+    
+    private var lastActiveDate: Date?
+    override static func ignoredProperties() -> [String] {
+        return ["lastActiveDate"]
+    }
+    
+    var currentTimeActive: TimeInterval {
+        var currentTimeElapsed = totalTimeActive
+        if let lastActiveDate = lastActiveDate, lastActiveDate.timeIntervalSinceNow < 0 {
+            currentTimeElapsed += -lastActiveDate.timeIntervalSinceNow
+        }
+        return currentTimeElapsed
+    }
+    
+    var currentLap: WorkoutLap? {
+        return laps.last
+    }
+    
     var title: String? {
         guard let startDate = startDate else { return nil }
         return Workout.dateFormatter.string(from: startDate)
     }
     
-    convenience init(startDate: Date) {
+    var statusText: String {
+        return "\(totalTimeActive.spoken()), \(Utils.distanceString(meters: totalDistance))"
+    }
+    
+    convenience init(startDate: Date, location: CLLocation) {
         self.init()
         self.startDate = startDate
+        self.newLap(location: location)
+    }
+
+    func newLap(location: CLLocation) {
+        currentLap?.end()
+        laps.append(WorkoutLap(startDate: Date(), location: location))
+    }
+    
+    func end() {
+        currentLap?.end()
+        self.endDate = Date()
     }
     
     func addEvent(_ location: CLLocation, type: WorkoutEvent.WorkoutEventType) {
-        events.append(WorkoutEvent(location: location, type: type))
+        let newEvent = WorkoutEvent(location: location, type: type)
+        if let lastEvent = currentLap?.events.last, lastEvent.workoutEventType != .pause {
+            let altitudeDifference = newEvent.altitudeDifference(to: lastEvent)
+            netAltitude += altitudeDifference.net
+            totalPositiveAltitude += altitudeDifference.positive
+            totalDistance += newEvent.distanceDifference(to: lastEvent)
+        }
+        currentLap?.addEvent(location, type: type)
+        switch type {
+        case .locationUpdate:
+            totalTimeActive = currentTimeActive
+            lastActiveDate = Date()
+        case .pause:
+            totalTimeActive = currentTimeActive
+            lastActiveDate = nil
+        case .resume:
+            lastActiveDate = Date()
+        }
     }
     
     func pathImageForSize(rect: CGRect) -> UIImage? {
         // TODO: fix me this is inverted horizontal
         var bounds = GMSCoordinateBounds()
-        for event in events {
-            bounds = bounds.includingCoordinate(event.coordinate)
+        for lap in laps {
+            for event in lap.events {
+                bounds = bounds.includingCoordinate(event.coordinate)
+            }
         }
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
@@ -65,18 +116,20 @@ class Workout: Object {
         let lngPadding = (maxLng - minLng) > (maxLat - minLat) ? 0 : (maxLat - minLat)/2
         let mapRect = CGRect(x: minLng - lngPadding, y: minLat - latPadding, width: side, height: side)
         let thumbRect = rect.insetBy(dx: 8, dy: 8)
-        for (_, event) in events.enumerated() {
-            let coordinate = event.coordinate
-            let point = CGPoint(x: maxLng - coordinate.longitude + lngPadding, y: maxLat - coordinate.latitude + latPadding)
-            let thumbPoint = point.convert(fromRect: mapRect, toRect: thumbRect)
-            if !thumbPoint.x.isNaN && !thumbPoint.y.isNaN {
-                switch event.workoutEventType {
-                case .resume:
-                    context.move(to: thumbPoint)
-                case .locationUpdate:
-                    context.addLine(to: thumbPoint)
-                default:
-                    break
+        for lap in laps {
+            for (_, event) in lap.events.enumerated() {
+                let coordinate = event.coordinate
+                let point = CGPoint(x: maxLng - coordinate.longitude + lngPadding, y: maxLat - coordinate.latitude + latPadding)
+                let thumbPoint = point.convert(fromRect: mapRect, toRect: thumbRect)
+                if !thumbPoint.x.isNaN && !thumbPoint.y.isNaN {
+                    switch event.workoutEventType {
+                    case .resume:
+                        context.move(to: thumbPoint)
+                    case .locationUpdate:
+                        context.addLine(to: thumbPoint)
+                    default:
+                        break
+                    }
                 }
             }
         }

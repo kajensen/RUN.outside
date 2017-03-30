@@ -65,7 +65,7 @@ class WorkoutTableViewCell: MGSwipeTableCell {
         dateLabel.text = workout.title
         timeElapsedLabel.text = TimeInterval(workout.totalTimeActive).formatted()
         distanceLabel.text = Utils.distanceString(meters: workout.totalDistance)
-        elevationLabel.text = "\(Utils.distanceString(meters: workout.totalPositiveElevation)) (+\(Utils.distanceString(meters: workout.netElevation)))"
+        elevationLabel.text = "\(Utils.distanceString(meters: workout.totalPositiveAltitude)) (+\(Utils.distanceString(meters: workout.netAltitude)))"
         routeImageView.image = workout.pathImageForSize(rect: routeImageView.bounds)?.withRenderingMode(.alwaysTemplate)
     }
     

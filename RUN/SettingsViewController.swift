@@ -104,7 +104,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -112,10 +112,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return "CUSTOMIZATION"
         case 1:
-            return "SETTINGS"
+            return "WORKOUT SETTINGS"
         case 2:
-            return "INFO"
-        case 3:
             return "DATA"
         default:
             return nil
@@ -141,7 +139,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 1
         case 1:
-            return 3
+            return 4
         case 2:
             return 1
         case 3:
@@ -168,17 +166,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(audioUpdateTime: Settings.audioUpdateTime)
             case 1:
                 cell.configure(audioUpdateDistance: Settings.audioUpdateDistance)
-            default:
+            case 2:
                 cell.configure(speedRateSlow: Settings.speedRateSlow, speedRateMedium: Settings.speedRateMedium, speedRateFast: Settings.speedRateFast)
+            default:
+                cell.configure(lapDistance: Settings.lapDistance)
             }
             return cell
         case 2:
-            switch indexPath.row {
-            default:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.nibName, for: indexPath)
-                return cell
-            }
-        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
             switch indexPath.row {
             default:
@@ -186,6 +180,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 break
             }
             return cell
+        case 3:
+            switch indexPath.row {
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.nibName, for: indexPath)
+                return cell
+            }
         default:
             return UITableViewCell()
         }
@@ -213,8 +213,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 selectUpdateTime(cell)
             case 1:
                 selectUpdateDistance(cell)
-            default:
+            case 2:
                 selectSpeedRates(cell)
+            default:
+                selectLapDistance(cell)
             }
         case 2:
             switch indexPath.row {
@@ -249,6 +251,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = SelectUpdateTimeTableViewController()
         vc.delegate = self
         addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(vc.updateTimes.count)*SelectUpdateTimeTableViewController.rowHeight))
+        present(vc, animated: true, completion: nil)
+    }
+    
+    private func selectLapDistance(_ cell: CustomizationTableViewCell) {
+        let vc = SelectLapDistanceTableViewController()
+        vc.delegate = self
+        addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(vc.lapDistances.count)*SelectLapDistanceTableViewController.rowHeight))
         present(vc, animated: true, completion: nil)
     }
 
@@ -300,6 +309,15 @@ extension SettingsViewController: SelectUpdateDistanceTableViewControllerDelegat
         vc.dismiss(animated: true) {
             Settings.audioUpdateDistance = updateDistance
             self.tableView.reloadRows(at: [IndexPath(row: 1, section: 1)], with: .automatic)
+        }
+    }
+}
+
+extension SettingsViewController: SelectLapDistanceTableViewControllerDelegate {
+    func selectLapDistanceTableViewControllerDidSelect(_ vc: SelectLapDistanceTableViewController, lapDistance: Double) {
+        vc.dismiss(animated: true) {
+            Settings.lapDistance = lapDistance
+            self.tableView.reloadRows(at: [IndexPath(row: 3, section: 1)], with: .automatic)
         }
     }
 }

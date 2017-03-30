@@ -31,14 +31,20 @@ class WorkoutManager: NSObject {
     
     weak var delegate: WorkoutManagerDelegate?
     
-    private var lastActiveLocation: CLLocation?
-    private var lastActiveDate: Date?
     private (set) var state: WorkoutState = .none {
         didSet {
             delegate?.workoutManagerDidChangeState(self, state: state)
         }
     }
+    /*
+    private var lastActiveLocation: CLLocation?
+
+    private (set) var distanceTraveled: CLLocationDistance = 0
+    private (set) var netElevation: CLLocationDistance = 0
+    private (set) var totalPositiveElevation: CLLocationDistance = 0
+ 
     
+    private var lastActiveDate: Date?
     private (set) var timeElapsed: TimeInterval = 0
     var currentTimeElapsed: TimeInterval {
         var currentTimeElapsed = timeElapsed
@@ -46,13 +52,11 @@ class WorkoutManager: NSObject {
             currentTimeElapsed += -lastActiveDate.timeIntervalSinceNow
         }
         return currentTimeElapsed
-    }
-    private (set) var distanceTraveled: CLLocationDistance = 0
-    private (set) var netElevation: CLLocationDistance = 0
-    private (set) var totalPositiveElevation: CLLocationDistance = 0
-    //
+    }*/
+    
     private (set) var nextDistanceUpdate: CLLocationDistance = 0
     private (set) var nextTimeUpdate: TimeInterval = 0
+    private (set) var nextLap: CLLocationDistance = 0
     
     convenience init(delegate: WorkoutManagerDelegate) {
         self.init()
@@ -67,16 +71,8 @@ class WorkoutManager: NSObject {
     fileprivate func addLocationUpdate(_ location: CLLocation) {
         guard state == .running else { return }
         workout?.addEvent(location, type: .locationUpdate)
-        if let lastActiveLocation = lastActiveLocation {
-            distanceTraveled += lastActiveLocation.distance(from: location)
-            let elevationDiff = location.altitude - lastActiveLocation.altitude
-            if elevationDiff > 0 {
-                totalPositiveElevation += elevationDiff
-            }
-            netElevation += elevationDiff
-        }
-        delegate?.workoutManagerDidUpdate(self, from: lastActiveLocation, to: location)
-        lastActiveLocation = location
+        //delegate?.workoutManagerDidUpdate(self, from: lastActiveLocation, to: location)
+        //lastActiveLocation = location
     }
     
     func timerFired(_ sender: Any) {
@@ -84,55 +80,58 @@ class WorkoutManager: NSObject {
         updateDistanceTraveled()
     }
     
-    var statusText: String {
-        return "\(currentTimeElapsed.spoken()), \(Utils.distanceString(meters: distanceTraveled))"
-    }
-    
     func updateTimeElapsed() {
-        guard workout != nil else { return }
-        delegate?.workoutManagerDidChangeTime(self, timeElapsed: currentTimeElapsed)
-        if nextTimeUpdate > 0 && currentTimeElapsed > nextTimeUpdate {
+        guard let workout = workout else { return }
+        delegate?.workoutManagerDidChangeTime(self, timeElapsed: workout.currentTimeActive)
+        if nextTimeUpdate > 0 && workout.currentTimeActive > nextTimeUpdate {
             print("updating time")
-            speechManager.speak(statusText)
+            speechManager.speak(workout.statusText)
             nextTimeUpdate += Settings.audioUpdateTime
         }
     }
     
     func updateDistanceTraveled() {
         guard let workout = workout, let location = locationManager.location else { return }
-        delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: distanceTraveled)
-        if nextDistanceUpdate > 0 && distanceTraveled > nextDistanceUpdate {
-            // TODO fix laps workout.addEvent(location, type: .lap)
+        delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: workout.totalDistance)
+        if nextDistanceUpdate > 0 && workout.totalDistance > nextDistanceUpdate {
             print("updating distance")
-            speechManager.speak(statusText)
+            speechManager.speak(workout.statusText)
             nextDistanceUpdate += Settings.audioUpdateDistance
+        }
+        if nextLap > 0 && workout.totalDistance > nextLap {
+            print("starting new lap")
+            workout.newLap(location: location)
+            nextLap += Settings.lapDistance
         }
     }
     
-    func start(_ workout: Workout) {
-        self.workout = workout
+    func start() -> Bool {
+        guard let location = locationManager.location else {
+            return false
+        }
+        self.workout = Workout(startDate: Date(), location: location)
         speechManager.playWhiteNoise()
-        Settings.audioUpdateTime = 15
         nextTimeUpdate = Settings.audioUpdateTime
         nextDistanceUpdate = Settings.audioUpdateDistance
+        nextLap = Settings.lapDistance
         resume()
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
+        return true
     }
     
     func resume() {
         guard let workout = workout, let location = locationManager.location else { return }
         workout.addEvent(location, type: .resume)
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
-        lastActiveDate = Date()
+        //lastActiveDate = Date()
         state = .running
     }
     
     func pause() {
         guard let workout = workout, let location = locationManager.location else { return }
         workout.addEvent(location, type: .pause)
-        timer?.invalidate()
-        timeElapsed = currentTimeElapsed // lock it in
-        lastActiveLocation = nil
-        lastActiveDate = nil
+        //timeElapsed = currentTimeElapsed // lock it in
+        //lastActiveLocation = nil
+        //lastActiveDate = nil
         state = .paused
     }
     
@@ -148,23 +147,17 @@ class WorkoutManager: NSObject {
     func end() -> Workout? {
         state = .none
         let completedWorkout = self.workout
-        completedWorkout?.endDate = Date()
-        completedWorkout?.totalTimeActive = currentTimeElapsed
-        completedWorkout?.totalDistance = distanceTraveled
-        completedWorkout?.totalPositiveElevation = totalPositiveElevation
-        completedWorkout?.netElevation = netElevation
+        completedWorkout?.end()
         reset()
         return completedWorkout
     }
     
     func reset() {
         workout = nil
-        timeElapsed = 0
-        distanceTraveled = 0
-        netElevation = 0
-        totalPositiveElevation = 0
         nextDistanceUpdate = 0
         nextTimeUpdate = 0
+        nextLap = 0
+        timer?.invalidate()
     }
 
 }

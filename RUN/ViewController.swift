@@ -246,7 +246,7 @@ extension ViewController {
     
     func startWorkout() {
         setupView(.live, animated: true)
-        workoutManager.start(Workout(startDate: Date()))
+        let _ = workoutManager.start()
     }
     
     @IBAction func endWorkoutTapped(_ sender: Any) {
@@ -420,34 +420,36 @@ extension ViewController: WorkoutsViewControllerDelegate {
         resetMap(false)
         var bounds = GMSCoordinateBounds()
         var previousEvent: WorkoutEvent?
-        for event in workout.events {
-            if let polyline = polyline, let previousEvent = previousEvent,
-                event.workoutEventType == .locationUpdate {
-                let mutablePath: GMSMutablePath
-                if let path = polyline.path {
-                    mutablePath = GMSMutablePath(path: path)
-                } else {
-                    mutablePath = GMSMutablePath()
+        for lap in workout.laps {
+            for event in lap.events {
+                if let polyline = polyline, let previousEvent = previousEvent,
+                    event.workoutEventType == .locationUpdate {
+                    let mutablePath: GMSMutablePath
+                    if let path = polyline.path {
+                        mutablePath = GMSMutablePath(path: path)
+                    } else {
+                        mutablePath = GMSMutablePath()
+                    }
+                    mutablePath.add(event.coordinate)
+                    polyline.path = mutablePath
+                    var spans = polyline.spans ?? []
+                    let style = GMSStrokeStyle.gradient(from: previousEvent.speed.color, to: event.speed.color)
+                    let span = GMSStyleSpan(style: style)
+                    spans.append(span)
+                    polyline.spans = spans
+                    polyline.map = mapView
+                } else if event.workoutEventType == .resume {
+                    let path = GMSMutablePath()
+                    path.add(event.coordinate)
+                    let newPolyline = GMSPolyline(path: path)
+                    newPolyline.strokeWidth = 4
+                    newPolyline.map = mapView
+                    newPolyline.spans = [GMSStyleSpan(color: CLLocationSpeed(event.speed).color)]
+                    polyline = newPolyline
                 }
-                mutablePath.add(event.coordinate)
-                polyline.path = mutablePath
-                var spans = polyline.spans ?? []
-                let style = GMSStrokeStyle.gradient(from: previousEvent.speed.color, to: event.speed.color)
-                let span = GMSStyleSpan(style: style)
-                spans.append(span)
-                polyline.spans = spans
-                polyline.map = mapView
-            } else if event.workoutEventType == .resume {
-                let path = GMSMutablePath()
-                path.add(event.coordinate)
-                let newPolyline = GMSPolyline(path: path)
-                newPolyline.strokeWidth = 4
-                newPolyline.map = mapView
-                newPolyline.spans = [GMSStyleSpan(color: CLLocationSpeed(event.speed).color)]
-                polyline = newPolyline
+                previousEvent = event
+                bounds = bounds.includingCoordinate(event.coordinate)
             }
-            previousEvent = event
-            bounds = bounds.includingCoordinate(event.coordinate)
         }
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
         timeLabel.text = TimeInterval(workout.totalTimeActive).formatted()

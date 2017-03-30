@@ -279,10 +279,8 @@ extension Date {
 }
 
 extension CLLocationSpeed {
+    
     var color: UIColor {
-        print(Utils.metersPerSecond(unitsPerHour: Settings.speedRateFast))
-        print(Utils.metersPerSecond(unitsPerHour: Settings.speedRateMedium))
-        print(self)
         if self > Utils.metersPerSecond(unitsPerHour: Settings.speedRateFast) {
             return Settings.theme.greenColor
         } else if self > Utils.metersPerSecond(unitsPerHour: Settings.speedRateMedium) {
@@ -293,6 +291,7 @@ extension CLLocationSpeed {
             return Settings.theme.redColor
         }
     }
+    
 }
 
 extension UIColor {

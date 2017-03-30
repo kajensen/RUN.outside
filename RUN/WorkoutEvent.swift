@@ -12,12 +12,13 @@ import CoreLocation
 class WorkoutEvent: Object {
     
     enum WorkoutEventType: Int {
-        case locationUpdate, pause, resume, lap
+        case locationUpdate, pause, resume
     }
 
     dynamic var latitude: Double = 0
     dynamic var longitude: Double = 0
     dynamic var floor: Int = 0
+    dynamic var altitude: Double = 0
     dynamic var horizontal​Accuracy: Double = 0
     dynamic var vertical​Accuracy: Double = 0
     dynamic var course: Double = 0
@@ -38,12 +39,30 @@ class WorkoutEvent: Object {
         self.latitude = location.coordinate.latitude
         self.longitude = location.coordinate.longitude
         self.floor = location.floor?.level ?? 0
+        self.altitude = location.altitude
         self.horizontal​Accuracy = location.horizontalAccuracy
         self.vertical​Accuracy = location.verticalAccuracy
         self.course = location.course
         self.speed = location.speed
         self.timestamp = location.timestamp
         self.type = type.rawValue
+    }
+    
+    func altitudeDifference(to workoutEvent: WorkoutEvent) -> (positive: Double, net: Double) {
+        let altitudeChange = self.altitude - workoutEvent.altitude
+        var positive: Double = 0
+        if altitudeChange > 0 {
+            positive = altitudeChange
+        }
+        return (positive, altitudeChange)
+    }
+    
+    func timeDifference(to workoutEvent: WorkoutEvent) -> TimeInterval {
+        return timestamp.timeIntervalSince(workoutEvent.timestamp)
+    }
+    
+    func distanceDifference(to workoutEvent: WorkoutEvent) -> CLLocationDistance {
+        return CLLocation(latitude: latitude, longitude: longitude).distance(from: CLLocation(latitude: workoutEvent.latitude, longitude: workoutEvent.longitude))
     }
     
 }

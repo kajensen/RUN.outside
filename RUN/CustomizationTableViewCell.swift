@@ -40,6 +40,16 @@ class CustomizationTableViewCell: UITableViewCell {
         iconImageView.image = UIImage(named: "icon_time")
     }
     
+    func configure(lapDistance: Double) {
+        titleLabel.text = "Start new lap every..."
+        if lapDistance > 0 {
+            subTitleLabel.text = Utils.distanceString(meters: lapDistance)
+        } else {
+            subTitleLabel.text = "Off"
+        }
+        iconImageView.image = UIImage(named: "icon_time")
+    }
+    
     func configure(audioUpdateTime: Double) {
         titleLabel.text = "Coach Update every..."
         if audioUpdateTime > 0 {
