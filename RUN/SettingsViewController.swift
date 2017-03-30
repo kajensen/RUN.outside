@@ -41,12 +41,6 @@ class SettingsViewController: UIViewController {
         return tableFooterView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTableView()
-        //registerForThemeChange()
-    }
-    
     var preferredViewSize: CGSize? {
         guard isViewLoaded else {
             return nil
@@ -54,17 +48,24 @@ class SettingsViewController: UIViewController {
         return CGSize(width: view.bounds.width, height: tableView.contentSize.height)
     }
     
-    @IBAction func closeTapped(_ sender: Any) {
-        delegate?.settingsViewControllerTappedClose(self)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTableView()
+        registerForThemeChange()
     }
-
+    
     override func configureTheme() {
         let theme = Settings.theme
         versionLabel.textColor = theme.secondaryTextColor
         versionLabel.font = Style.Font.regular(of: 12)
         tableView.reloadData()
+        tableView.separatorColor = UIColor.black
     }
     
+    @IBAction func closeTapped(_ sender: Any) {
+        delegate?.settingsViewControllerTappedClose(self)
+    }
+
     private func setupTableView() {
         tableView.register(UINib(nibName: ReviewTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ReviewTableViewCell.nibName)
         tableView.register(UINib(nibName: ActionTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ActionTableViewCell.nibName)
@@ -78,7 +79,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -89,6 +90,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return "SETTINGS"
         case 2:
             return "INFO"
+        case 3:
+            return "DATA"
         default:
             return nil
         }
@@ -111,11 +114,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 1
         case 1:
             return 2
         case 2:
-            return 2
+            return 3
+        case 3:
+            return 1
         default:
             return 0
         }
@@ -127,15 +132,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomizationTableViewCell.nibName, for: indexPath) as! CustomizationTableViewCell
             switch indexPath.row {
             default:
-                //cell.configure(font: Settings.font)
+                cell.configure(theme: Settings.theme)
                 break
             }
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomizationTableViewCell.nibName, for: indexPath) as! CustomizationTableViewCell
             switch indexPath.row {
+            case 0:
+                cell.configure(audioUpdateTime: Settings.audioUpdateTime)
             default:
-                //cell.configure(recentHistoryInterval: Settings.defaultRecentHistoryInterval)
+                cell.configure(audioUpdateDistance: Settings.audioUpdateDistance)
                 break
             }
             return cell
@@ -148,15 +155,19 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
                 cell.textLabel?.text = "Feedback/Improvements"
                 return cell
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
-                cell.textLabel?.text = "Terms of Service"
-                return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
-                cell.textLabel?.text = "Privacy Policy"
+                cell.textLabel?.text = "About RUN.outsi.de"
                 return cell
             }
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
+            switch indexPath.row {
+            default:
+                cell.textLabel?.text = "Sync with Health app"
+                break
+            }
+            return cell
         default:
             return UITableViewCell()
         }
@@ -216,7 +227,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         vc.popoverPresentationController?.sourceRect = CGRect(x: cell.subTitleLabel.bounds.width*0.5, y: 0, width: 0, height: cell.subTitleLabel.bounds.height)
         vc.popoverPresentationController?.permittedArrowDirections = [.up, .down]
         vc.popoverPresentationController?.canOverlapSourceViewRect = false
-        //vc.popoverPresentationController?.delegate = self
+        vc.popoverPresentationController?.delegate = self
     }
     
 }
@@ -257,18 +268,18 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         if MFMailComposeViewController.canSendMail() {
             let vc = MFMailComposeViewController()
             vc.mailComposeDelegate = self
-            // TODO vc.setToRecipients([Constants.email])
+            vc.setToRecipients([Constants.email])
             vc.setSubject("Feedback")
             present(vc, animated: true, completion: nil)
         } else {
-            //showAlert(title: "You can contact us at \(Constants.email)")
+            showAlert(title: "You can contact us at \(Constants.email)")
         }
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true) { () -> Void in
             if (result == .sent) {
-                //self.showAlert(title: "Email Sent")
+                self.showAlert(title: "Email Sent")
             }
         }
         

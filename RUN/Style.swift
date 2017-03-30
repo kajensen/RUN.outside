@@ -25,8 +25,16 @@ class Style {
         let theme = Settings.theme
         UITableView.appearance().backgroundColor = UIColor.clear
         UITableViewCell.appearance().backgroundColor = UIColor.clear
-        UITableView.appearance().separatorColor = UIColor.clear
 
+        if #available(iOS 10.3, *) {
+            let iconName = theme.iconName
+            if UIApplication.shared.alternateIconName != iconName {
+                UIApplication.shared.setAlternateIconName(iconName, completionHandler: { (error) in
+                    print(error)
+                })
+            }
+        }
+        
         //UIVisualEffectView.appearance().add
 
 /*        // VIEWS
@@ -172,6 +180,19 @@ class Style {
                 return "map_mirkwood"
             case .electric:
                 return "map_electric"
+            }
+        }
+        
+        var iconName: String { // TODO
+            switch self {
+            case .retro:
+                return "icon_retro"
+            case .silver:
+                return "icon_ilver"
+            case .mirkwood:
+                return "icon_mirkwood"
+            case .electric:
+                return "icon_electric"
             }
         }
         

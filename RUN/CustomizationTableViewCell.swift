@@ -30,31 +30,30 @@ class CustomizationTableViewCell: UITableViewCell {
         subTitleLabel.font = Style.Font.regular(of: 15)
     }
     
-    func configure(distance: Double) {
-        // TODO
+    func configure(audioUpdateDistance: Double) {
+        titleLabel.text = "Audio Update every..."
+        if audioUpdateDistance > 0 {
+            subTitleLabel.text = Utils.distanceString(meters: audioUpdateDistance)
+        } else {
+            subTitleLabel.text = "Off"
+        }
+        iconImageView.image = UIImage(named: "icon_time")
     }
     
-    func configure(time: Double) {
-        // TODO
+    func configure(audioUpdateTime: Double) {
+        titleLabel.text = "Audio Update every..."
+        if audioUpdateTime > 0 {
+            subTitleLabel.text = TimeInterval(audioUpdateTime).formatted()
+        } else {
+            subTitleLabel.text = "Off"
+        }
+        iconImageView.image = UIImage(named: "icon_time")
     }
     
-    /*
     func configure(theme: Style.Theme) {
         titleLabel.text = "Theme"
         subTitleLabel.text = theme.stringValue
         iconImageView.image = UIImage(named: "icon_theme")
     }
-    
-    func configure(threadDelayRate: Settings.ThreadDelayRate) {
-        titleLabel.text = "Stream Delay"
-        subTitleLabel.text = threadDelayRate.stringValue
-        iconImageView.image = UIImage(named: "icon_delay")
-    }
-    
-    func configure(recentHistoryInterval: Settings.RecentHistoryInterval) {
-        titleLabel.text = "Expire Following After"
-        subTitleLabel.text = recentHistoryInterval.stringValue
-        iconImageView.image = UIImage(named: "icon_threads")
-    }*/
     
 }

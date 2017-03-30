@@ -36,6 +36,7 @@ class WorkoutTableViewCell: MGSwipeTableCell {
         rightButton.tintColor = UIColor.white
         rightButtons = [rightButton]
         prepareForReuse()
+        routeImageView.transform = CGAffineTransform.identity.scaledBy(x: -1, y: 1)
     }
     
     override func prepareForReuse() {

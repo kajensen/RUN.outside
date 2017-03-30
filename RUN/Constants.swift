@@ -12,5 +12,7 @@ class Constants {
     
     static let googleMapsApiKey = "AIzaSyAE0_wLGmYZwsMqG7nF0VfCfmnXVU7oN1I"
     static let openWeatherApiKey = "36db18e14455b23d4c6db032972f0f9e"
+    
+    static let email = "arborapps+run@gmail.com"
 
 }

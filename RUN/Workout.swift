@@ -43,6 +43,7 @@ class Workout: Object {
     }
     
     func pathImageForSize(rect: CGRect) -> UIImage? {
+        // TODO: fix me this is inverted horizontal
         var bounds = GMSCoordinateBounds()
         for location in locations {
             bounds = bounds.includingCoordinate(location.coordinate)
@@ -63,8 +64,7 @@ class Workout: Object {
         let latPadding = (maxLng - minLng) > (maxLat - minLat) ? (maxLng - minLng)/2 : 0
         let lngPadding = (maxLng - minLng) > (maxLat - minLat) ? 0 : (maxLat - minLat)/2
         let mapRect = CGRect(x: minLng - lngPadding, y: minLat - latPadding, width: side, height: side)
-        print(mapRect)
-        let thumbRect = rect
+        let thumbRect = rect.insetBy(dx: 8, dy: 8)
         for (_, location) in locations.enumerated() {
             let coordinate = location.coordinate
             let point = CGPoint(x: maxLng - coordinate.longitude + lngPadding, y: maxLat - coordinate.latitude + latPadding)

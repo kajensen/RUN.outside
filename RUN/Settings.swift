@@ -15,8 +15,8 @@ class Settings: NSObject {
     }
 
     class Keys {
-        static let AudioQueueDistance = "AudioQueueDistance"
-        static let AudioQueueTime = "AudioQueueTime"
+        static let AudioUpdateDistance = "AudioUpdateDistance"
+        static let AudioUpdateTime = "AudioUpdateTime"
         static let theme = "theme"
         static let hasAgreedToTerms = "hasAgreedToTerms"
         static let iapSubscriptionExpiration = "iA"
@@ -30,20 +30,28 @@ class Settings: NSObject {
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: Keys.theme)
             UserDefaults.standard.synchronize()
-            /*
-            if #available(iOS 10.3, *) {
-                var iconName: String? = nil
-                if newValue == .gold {
-                    iconName = "gold"
-                }
-                if UIApplication.shared.alternateIconName != iconName {
-                    UIApplication.shared.setAlternateIconName(iconName, completionHandler: { (error) in
-                        print(error)
-                    })
-                }
-            }*/ // TODO
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Settings.Keys.theme), object: nil)
             Style.configure()
+        }
+    }
+    
+    class var audioUpdateDistance: Double {
+        get {
+            return UserDefaults.standard.double(forKey: Keys.AudioUpdateDistance)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.AudioUpdateDistance)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    class var audioUpdateTime: Double {
+        get {
+            return UserDefaults.standard.double(forKey: Keys.AudioUpdateTime)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.AudioUpdateTime)
+            UserDefaults.standard.synchronize()
         }
     }
     

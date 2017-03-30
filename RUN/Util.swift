@@ -9,6 +9,35 @@
 import UIKit
 import MapKit
 
+extension UIViewController {
+    
+    func showAlert(title: String? = nil, message: String? = nil, completion: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            completion?()
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showErrorAlert(error: Error?, completion: (() -> Void)? = nil) {
+        showErrorMessageAlert(message: error?.localizedDescription, completion: completion)
+    }
+    
+    func showErrorMessageAlert(message: String?, completion: (() -> Void)? = nil) {
+        showAlert(title: "Error", message: message, completion: completion)
+    }
+    
+}
+
+extension UIViewController: UIPopoverPresentationControllerDelegate {
+    
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+}
+
 class Utils {
     
     static var dateFormatter: DateFormatter = {

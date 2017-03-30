@@ -56,6 +56,11 @@ class WorkoutsViewController: UIViewController {
         distanceLabel.text = nil
         workoutsInfoLabel.text = nil
         setupWorkoutsNotification()
+        registerForThemeChange()
+    }
+    
+    override func configureTheme() {
+        tableView.separatorColor = UIColor.clear
     }
     
     func updateWeatherIfNeeded(coordinate: CLLocationCoordinate2D) {
@@ -138,6 +143,7 @@ extension WorkoutsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTableViewCell.nibName, for: indexPath) as! WorkoutTableViewCell
         let workout = workouts![indexPath.row]
         cell.configure(with: workout)
+        cell.aDelegate = self
         return cell
     }
     
