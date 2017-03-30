@@ -35,7 +35,7 @@ extension UIViewController: UIPopoverPresentationControllerDelegate {
     public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
-    
+        
 }
 
 class Utils {
@@ -127,7 +127,6 @@ extension Date {
     }
     
 }
-
 
 extension TimeInterval {
     
@@ -239,14 +238,24 @@ extension Date {
             } else {
                 return "A minute ago"
             }
-        } else if (components.second! >= 3) {
-            return "\(components.second!) seconds ago"
         } else {
             return "Just now"
         }
         
     }
     
+}
+
+extension CLLocationSpeed {
+    var color: UIColor {
+        if self > 3.5 {
+            return Settings.theme.greenColor
+        } else if self > 3 {
+            return Settings.theme.yellowColor
+        } else {
+            return Settings.theme.redColor
+        }
+    }
 }
 
 extension UIColor {

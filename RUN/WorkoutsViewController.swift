@@ -32,6 +32,8 @@ class WorkoutsViewController: UIViewController {
     }
     
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var workoutsInfoLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -61,6 +63,17 @@ class WorkoutsViewController: UIViewController {
     
     override func configureTheme() {
         tableView.separatorColor = UIColor.clear
+        let theme = Settings.theme
+        titleLabel.textColor = theme.primaryTextColor
+        subTitleLabel.textColor = theme.secondaryTextColor
+        temperatureLabel.textColor = theme.primaryTextColor
+        weatherInfoLabel.textColor = theme.secondaryTextColor
+        distanceLabel.textColor = theme.primaryTextColor
+        workoutsInfoLabel.textColor = theme.secondaryTextColor
+        if let bgView = view as? BGView {
+            bgView.effect = theme.blurEffect
+        }
+        tableView.reloadData()
     }
     
     func updateWeatherIfNeeded(coordinate: CLLocationCoordinate2D) {

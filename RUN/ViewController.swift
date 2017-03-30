@@ -20,13 +20,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var workoutsView: UIView!
     @IBOutlet weak var workoutsViewOverlay: UIView!
     @IBOutlet weak var settingsViewOverlay: UIView!
-    @IBOutlet weak var centerActionView: UIView!
-    @IBOutlet weak var settingsActionView: UIView!
+    @IBOutlet weak var centerActionView: BGView!
+    @IBOutlet weak var settingsActionView: BGView!
     @IBOutlet weak var settingsView: UIView!
-    @IBOutlet weak var workoutStatsView: UIView!
+    @IBOutlet weak var workoutStatsView: BGView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceUnitsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeInfoLabel: UILabel!
     @IBOutlet weak var toggleWorkoutButton: UIButton!
     @IBOutlet weak var endWorkoutButton: UIButton!
     @IBOutlet weak var workoutsViewContraint: NSLayoutConstraint!
@@ -73,7 +74,7 @@ class ViewController: UIViewController {
         distanceLabel.text = nil
         distanceUnitsLabel.text = nil
         registerForThemeChange()
-        
+            
         let wPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ViewController.workoutsViewPanned(_:)))
         wPanGestureRecognizer.delegate = self
         workoutsView.addGestureRecognizer(wPanGestureRecognizer)
@@ -95,11 +96,20 @@ class ViewController: UIViewController {
     
     override func configureTheme() {
         let theme = Settings.theme
+        distanceLabel.textColor = theme.primaryTextColor
+        distanceUnitsLabel.textColor = theme.secondaryTextColor
+        timeLabel.textColor = theme.primaryTextColor
+        timeInfoLabel.textColor = theme.secondaryTextColor
         if let styleURL = Bundle.main.url(forResource: theme.mapStyle, withExtension: "json") {
             mapView.mapStyle = try? GMSMapStyle(contentsOfFileURL: styleURL)
         }
+        centerActionView.effect = theme.blurEffect
+        settingsActionView.effect = theme.blurEffect
+        workoutStatsView.effect = theme.blurEffect
+        toggleWorkoutButton.backgroundColor = theme.greenColor
+        endWorkoutButton.backgroundColor = theme.redColor
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedWorkouts" {
             if let nc = segue.destination as? UINavigationController,
@@ -522,6 +532,7 @@ extension ViewController: SettingsViewControllerDelegate {
 }
 
 extension ViewController: GMSMapViewDelegate {
+    
     // TODO
 }
 

@@ -35,6 +35,10 @@ class Style {
             }
         }
         
+        UIButton.appearance().tintColor = theme.primaryTextColor
+        UIImageView.appearance().tintColor = theme.primaryTextColor
+
+        
         //UIVisualEffectView.appearance().add
 
 /*        // VIEWS
@@ -76,13 +80,13 @@ class Style {
         UINavigationBar.appearance().barTintColor = theme.primaryButtonColor
         //
         Comment.markdownParser.fontName = Settings.font.fontGroup?.regularName ?? UIFont.systemFont(ofSize: 17).fontName
-
+*/
         for window in UIApplication.shared.windows {
             for view in window.subviews {
                 view.removeFromSuperview()
                 window.addSubview(view)
             }
-        }*/
+        }
     }
     
     class Color {
@@ -145,11 +149,42 @@ class Style {
         }
         
         var greenColor: UIColor {
-            return UIColor.green
+            switch self {
+            case .retro:
+                return Color.turquoiseGreen
+            case .silver:
+                return Color.seaGreen
+            case .mirkwood:
+                return UIColor.green
+            case .electric:
+                return UIColor.green
+            }
+        }
+
+        var yellowColor: UIColor {
+            switch self {
+            case .retro:
+                return Color.sunOrange
+            case .silver:
+                return Color.sunFlowerYellow
+            case .mirkwood:
+                return Color.goldYellow
+            case .electric:
+                return UIColor.yellow
+            }
         }
         
         var redColor: UIColor {
-            return UIColor.red
+            switch self {
+            case .retro:
+                return Color.pomegranateRed
+            case .silver:
+                return Color.alizarinRed
+            case .mirkwood:
+                return Color.amethystPurple
+            case .electric:
+                return UIColor.red
+            }
         }
         
         var barStyle: UIBarStyle {
@@ -170,12 +205,21 @@ class Style {
             }
         }
         
+        var blurEffect: UIBlurEffect {
+            switch self {
+            case .retro, .silver:
+                return UIBlurEffect(style: .light)
+            case .mirkwood, .electric:
+                return UIBlurEffect(style: .dark)
+            }
+        }
+        
         var mapStyle: String {
             switch self {
             case .retro:
                 return "map_retro"
             case .silver:
-                return "map_ilver"
+                return "map_silver"
             case .mirkwood:
                 return "map_mirkwood"
             case .electric:
@@ -188,7 +232,7 @@ class Style {
             case .retro:
                 return "icon_retro"
             case .silver:
-                return "icon_ilver"
+                return "icon_silver"
             case .mirkwood:
                 return "icon_mirkwood"
             case .electric:

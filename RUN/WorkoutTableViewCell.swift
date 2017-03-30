@@ -46,6 +46,13 @@ class WorkoutTableViewCell: MGSwipeTableCell {
         timeElapsedLabel.text = nil
         distanceLabel.text = nil
         elevationLabel.text = nil
+        let theme = Settings.theme
+        routeImageView.tintColor = theme.primaryTextColor
+        dateLabel.textColor = theme.primaryTextColor
+        timeElapsedLabel.textColor = theme.secondaryTextColor
+        distanceLabel.textColor = theme.primaryTextColor
+        elevationLabel.textColor = theme.secondaryTextColor
+        rightButtons.first?.backgroundColor = theme.redColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -59,7 +66,7 @@ class WorkoutTableViewCell: MGSwipeTableCell {
         timeElapsedLabel.text = TimeInterval(workout.totalTimeActive).formatted()
         distanceLabel.text = Utils.distanceString(meters: workout.totalDistance)
         elevationLabel.text = "\(Utils.distanceString(meters: workout.totalPositiveElevation)) (+\(Utils.distanceString(meters: workout.netElevation)))"
-        routeImageView.image = workout.pathImageForSize(rect: routeImageView.bounds)
+        routeImageView.image = workout.pathImageForSize(rect: routeImageView.bounds)?.withRenderingMode(.alwaysTemplate)
     }
     
 }

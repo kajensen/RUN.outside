@@ -26,7 +26,18 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        registerForThemeChange()
     }
+    
+    override func configureTheme() {
+        let theme = Settings.theme
+        titleLabel.textColor = theme.primaryTextColor
+        subTitleLabel.textColor = theme.secondaryTextColor
+        if let bgView = view as? BGView {
+            bgView.effect = theme.blurEffect
+        }
+    }
+    
     @IBAction func closeTapped(_ sender: Any) {
         delegate?.workoutViewControllerTappedClose(self)
         navigationController?.popViewController(animated: true)

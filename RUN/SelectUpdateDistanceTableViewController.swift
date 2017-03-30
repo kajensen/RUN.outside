@@ -25,7 +25,7 @@ class SelectUpdateDistanceTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         tableView.rowHeight = SelectUpdateTimeTableViewController.rowHeight
-        // TODO tableView.backgroundColor = Settings.theme.primaryBackgroundColor
+        tableView.backgroundColor = Settings.theme.primaryTextColor
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,6 +35,11 @@ class SelectUpdateDistanceTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let distance = updateDistances[indexPath.row]
+        if distance > 0 {
+            cell.textLabel?.text = distance.formatted(false)
+        } else {
+            cell.textLabel?.text = "Off"
+        }
         cell.textLabel?.text = Utils.distanceString(meters: distance)
         cell.textLabel?.textAlignment = .center
         return cell

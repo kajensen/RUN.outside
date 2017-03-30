@@ -25,7 +25,7 @@ class SelectUpdateTimeTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         tableView.rowHeight = SelectUpdateTimeTableViewController.rowHeight
-        // TODO tableView.backgroundColor = Settings.theme.primaryBackgroundColor
+        tableView.backgroundColor = Settings.theme.primaryTextColor
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,7 +35,11 @@ class SelectUpdateTimeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let time = updateTimes[indexPath.row]
-        cell.textLabel?.text = time.formatted(false)
+        if time > 0 {
+            cell.textLabel?.text = time.formatted(false)
+        } else {
+            cell.textLabel?.text = "Off"
+        }
         cell.textLabel?.textAlignment = .center
         return cell
     }

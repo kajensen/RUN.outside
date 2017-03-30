@@ -124,19 +124,6 @@ class WorkoutManager: NSObject {
 
 }
 
-
-extension CLLocationSpeed {
-    var color: UIColor {
-        if self > 3.5 {
-            return UIColor.green
-        } else if self > 3 {
-            return UIColor.yellow
-        } else {
-            return UIColor.red
-        }
-    }
-}
-
 extension WorkoutManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

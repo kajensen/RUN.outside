@@ -58,6 +58,9 @@ class SettingsViewController: UIViewController {
         let theme = Settings.theme
         versionLabel.textColor = theme.secondaryTextColor
         versionLabel.font = Style.Font.regular(of: 12)
+        if let bgView = view as? BGView {
+            bgView.effect = theme.blurEffect
+        }
         tableView.reloadData()
         tableView.separatorColor = UIColor.black
     }
@@ -204,12 +207,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 sendEmail()
                 break
             default:
-                // TODO
-
+                showAlert(title: "TODO")
                 break
             }
             return
         default:
+            showAlert(title: "TODO")
             return
         }
     }

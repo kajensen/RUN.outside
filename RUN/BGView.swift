@@ -9,6 +9,14 @@
 import UIKit
 
 class BGView: UIView {
+    
+    var effect = Settings.theme.blurEffect {
+        didSet {
+            updateEffect()
+        }
+    }
+    
+    private var visualEffectView: UIVisualEffectView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,8 +28,7 @@ class BGView: UIView {
         commonInit()
     }
     
-    func commonInit() {
-        let effect = UIBlurEffect(style: .light)
+    private func commonInit() {
         let view = UIVisualEffectView(effect: effect)
         view.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +45,13 @@ class BGView: UIView {
         layer.shadowRadius = 4
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 1, height: 1)*/
+        visualEffectView = view
+    }
+    
+    func updateEffect() {
+        UIView.animate(withDuration: 0.5) { 
+            self.visualEffectView?.effect = self.effect
+        }
     }
 
 }

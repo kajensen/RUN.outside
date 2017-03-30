@@ -25,7 +25,7 @@ class SelectThemeTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         tableView.rowHeight = SelectThemeTableViewController.rowHeight
-        // TODO tableView.backgroundColor = Settings.theme.primaryBackgroundColor
+        tableView.backgroundColor = Settings.theme.primaryTextColor
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

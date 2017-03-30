@@ -110,16 +110,16 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="126" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-bT-fL0">
-                                                        <rect key="frame" x="8" y="13" width="110" height="24"/>
+                                                        <rect key="frame" x="8" y="7" width="110" height="37.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="110" id="FbN-mE-BGp"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="24"/>
+                                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="32"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0i-eL-ifr">
-                                                        <rect key="frame" x="51" y="37" width="24.5" height="12"/>
+                                                        <rect key="frame" x="51" y="44.5" width="24.5" height="12"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -145,16 +145,16 @@
                                                 <rect key="frame" x="126" y="0.0" width="115" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MGz-4s-1tg">
-                                                        <rect key="frame" x="8" y="13" width="100" height="24"/>
+                                                        <rect key="frame" x="8" y="7" width="100" height="37.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="zMQ-Ic-fx3"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="24"/>
+                                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="32"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MILES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkr-WR-iMh">
-                                                        <rect key="frame" x="43" y="37" width="30.5" height="12"/>
+                                                        <rect key="frame" x="43" y="44.5" width="30.5" height="12"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -249,6 +249,7 @@
                         <outlet property="settingsViewConstraint" destination="Q2S-5Q-SFo" id="wcC-ry-9MJ"/>
                         <outlet property="settingsViewHeightConstraint" destination="Sks-c7-Sdd" id="4nA-WJ-FqF"/>
                         <outlet property="settingsViewOverlay" destination="ItD-lc-EkX" id="Fdi-q2-Wb0"/>
+                        <outlet property="timeInfoLabel" destination="y0i-eL-ifr" id="QaY-mh-21L"/>
                         <outlet property="timeLabel" destination="SXq-bT-fL0" id="pUF-Pp-U6J"/>
                         <outlet property="toggleWorkoutButton" destination="Qn9-PQ-N9f" id="fau-fI-2eS"/>
                         <outlet property="workoutStatsView" destination="mgI-rx-HuS" id="61y-Cz-aYn"/>
@@ -419,8 +420,10 @@
                     <navigationItem key="navigationItem" id="aAO-e4-2N2"/>
                     <connections>
                         <outlet property="distanceLabel" destination="sQb-Ta-j2r" id="Utp-QH-Caq"/>
+                        <outlet property="subTitleLabel" destination="UOQ-ui-Jrz" id="I6x-z3-SrT"/>
                         <outlet property="tableView" destination="xyP-Vc-rTo" id="AZ7-uF-LEe"/>
                         <outlet property="temperatureLabel" destination="djL-PC-MLP" id="IqT-WN-btE"/>
+                        <outlet property="titleLabel" destination="BKg-FN-YrO" id="B9b-tM-ayM"/>
                         <outlet property="topView" destination="0cM-6E-mj7" id="kBn-qD-VQI"/>
                         <outlet property="weatherInfoLabel" destination="Dbd-Ed-SwH" id="sHL-th-9Nm"/>
                         <outlet property="workoutsInfoLabel" destination="cy6-8i-xVE" id="lKY-zv-6hf"/>
@@ -524,7 +527,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Ab-gR-C8o">
                                         <rect key="frame" x="15" y="19.5" width="25" height="25"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTR-FG-hWE">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTR-FG-hWE">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                 <state key="normal" image="Upload-50 (1)"/>
                                             </button>
@@ -533,7 +536,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-Nu-caG">
                                         <rect key="frame" x="335" y="19.5" width="25" height="25"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuC-bE-v0D">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuC-bE-v0D">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                 <state key="normal" image="Close Window-50"/>
                                                 <connections>
