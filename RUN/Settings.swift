@@ -17,6 +17,9 @@ class Settings: NSObject {
     class Keys {
         static let AudioUpdateDistance = "AudioUpdateDistance"
         static let AudioUpdateTime = "AudioUpdateTime"
+        static let SpeedRateSlow = "SpeedRateSlow"
+        static let SpeedRateMedium = "SpeedRateMedium"
+        static let SpeedRateFast = "SpeedRateFast"
         static let theme = "theme"
         static let hasAgreedToTerms = "hasAgreedToTerms"
         static let iapSubscriptionExpiration = "iA"
@@ -65,6 +68,40 @@ class Settings: NSObject {
     
     class var audioUpdateTimes: [TimeInterval] {
         return [0, 30, 60, 90, 120, 180, 240, 300, 360, 420, 480, 540, 600, 900, 1800]
+    }
+    
+    class var speedRates: [Double] {
+        return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    }
+    
+    class var speedRateSlow: Double {
+        get {
+            return max(UserDefaults.standard.double(forKey: Keys.SpeedRateSlow), 2)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.SpeedRateSlow)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    class var speedRateMedium: Double {
+        get {
+            return max(UserDefaults.standard.double(forKey: Keys.SpeedRateMedium), 5)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.SpeedRateMedium)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    class var speedRateFast: Double {
+        get {
+            return max(UserDefaults.standard.double(forKey: Keys.SpeedRateFast), 10)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.SpeedRateFast)
+            UserDefaults.standard.synchronize()
+        }
     }
     
     class var hasAgreedToTerms: Bool {

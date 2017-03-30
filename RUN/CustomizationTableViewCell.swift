@@ -31,7 +31,7 @@ class CustomizationTableViewCell: UITableViewCell {
     }
     
     func configure(audioUpdateDistance: Double) {
-        titleLabel.text = "Audio Update every..."
+        titleLabel.text = "Coach Update every..."
         if audioUpdateDistance > 0 {
             subTitleLabel.text = Utils.distanceString(meters: audioUpdateDistance)
         } else {
@@ -41,12 +41,18 @@ class CustomizationTableViewCell: UITableViewCell {
     }
     
     func configure(audioUpdateTime: Double) {
-        titleLabel.text = "Audio Update every..."
+        titleLabel.text = "Coach Update every..."
         if audioUpdateTime > 0 {
             subTitleLabel.text = TimeInterval(audioUpdateTime).formatted(false)
         } else {
             subTitleLabel.text = "Off"
         }
+        iconImageView.image = UIImage(named: "icon_time")
+    }
+    
+    func configure(speedRateSlow: Double, speedRateMedium: Double, speedRateFast: Double) {
+        titleLabel.text = "Speeds"
+        subTitleLabel.text = "\(Utils.distanceRateString(unitsPerHour: speedRateSlow)) > \(Utils.distanceRateString(unitsPerHour: speedRateMedium)) > \(Utils.distanceRateString(unitsPerHour: speedRateFast))"
         iconImageView.image = UIImage(named: "icon_time")
     }
     

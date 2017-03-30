@@ -32,12 +32,34 @@ class SettingsViewController: UIViewController {
         return versionLabel
     }()
     
+    lazy var feedbackButton: UIButton = {
+        let feedbackButton = UIButton(type: .system)
+        feedbackButton.setTitle("Feedback", for: .normal)
+        feedbackButton.addTarget(self, action: #selector(SettingsViewController.sendEmail), for: .touchUpInside)
+        return feedbackButton
+    }()
+    
+    lazy var aboutButton: UIButton = {
+        let aboutButton = UIButton(type: .system)
+        aboutButton.setTitle("About", for: .normal)
+        aboutButton.addTarget(self, action: #selector(SettingsViewController.showAbout), for: .touchUpInside)
+        return aboutButton
+    }()
+    
     lazy var tableFooterView: UIView = {
         let tableFooterView =  UIView(frame: CGRect(origin: .zero, size: CGSize(width: self.view.bounds.width, height: 50)))
         self.versionLabel.translatesAutoresizingMaskIntoConstraints = false
         tableFooterView.addSubview(self.versionLabel)
         self.versionLabel.centerXAnchor.constraint(equalTo: tableFooterView.centerXAnchor).isActive = true
         self.versionLabel.centerYAnchor.constraint(equalTo: tableFooterView.centerYAnchor, constant: -8).isActive = true
+        self.feedbackButton.translatesAutoresizingMaskIntoConstraints = false
+        tableFooterView.addSubview(self.feedbackButton)
+        self.feedbackButton.trailingAnchor.constraint(equalTo: tableFooterView.trailingAnchor, constant: -15).isActive = true
+        self.feedbackButton.centerYAnchor.constraint(equalTo: tableFooterView.centerYAnchor, constant: -8).isActive = true
+        self.aboutButton.translatesAutoresizingMaskIntoConstraints = false
+        tableFooterView.addSubview(self.aboutButton)
+        self.aboutButton.leadingAnchor.constraint(equalTo: tableFooterView.leadingAnchor, constant: 15).isActive = true
+        self.aboutButton.centerYAnchor.constraint(equalTo: tableFooterView.centerYAnchor, constant: -8).isActive = true
         return tableFooterView
     }()
     
@@ -119,9 +141,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 1
         case 1:
-            return 2
-        case 2:
             return 3
+        case 2:
+            return 1
         case 3:
             return 1
         default:
@@ -144,23 +166,16 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 cell.configure(audioUpdateTime: Settings.audioUpdateTime)
-            default:
+            case 1:
                 cell.configure(audioUpdateDistance: Settings.audioUpdateDistance)
-                break
+            default:
+                cell.configure(speedRateSlow: Settings.speedRateSlow, speedRateMedium: Settings.speedRateMedium, speedRateFast: Settings.speedRateFast)
             }
             return cell
         case 2:
             switch indexPath.row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.nibName, for: indexPath)
-                return cell
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
-                cell.textLabel?.text = "Feedback/Improvements"
-                return cell
             default:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
-                cell.textLabel?.text = "About RUN.outsi.de"
+                let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.nibName, for: indexPath)
                 return cell
             }
         case 3:
@@ -196,8 +211,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 selectUpdateTime(cell)
-            default:
+            case 1:
                 selectUpdateDistance(cell)
+            default:
+                selectSpeedRates(cell)
             }
         case 2:
             switch indexPath.row {
@@ -215,6 +232,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             showAlert(title: "TODO")
             return
         }
+    }
+    
+    func showAbout() {
+        // TODO
     }
     
     private func selectTheme(_ cell: CustomizationTableViewCell) {
@@ -235,6 +256,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = SelectUpdateDistanceTableViewController()
         vc.delegate = self
         addPopover(to: vc, from: cell, size: CGSize(width: 120, height: CGFloat(vc.updateDistances.count)*SelectUpdateDistanceTableViewController.rowHeight))
+        present(vc, animated: true, completion: nil)
+    }
+    
+    private func selectSpeedRates(_ cell: CustomizationTableViewCell) {
+        let vc = SelectSpeedScaleViewController()
+        vc.delegate = self
+        addPopover(to: vc, from: cell, size: CGSize(width: 300, height: 200))
         present(vc, animated: true, completion: nil)
     }
     
@@ -273,6 +301,16 @@ extension SettingsViewController: SelectUpdateDistanceTableViewControllerDelegat
             Settings.audioUpdateDistance = updateDistance
             self.tableView.reloadRows(at: [IndexPath(row: 1, section: 1)], with: .automatic)
         }
+    }
+}
+
+extension SettingsViewController: SelectSpeedScaleViewControllerDelegate {
+    func selectSpeedScaleViewControllerDidSelect(_ vc: SelectSpeedScaleViewController, speedRateSlow: Double, speedRateMedium: Double, speedRateFast: Double) {
+        // will be called when already dismissing SelectSpeedScaleViewController
+        Settings.speedRateSlow = speedRateSlow
+        Settings.speedRateMedium = speedRateMedium
+        Settings.speedRateFast = speedRateFast
+        tableView.reloadRows(at: [IndexPath(row: 2, section: 1)], with: .automatic)
     }
 }
 

@@ -26,7 +26,7 @@ class Workout: Object {
     dynamic var totalPositiveElevation: Double = 0
     dynamic var totalDistance: Double = 0
     dynamic var totalTimeActive: Double = 0
-    var locations = List<Location>()
+    var events = List<WorkoutEvent>()
 
     var title: String? {
         guard let startDate = startDate else { return nil }
@@ -38,15 +38,15 @@ class Workout: Object {
         self.startDate = startDate
     }
     
-    func addLocation(_ location: CLLocation, startsNewSegment: Bool) {
-        locations.append(Location(location: location, startsNewSegment: startsNewSegment))
+    func addEvent(_ location: CLLocation, type: WorkoutEvent.WorkoutEventType) {
+        events.append(WorkoutEvent(location: location, type: type))
     }
     
     func pathImageForSize(rect: CGRect) -> UIImage? {
         // TODO: fix me this is inverted horizontal
         var bounds = GMSCoordinateBounds()
-        for location in locations {
-            bounds = bounds.includingCoordinate(location.coordinate)
+        for event in events {
+            bounds = bounds.includingCoordinate(event.coordinate)
         }
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
@@ -65,15 +65,18 @@ class Workout: Object {
         let lngPadding = (maxLng - minLng) > (maxLat - minLat) ? 0 : (maxLat - minLat)/2
         let mapRect = CGRect(x: minLng - lngPadding, y: minLat - latPadding, width: side, height: side)
         let thumbRect = rect.insetBy(dx: 8, dy: 8)
-        for (_, location) in locations.enumerated() {
-            let coordinate = location.coordinate
+        for (_, event) in events.enumerated() {
+            let coordinate = event.coordinate
             let point = CGPoint(x: maxLng - coordinate.longitude + lngPadding, y: maxLat - coordinate.latitude + latPadding)
             let thumbPoint = point.convert(fromRect: mapRect, toRect: thumbRect)
             if !thumbPoint.x.isNaN && !thumbPoint.y.isNaN {
-                if location.startsNewSegment {
+                switch event.workoutEventType {
+                case .resume:
                     context.move(to: thumbPoint)
-                } else {
+                case .locationUpdate:
                     context.addLine(to: thumbPoint)
+                default:
+                    break
                 }
             }
         }

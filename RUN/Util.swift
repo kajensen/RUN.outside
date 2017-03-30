@@ -59,6 +59,13 @@ class Utils {
         return distanceFormatter
     }()
     
+    static var distanceRateFormatter: MKDistanceFormatter = {
+        let distanceFormatter = MKDistanceFormatter()
+        distanceFormatter.units = Settings.isMetricDistanceUnits ? .metric : .imperial
+        distanceFormatter.unitStyle = .abbreviated
+        return distanceFormatter
+    }()
+    
     static var temperatureFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         let numberFormatter = NumberFormatter()
@@ -77,6 +84,14 @@ class Utils {
     
     class func distanceString(meters: Double) -> String {
         return distanceFormatter.string(fromDistance: meters)
+    }
+    
+    class func distanceRateString(unitsPerHour: Double) -> String {
+        return "\(distanceRateFormatter.string(fromDistance: unitsPerHour*distanceForLocale))/hr"
+    }
+    
+    class func metersPerSecond(unitsPerHour: Double) -> Double {
+        return (distanceForLocale*unitsPerHour)/3600
     }
     
     class func tempuratureString(kelvin: Double) -> String {
@@ -265,10 +280,15 @@ extension Date {
 
 extension CLLocationSpeed {
     var color: UIColor {
-        if self > 3.5 {
+        print(Utils.metersPerSecond(unitsPerHour: Settings.speedRateFast))
+        print(Utils.metersPerSecond(unitsPerHour: Settings.speedRateMedium))
+        print(self)
+        if self > Utils.metersPerSecond(unitsPerHour: Settings.speedRateFast) {
             return Settings.theme.greenColor
-        } else if self > 3 {
+        } else if self > Utils.metersPerSecond(unitsPerHour: Settings.speedRateMedium) {
             return Settings.theme.yellowColor
+        } else if self > Utils.metersPerSecond(unitsPerHour: Settings.speedRateSlow) {
+            return Settings.theme.orangeColor
         } else {
             return Settings.theme.redColor
         }

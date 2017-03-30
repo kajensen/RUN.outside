@@ -64,10 +64,9 @@ class WorkoutManager: NSObject {
         self.delegate = delegate
     }
     
-    fileprivate func addLocation(_ location: CLLocation) {
+    fileprivate func addLocationUpdate(_ location: CLLocation) {
         guard state == .running else { return }
-        let startsNewSegment = lastActiveLocation == nil
-        workout?.addLocation(location, startsNewSegment: startsNewSegment)
+        workout?.addEvent(location, type: .locationUpdate)
         if let lastActiveLocation = lastActiveLocation {
             distanceTraveled += lastActiveLocation.distance(from: location)
             let elevationDiff = location.altitude - lastActiveLocation.altitude
@@ -90,6 +89,7 @@ class WorkoutManager: NSObject {
     }
     
     func updateTimeElapsed() {
+        guard workout != nil else { return }
         delegate?.workoutManagerDidChangeTime(self, timeElapsed: currentTimeElapsed)
         if nextTimeUpdate > 0 && currentTimeElapsed > nextTimeUpdate {
             print("updating time")
@@ -99,8 +99,10 @@ class WorkoutManager: NSObject {
     }
     
     func updateDistanceTraveled() {
+        guard let workout = workout, let location = locationManager.location else { return }
         delegate?.workoutManagerDidChangeDistance(self, distanceTraveled: distanceTraveled)
         if nextDistanceUpdate > 0 && distanceTraveled > nextDistanceUpdate {
+            // TODO fix laps workout.addEvent(location, type: .lap)
             print("updating distance")
             speechManager.speak(statusText)
             nextDistanceUpdate += Settings.audioUpdateDistance
@@ -117,14 +119,16 @@ class WorkoutManager: NSObject {
     }
     
     func resume() {
-        guard let _ = workout else { return }
+        guard let workout = workout, let location = locationManager.location else { return }
+        workout.addEvent(location, type: .resume)
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
         lastActiveDate = Date()
         state = .running
     }
     
     func pause() {
-        guard let _ = workout else { return }
+        guard let workout = workout, let location = locationManager.location else { return }
+        workout.addEvent(location, type: .pause)
         timer?.invalidate()
         timeElapsed = currentTimeElapsed // lock it in
         lastActiveLocation = nil
@@ -170,7 +174,7 @@ extension WorkoutManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // ususally just one location but could be multiple
         for location in locations {
-            addLocation(location)
+            addLocationUpdate(location)
         }
         if let currentLocation = locations.last {
             delegate?.workoutManagerDidMove(self, to: currentLocation)

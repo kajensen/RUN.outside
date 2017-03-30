@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */; };
 		453B43441E8CD15D0005F8DA /* silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 453B43431E8CD0EF0005F8DA /* silence.m4a */; };
+		453B43461E8D59010005F8DA /* SelectSpeedScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */; };
 		454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */; };
 		454A15D21E8CA5370098FB1E /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15D11E8CA5370098FB1E /* SpeechManager.swift */; };
 		454A15D91E8CAB240098FB1E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15D81E8CAB240098FB1E /* HealthKit.framework */; };
@@ -43,13 +44,14 @@
 		45C8D7D91E85DF6E003DB276 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */; };
 		45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DA1E85F905003DB276 /* Workout.swift */; };
 		45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */; };
-		45C8D7DF1E85FB60003DB276 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DE1E85FB60003DB276 /* Location.swift */; };
+		45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */; };
 		45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */; };
 		45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		453B43431E8CD0EF0005F8DA /* silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.m4a; sourceTree = "<group>"; };
+		453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSpeedScaleViewController.swift; sourceTree = "<group>"; };
 		454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateDistanceTableViewController.swift; sourceTree = "<group>"; };
 		454A15D11E8CA5370098FB1E /* SpeechManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		454A15D51E8CAB1D0098FB1E /* RUN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RUN.entitlements; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
 		45C8D7DA1E85F905003DB276 /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
-		45C8D7DE1E85FB60003DB276 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutEvent.swift; sourceTree = "<group>"; };
 		45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */,
 				454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */,
 				454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */,
+				453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */,
 			);
 			name = Select;
 			sourceTree = "<group>";
@@ -265,7 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				45C8D7DA1E85F905003DB276 /* Workout.swift */,
-				45C8D7DE1E85FB60003DB276 /* Location.swift */,
+				45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -445,7 +448,7 @@
 				454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */,
 				45C411C21E8B50A6005A2FFB /* Style.swift in Sources */,
 				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
-				45C8D7DF1E85FB60003DB276 /* Location.swift in Sources */,
+				45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */,
 				454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */,
 				45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */,
 				45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */,
@@ -453,6 +456,7 @@
 				45C411B11E8B329C005A2FFB /* API.swift in Sources */,
 				455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */,
 				45C411B31E8B3DFA005A2FFB /* RoundedView.swift in Sources */,
+				453B43461E8D59010005F8DA /* SelectSpeedScaleViewController.swift in Sources */,
 				456291851E89A606007A609D /* Util.swift in Sources */,
 				45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,

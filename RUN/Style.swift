@@ -164,13 +164,26 @@ class Style {
         var yellowColor: UIColor {
             switch self {
             case .retro:
-                return Color.sunOrange
+                return Color.sunFlowerYellow
             case .silver:
                 return Color.sunFlowerYellow
             case .mirkwood:
                 return Color.goldYellow
             case .electric:
                 return UIColor.yellow
+            }
+        }
+        
+        var orangeColor: UIColor {
+            switch self {
+            case .retro:
+                return Color.carrotOrange
+            case .silver:
+                return Color.sunOrange
+            case .mirkwood:
+                return Color.pumpkinOrange
+            case .electric:
+                return UIColor.orange
             }
         }
         

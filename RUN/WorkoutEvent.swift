@@ -9,7 +9,11 @@
 import RealmSwift
 import CoreLocation
 
-class Location: Object {
+class WorkoutEvent: Object {
+    
+    enum WorkoutEventType: Int {
+        case locationUpdate, pause, resume, lap
+    }
 
     dynamic var latitude: Double = 0
     dynamic var longitude: Double = 0
@@ -18,14 +22,18 @@ class Location: Object {
     dynamic var vertical​Accuracy: Double = 0
     dynamic var course: Double = 0
     dynamic var speed: Double = 0
-    dynamic var startsNewSegment: Bool = false
     dynamic var timestamp: Date!
+    dynamic var type: Int = 0
+    
+    var workoutEventType: WorkoutEventType {
+        return WorkoutEventType(rawValue: type) ?? .locationUpdate
+    }
     
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
-    convenience init(location: CLLocation, startsNewSegment: Bool) {
+    convenience init(location: CLLocation, type: WorkoutEventType) {
         self.init()
         self.latitude = location.coordinate.latitude
         self.longitude = location.coordinate.longitude
@@ -34,8 +42,8 @@ class Location: Object {
         self.vertical​Accuracy = location.verticalAccuracy
         self.course = location.course
         self.speed = location.speed
-        self.startsNewSegment = startsNewSegment
         self.timestamp = location.timestamp
+        self.type = type.rawValue
     }
     
 }
