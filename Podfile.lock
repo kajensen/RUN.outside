@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.4.0)
+  - Charts (3.0.1):
+    - Charts/Core (= 3.0.1)
+  - Charts/Core (3.0.1)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -19,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts (from `https://github.com/gGololicic/Charts.git`)
   - Crashlytics
   - Fabric
   - GoogleMaps
@@ -27,8 +31,18 @@ DEPENDENCIES:
   - RealmSwift
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  Charts:
+    :git: https://github.com/gGololicic/Charts.git
+
+CHECKOUT OPTIONS:
+  Charts:
+    :commit: cc5e96debb1fabaa413f57793bf821cc567a2d3c
+    :git: https://github.com/gGololicic/Charts.git
+
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Charts: e1c22ca0f52867fadf8ee16ff723dfb0b464eb91
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
@@ -38,6 +52,6 @@ SPEC CHECKSUMS:
   RealmSwift: 0c02b9f2d4be4301c497ed10e53a0580584eb1dd
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: ee5f2e0539211d7d56e5d9209aa8dc2b255fcf27
+PODFILE CHECKSUM: 2c0656db5bb1ff45773da83f4656799beded1daf
 
 COCOAPODS: 1.2.0

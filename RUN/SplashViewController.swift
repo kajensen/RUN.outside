@@ -11,6 +11,8 @@ import AVFoundation
 
 class SplashViewController: UIViewController {
     
+    @IBOutlet weak var videoView: UIView!
+    
     var player: AVPlayer?
     let avPlayerLayer = AVPlayerLayer()
     
@@ -18,7 +20,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         showVideo()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SplashViewController.viewTapped(_:)))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        videoView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func viewTapped(_ tapGesture: UITapGestureRecognizer) {
@@ -32,7 +34,7 @@ class SplashViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        avPlayerLayer.frame = view.bounds
+        avPlayerLayer.frame = videoView.bounds
         super.viewDidLayoutSubviews()
     }
     
@@ -42,7 +44,7 @@ class SplashViewController: UIViewController {
         let asset = AVAsset(url: videoURL)
         let playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
-        view.layer.addSublayer(avPlayerLayer)
+        videoView.layer.addSublayer(avPlayerLayer)
         avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         avPlayerLayer.player = player
         NotificationCenter.default.addObserver(self, selector: #selector(SplashViewController.showMap), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)

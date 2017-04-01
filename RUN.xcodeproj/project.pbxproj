@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */; };
+		4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6B91E8EB38C00906393 /* DataView.swift */; };
+		4530F6BC1E8EB3F900906393 /* WorkoutDataSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6BB1E8EB3F900906393 /* WorkoutDataSpan.swift */; };
+		4530F6BE1E8EB60300906393 /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6BD1E8EB60300906393 /* WorkoutData.swift */; };
 		453B43441E8CD15D0005F8DA /* silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 453B43431E8CD0EF0005F8DA /* silence.m4a */; };
 		453B43461E8D59010005F8DA /* SelectSpeedScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */; };
 		453B43481E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B43471E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift */; };
@@ -53,6 +56,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4530F6B91E8EB38C00906393 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		4530F6BB1E8EB3F900906393 /* WorkoutDataSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataSpan.swift; sourceTree = "<group>"; };
+		4530F6BD1E8EB60300906393 /* WorkoutData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
 		453B43431E8CD0EF0005F8DA /* silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.m4a; sourceTree = "<group>"; };
 		453B43451E8D59010005F8DA /* SelectSpeedScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSpeedScaleViewController.swift; sourceTree = "<group>"; };
 		453B43471E8D81B60005F8DA /* SelectLapDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLapDistanceTableViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +131,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4530F6BF1E8EB64900906393 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4530F6B91E8EB38C00906393 /* DataView.swift */,
+				4530F6BB1E8EB3F900906393 /* WorkoutDataSpan.swift */,
+				4530F6BD1E8EB60300906393 /* WorkoutData.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		4530F6C01E8EB65300906393 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				45C8D7DA1E85F905003DB276 /* Workout.swift */,
+				453B43491E8D85610005F8DA /* WorkoutLap.swift */,
+				45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */,
+			);
+			name = Workout;
+			sourceTree = "<group>";
+		};
 		454A15CE1E8C8E200098FB1E /* Select */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,8 +192,6 @@
 				455FF2DE1E847438000C88A9 /* Assets.xcassets */,
 				455FF2EA1E847E26000C88A9 /* Supporting Files */,
 				45C8D7E01E85FC66003DB276 /* Objects */,
-				45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */,
-				454A15D11E8CA5370098FB1E /* SpeechManager.swift */,
 			);
 			path = RUN;
 			sourceTree = "<group>";
@@ -274,9 +298,10 @@
 		45C8D7E01E85FC66003DB276 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				45C8D7DA1E85F905003DB276 /* Workout.swift */,
-				453B43491E8D85610005F8DA /* WorkoutLap.swift */,
-				45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */,
+				45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */,
+				454A15D11E8CA5370098FB1E /* SpeechManager.swift */,
+				4530F6C01E8EB65300906393 /* Workout */,
+				4530F6BF1E8EB64900906393 /* Data */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -458,6 +483,8 @@
 				454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */,
 				45C411C21E8B50A6005A2FFB /* Style.swift in Sources */,
 				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
+				4530F6BC1E8EB3F900906393 /* WorkoutDataSpan.swift in Sources */,
+				4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */,
 				45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */,
 				454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */,
 				453B434A1E8D85610005F8DA /* WorkoutLap.swift in Sources */,
@@ -473,6 +500,7 @@
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
 				453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */,
 				45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */,
+				4530F6BE1E8EB60300906393 /* WorkoutData.swift in Sources */,
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
 				45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */,
 				45C8D7D91E85DF6E003DB276 /* WorkoutsViewController.swift in Sources */,

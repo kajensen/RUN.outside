@@ -11,4 +11,5 @@ target :RUN do
     pod 'SwiftyJSON'
     pod 'iRate'
     pod 'MGSwipeTableCell'
+    pod 'Charts', :git => 'https://github.com/gGololicic/Charts.git'
 end

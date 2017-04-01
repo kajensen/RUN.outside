@@ -72,7 +72,7 @@ class Workout: Object {
     
     func addEvent(_ location: CLLocation, type: WorkoutEvent.WorkoutEventType) -> (newEvent: WorkoutEvent, previousEvent: WorkoutEvent?) {
         let previousEvent = currentLap?.events.last
-        let newEvent = WorkoutEvent(location: location, type: type)
+        let newEvent = WorkoutEvent(location: location, lastEvent: nil, type: type)
         if let lastEvent = currentLap?.events.last, lastEvent.workoutEventType != .pause {
             let altitudeDifference = newEvent.altitudeDifference(to: lastEvent)
             netAltitude += altitudeDifference.net

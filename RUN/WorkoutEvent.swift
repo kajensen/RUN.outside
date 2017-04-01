@@ -23,6 +23,8 @@ class WorkoutEvent: Object {
     dynamic var vertical​Accuracy: Double = 0
     dynamic var course: Double = 0
     dynamic var speed: Double = 0
+    dynamic var distanceTraveled: Double = 0
+    dynamic var heartRate: Double = 0
     dynamic var timestamp: Date!
     dynamic var type: Int = 0
     
@@ -34,7 +36,7 @@ class WorkoutEvent: Object {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
-    convenience init(location: CLLocation, type: WorkoutEventType) {
+    convenience init(location: CLLocation, lastEvent: WorkoutEvent?, heartRate: Double = 0, type: WorkoutEventType) {
         self.init()
         self.latitude = location.coordinate.latitude
         self.longitude = location.coordinate.longitude
@@ -45,6 +47,8 @@ class WorkoutEvent: Object {
         self.course = location.course
         self.speed = location.speed
         self.timestamp = location.timestamp
+        self.distanceTraveled = distanceDifference(to: lastEvent)
+        self.heartRate = heartRate
         self.type = type.rawValue
     }
     
@@ -61,7 +65,10 @@ class WorkoutEvent: Object {
         return timestamp.timeIntervalSince(workoutEvent.timestamp)
     }
     
-    func distanceDifference(to workoutEvent: WorkoutEvent) -> CLLocationDistance {
+    func distanceDifference(to workoutEvent: WorkoutEvent?) -> CLLocationDistance {
+        guard let workoutEvent = workoutEvent else {
+            return 0
+        }
         return CLLocation(latitude: latitude, longitude: longitude).distance(from: CLLocation(latitude: workoutEvent.latitude, longitude: workoutEvent.longitude))
     }
     

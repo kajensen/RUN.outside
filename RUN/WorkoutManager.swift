@@ -173,7 +173,8 @@ extension WorkoutManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // ususally just one location but could be multiple
         for location in locations {
-            if location.horizontalAccuracy != -1 && location.horizontalAccuracy < 20 {
+            // make sure its good data, horizontal is more important.
+            if location.horizontalAccuracy != -1 && location.horizontalAccuracy < 20 && location.verticalAccuracy < 50 {
                 addLocationUpdate(location)
             }
         }

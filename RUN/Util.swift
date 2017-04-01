@@ -90,8 +90,16 @@ class Utils {
         return "\(distanceRateFormatter.string(fromDistance: unitsPerHour*distanceForLocale))/hr"
     }
     
+    class func distanceRateString(metersPerSecond: Double) -> String {
+        return "\(distanceRateFormatter.string(fromDistance: metersPerSecond*distanceForLocale))/hr"
+    }
+    
     class func metersPerSecond(unitsPerHour: Double) -> Double {
         return (distanceForLocale*unitsPerHour)/3600
+    }
+    
+    class func unitsPerHour(metersPerSecond: Double) -> Double {
+        return (metersPerSecond*3600)/distanceForLocale
     }
     
     class func tempuratureString(kelvin: Double) -> String {

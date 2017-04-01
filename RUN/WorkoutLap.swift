@@ -43,8 +43,9 @@ class WorkoutLap: Object {
     }
     
     func addEvent(_ location: CLLocation, type: WorkoutEvent.WorkoutEventType) {
-        let newEvent = WorkoutEvent(location: location, type: type)
-        if let lastEvent = events.last, lastEvent.workoutEventType != .pause {
+        let lastEvent = events.last
+        let newEvent = WorkoutEvent(location: location, lastEvent: lastEvent, heartRate: 0, type: type)
+        if let lastEvent = lastEvent, lastEvent.workoutEventType != .pause {
             let altitudeDifference = newEvent.altitudeDifference(to: lastEvent)
             netAltitude += altitudeDifference.net
             totalPositiveAltitude += altitudeDifference.positive
