@@ -23,13 +23,18 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     var lineDataSet: LineChartDataSet?
     
     var lineWorkoutData: WorkoutData = .speed
-    var barWorkoutData: WorkoutData = .elevation
+    var barWorkoutData: WorkoutData = .distance
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var dataView: DataView!
+    @IBOutlet weak var workoutDataButtonStackView: UIStackView!
+    
+    var workoutDataButtons: [WorkoutDataButton] {
+        return workoutDataButtonStackView.arrangedSubviews as! [WorkoutDataButton]
+    }
     
     var interval: TimeInterval = 15
     
@@ -58,6 +63,9 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     }
     
     @IBAction func barDataTapped(_ sender: WorkoutDataButton) {
+        for button in workoutDataButtons {
+            button.isSelected = sender == button
+        }
         barWorkoutData = sender.workoutData
         reloadData()
     }
@@ -151,10 +159,16 @@ extension WorkoutViewController {
     }
     
     func yAxis(value: Double, isLeft: Bool) -> String? {
-        if isLeft {
-            return Utils.distanceString(meters: value)
-        } else {
+        let data = isLeft ? barWorkoutData : lineWorkoutData
+        switch data {
+        case .speed:
             return Utils.distanceRateString(unitsPerHour: Utils.unitsPerHour(metersPerSecond: value))
+        case .distance:
+            return Utils.distanceString(meters: value)
+        case .heartbeat:
+            return "\(Int(value)) bmp"
+        case .elevation:
+            return Utils.distanceString(meters: value)
         }
     }
     

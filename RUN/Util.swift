@@ -286,6 +286,47 @@ extension Date {
     
 }
 
+extension Collection {
+    subscript (safe index: Index) -> Iterator.Element? {
+        return index >= startIndex && index < endIndex ? self[index] : nil
+    }
+}
+
+extension Array {
+    var randomItem: Iterator.Element? {
+        let index = Int(arc4random_uniform(UInt32(self.count)))
+        return self[safe: index]
+    }
+}
+
+extension Date {
+    var month: Int? {
+        let dateComponents = Calendar.current.dateComponents([.month], from: self)
+        return dateComponents.month
+    }
+    var year: Int? {
+        let dateComponents = Calendar.current.dateComponents([.year], from: self)
+        return dateComponents.year
+    }
+    func date(hour: Int) -> Date {
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour], from: self)
+        dateComponents.hour = hour
+        return Calendar.current.date(from: dateComponents) ?? self
+    }
+    func dateWithoutTime(yearDiff: Int = 0) -> Date {
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        if let year = dateComponents.year {
+            dateComponents.year = year + yearDiff
+        }
+        return Calendar.current.date(from: dateComponents) ?? self
+    }
+    func isSameDay(as otherDate: Date) -> Bool {
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        let otherDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: otherDate)
+        return (dateComponents.year == otherDateComponents.year) && (dateComponents.month == otherDateComponents.month) && (dateComponents.day == otherDateComponents.day)
+    }
+}
+
 extension CLLocationSpeed {
     
     var color: UIColor {

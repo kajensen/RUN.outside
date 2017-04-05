@@ -176,7 +176,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
             switch indexPath.row {
             default:
-                cell.textLabel?.text = "Sync with Health app"
+                cell.textLabel?.text = "Import/Export data"
                 break
             }
             return cell

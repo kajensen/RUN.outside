@@ -1,5 +1,5 @@
 //
-//  WorkoutDataButton.swift
+//  WorkoutDataSpanButton.swift
 //  RUN
 //
 //  Created by Kurt Jensen on 4/4/17.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class WorkoutDataButton: UIButton {
+class WorkoutDataSpanButton: UIButton {
 
     @IBInspectable
-    var workoutDataType: Int = 0
+    var workoutDataSpanType: Int = 0
     
-    var workoutData: WorkoutData {
-        return WorkoutData(rawValue: workoutDataType) ?? .speed
+    var workoutDataSpan: WorkoutDataSpan {
+        return WorkoutDataSpan(rawValue: workoutDataSpanType) ?? .week
     }
     
     override var isSelected: Bool {
@@ -36,5 +36,6 @@ class WorkoutDataButton: UIButton {
     func commonInit() {
         // TODO
     }
-
+    
 }
+

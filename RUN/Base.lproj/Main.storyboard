@@ -378,7 +378,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="partly cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-Ed-SwH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="partly cloudy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-Ed-SwH">
                                         <rect key="frame" x="270" y="43" width="74" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -415,6 +415,7 @@
                                     <constraint firstItem="UOQ-ui-Jrz" firstAttribute="centerX" secondItem="BKg-FN-YrO" secondAttribute="centerX" id="bgP-LK-Jut"/>
                                     <constraint firstItem="djL-PC-MLP" firstAttribute="centerY" secondItem="0cM-6E-mj7" secondAttribute="centerY" id="djd-hp-LbH"/>
                                     <constraint firstItem="cy6-8i-xVE" firstAttribute="leading" secondItem="sQb-Ta-j2r" secondAttribute="leading" id="e2y-Dl-jV9"/>
+                                    <constraint firstItem="Dbd-Ed-SwH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UOQ-ui-Jrz" secondAttribute="trailing" constant="8" id="kVK-Hp-A9U"/>
                                     <constraint firstItem="LPo-Z7-Mhi" firstAttribute="centerX" secondItem="0cM-6E-mj7" secondAttribute="centerX" id="mvQ-vQ-nL8"/>
                                     <constraint firstItem="sQb-Ta-j2r" firstAttribute="leading" secondItem="0cM-6E-mj7" secondAttribute="leading" constant="15" id="o48-k6-s20"/>
                                     <constraint firstAttribute="trailing" secondItem="djL-PC-MLP" secondAttribute="trailing" constant="15" id="oRf-l6-bGQ"/>
@@ -433,34 +434,52 @@
                                             <rect key="frame" x="8" y="8" width="343" height="184"/>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XGJ-zm-ShM">
-                                            <rect key="frame" x="221" y="170" width="130" height="30"/>
+                                            <rect key="frame" x="236" y="173" width="115" height="27"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-NE-YWF" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
-                                                    <state key="normal" title="Week"/>
+                                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-NE-YWF" customClass="WorkoutDataSpanButton" customModule="RUN" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <state key="normal" title="Week">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="workoutDataSpanType">
+                                                            <integer key="value" value="0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="dataSpanTapped:" destination="L9h-CU-rPi" eventType="touchUpInside" id="rij-zw-psz"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0c-K0-ZO2" customClass="WorkoutDataSpanButton" customModule="RUN" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="0.0" width="37" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <state key="normal" title="Month">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="workoutDataSpanType">
                                                             <integer key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="dataSpanTapped:" destination="L9h-CU-rPi" eventType="touchUpInside" id="ktR-Pj-LhW"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0c-K0-ZO2" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="47" y="0.0" width="44" height="30"/>
-                                                    <state key="normal" title="Month"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y7-E3-T3g" customClass="WorkoutDataSpanButton" customModule="RUN" customModuleProvider="target">
+                                                    <rect key="frame" x="85" y="0.0" width="30" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <state key="normal" title="Year">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="workoutDataSpanType">
                                                             <integer key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y7-E3-T3g" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="99" y="0.0" width="31" height="30"/>
-                                                    <state key="normal" title="Year"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
-                                                            <integer key="value" value="3"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="dataSpanTapped:" destination="L9h-CU-rPi" eventType="touchUpInside" id="UqY-hb-Swi"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -511,6 +530,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aAO-e4-2N2"/>
                     <connections>
+                        <outlet property="dataView" destination="ub9-qe-MYz" id="4hP-Ws-tq3"/>
                         <outlet property="distanceLabel" destination="sQb-Ta-j2r" id="Utp-QH-Caq"/>
                         <outlet property="subTitleLabel" destination="UOQ-ui-Jrz" id="I6x-z3-SrT"/>
                         <outlet property="tableView" destination="xyP-Vc-rTo" id="AZ7-uF-LEe"/>
@@ -518,6 +538,7 @@
                         <outlet property="titleLabel" destination="BKg-FN-YrO" id="B9b-tM-ayM"/>
                         <outlet property="topView" destination="0cM-6E-mj7" id="kBn-qD-VQI"/>
                         <outlet property="weatherInfoLabel" destination="Dbd-Ed-SwH" id="sHL-th-9Nm"/>
+                        <outlet property="workoutDataSpanButtonStackView" destination="XGJ-zm-ShM" id="swo-Kn-Ygh"/>
                         <outlet property="workoutsInfoLabel" destination="cy6-8i-xVE" id="lKY-zv-6hf"/>
                     </connections>
                 </viewController>
@@ -601,7 +622,7 @@
                         <viewControllerLayoutGuide type="top" id="NbH-kr-SKd"/>
                         <viewControllerLayoutGuide type="bottom" id="5Rz-HY-c82"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YBX-S6-bKV">
+                    <view key="view" contentMode="scaleToFill" id="YBX-S6-bKV" customClass="BGView" customModule="RUN" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -697,12 +718,12 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Kk-wT-8bb" customClass="DataView" customModule="RUN" customModuleProvider="target">
                                             <rect key="frame" x="8" y="8" width="359" height="184"/>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XmJ-Fx-0sA">
-                                            <rect key="frame" x="277" y="170" width="90" height="30"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XmJ-Fx-0sA">
+                                            <rect key="frame" x="287" y="170" width="73" height="22"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aE-PT-Fzi" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                    <state key="normal" title="E"/>
+                                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aE-PT-Fzi" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="22"/>
+                                                    <state key="normal" image="altitude"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
                                                             <integer key="value" value="1"/>
@@ -712,9 +733,9 @@
                                                         <action selector="barDataTapped:" destination="8Dw-bB-5hH" eventType="touchUpInside" id="fie-KG-5ja"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssV-Zr-Cfv" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="0.0" width="30" height="30"/>
-                                                    <state key="normal" title="H"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssV-Zr-Cfv" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
+                                                    <rect key="frame" x="26" y="0.0" width="21" height="22"/>
+                                                    <state key="normal" image="heartrate"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
                                                             <integer key="value" value="2"/>
@@ -724,9 +745,9 @@
                                                         <action selector="barDataTapped:" destination="8Dw-bB-5hH" eventType="touchUpInside" id="x26-Vx-28r"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKH-Tu-yYR" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                                    <state key="normal" title="D"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKH-Tu-yYR" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
+                                                    <rect key="frame" x="57" y="0.0" width="16" height="22"/>
+                                                    <state key="normal" image="distance"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
                                                             <integer key="value" value="3"/>
@@ -742,9 +763,9 @@
                                     <constraints>
                                         <constraint firstItem="0Kk-wT-8bb" firstAttribute="centerX" secondItem="bwP-Sk-VwI" secondAttribute="centerX" id="Myh-XX-bS0"/>
                                         <constraint firstItem="0Kk-wT-8bb" firstAttribute="top" secondItem="bwP-Sk-VwI" secondAttribute="top" constant="8" id="TTN-RX-I3n"/>
-                                        <constraint firstAttribute="trailing" secondItem="XmJ-Fx-0sA" secondAttribute="trailing" constant="8" id="Zhk-55-SIR"/>
+                                        <constraint firstAttribute="trailing" secondItem="XmJ-Fx-0sA" secondAttribute="trailing" constant="15" id="Zhk-55-SIR"/>
                                         <constraint firstItem="0Kk-wT-8bb" firstAttribute="leading" secondItem="bwP-Sk-VwI" secondAttribute="leading" constant="8" id="d4I-NF-4nZ"/>
-                                        <constraint firstAttribute="bottom" secondItem="XmJ-Fx-0sA" secondAttribute="bottom" id="gOu-lP-4oJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="XmJ-Fx-0sA" secondAttribute="bottom" constant="8" id="gOu-lP-4oJ"/>
                                         <constraint firstItem="0Kk-wT-8bb" firstAttribute="centerY" secondItem="bwP-Sk-VwI" secondAttribute="centerY" id="z6S-Ut-Xhc"/>
                                     </constraints>
                                 </view>
@@ -766,6 +787,7 @@
                         <outlet property="tableView" destination="1gR-x8-Nlf" id="Fdr-O3-VSw"/>
                         <outlet property="titleLabel" destination="cJ2-By-if8" id="NOU-CK-Z9O"/>
                         <outlet property="topView" destination="XIa-SA-fwb" id="Orb-A6-Grr"/>
+                        <outlet property="workoutDataButtonStackView" destination="XmJ-Fx-0sA" id="Cjh-dB-rxV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pin-v2-qyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -778,6 +800,9 @@
         <image name="Near Me-64" width="32" height="32"/>
         <image name="Settings-64" width="32" height="32"/>
         <image name="Upload-50 (1)" width="25" height="25"/>
+        <image name="altitude" width="16" height="16"/>
+        <image name="distance" width="16" height="16"/>
+        <image name="heartrate" width="21" height="21"/>
         <image name="running" width="2806" height="1510"/>
     </resources>
 </document>
