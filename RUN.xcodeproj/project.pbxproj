@@ -60,6 +60,10 @@
 		45E3B13F1E947AE9007F8805 /* WorkoutDataSpanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */; };
 		45E3B1421E9480C5007F8805 /* WorkoutLapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1401E9480C5007F8805 /* WorkoutLapTableViewCell.swift */; };
 		45E3B1431E9480C5007F8805 /* WorkoutLapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B1411E9480C5007F8805 /* WorkoutLapTableViewCell.xib */; };
+		45E3B1581E954D44007F8805 /* owfont-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B1571E954D44007F8805 /* owfont-regular.ttf */; };
+		45E3B15C1E9552FC007F8805 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B15B1E9552FC007F8805 /* Weather.swift */; };
+		45E3B15F1E955469007F8805 /* owfont-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B15E1E955469007F8805 /* owfont-regular.otf */; };
+		45E3B1611E9561EA007F8805 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1601E9561EA007F8805 /* FloatingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +122,10 @@
 		45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataSpanButton.swift; sourceTree = "<group>"; };
 		45E3B1401E9480C5007F8805 /* WorkoutLapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutLapTableViewCell.swift; sourceTree = "<group>"; };
 		45E3B1411E9480C5007F8805 /* WorkoutLapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutLapTableViewCell.xib; sourceTree = "<group>"; };
+		45E3B1571E954D44007F8805 /* owfont-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "owfont-regular.ttf"; sourceTree = "<group>"; };
+		45E3B15B1E9552FC007F8805 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		45E3B15E1E955469007F8805 /* owfont-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "owfont-regular.otf"; sourceTree = "<group>"; };
+		45E3B1601E9561EA007F8805 /* FloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
 		4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +214,7 @@
 				45C8D7E01E85FC66003DB276 /* Objects */,
 				455FF2ED1E847F5E000C88A9 /* Storyboards */,
 				455FF2DE1E847438000C88A9 /* Assets.xcassets */,
+				45E3B15D1E955302007F8805 /* API */,
 				455FF2EA1E847E26000C88A9 /* Supporting Files */,
 			);
 			path = RUN;
@@ -214,12 +223,13 @@
 		455FF2EA1E847E26000C88A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				45E3B1571E954D44007F8805 /* owfont-regular.ttf */,
+				45E3B15E1E955469007F8805 /* owfont-regular.otf */,
 				455783381E8DAD59000B177A /* hero.mp4 */,
 				453B43431E8CD0EF0005F8DA /* silence.m4a */,
 				45C8D7CF1E85C8A2003DB276 /* Map Styles */,
 				455FF2E31E847438000C88A9 /* Info.plist */,
 				455FF2EB1E847E36000C88A9 /* Constants.swift */,
-				45C411B01E8B329C005A2FFB /* API.swift */,
 				456291821E89A5BF007A609D /* Settings.swift */,
 				45C411C11E8B50A6005A2FFB /* Style.swift */,
 				456291841E89A606007A609D /* Util.swift */,
@@ -327,6 +337,7 @@
 			children = (
 				455FF2EF1E848F73000C88A9 /* BGView.swift */,
 				45C411B21E8B3DFA005A2FFB /* RoundedView.swift */,
+				45E3B1601E9561EA007F8805 /* FloatingButton.swift */,
 				45C411B41E8B420A005A2FFB /* RoundedButton.swift */,
 				45E3B1391E946607007F8805 /* WorkoutDataButton.swift */,
 				45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */,
@@ -341,6 +352,15 @@
 				45E3B1411E9480C5007F8805 /* WorkoutLapTableViewCell.xib */,
 			);
 			name = WorkoutLapTableViewCell;
+			sourceTree = "<group>";
+		};
+		45E3B15D1E955302007F8805 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				45C411B01E8B329C005A2FFB /* API.swift */,
+				45E3B15B1E9552FC007F8805 /* Weather.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		9B955E0F10076A2221F22E82 /* Pods */ = {
@@ -433,7 +453,9 @@
 				455783391E8DAD5B000B177A /* hero.mp4 in Resources */,
 				45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */,
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
+				45E3B1581E954D44007F8805 /* owfont-regular.ttf in Resources */,
 				45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */,
+				45E3B15F1E955469007F8805 /* owfont-regular.otf in Resources */,
 				455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */,
 				45C411BC1E8B507A005A2FFB /* ActionTableViewCell.xib in Resources */,
 				455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */,
@@ -544,11 +566,13 @@
 				45E3B13F1E947AE9007F8805 /* WorkoutDataSpanButton.swift in Sources */,
 				45E3B1381E94614C007F8805 /* RUNPanGestureRecognizer.swift in Sources */,
 				4530F6BE1E8EB60300906393 /* WorkoutData.swift in Sources */,
+				45E3B1611E9561EA007F8805 /* FloatingButton.swift in Sources */,
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
 				45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */,
 				45C8D7D91E85DF6E003DB276 /* WorkoutsViewController.swift in Sources */,
 				454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */,
 				45C411C51E8B5189005A2FFB /* ReviewTableViewCell.swift in Sources */,
+				45E3B15C1E9552FC007F8805 /* Weather.swift in Sources */,
 				456291831E89A5BF007A609D /* Settings.swift in Sources */,
 				45E3B1361E945E25007F8805 /* WorkoutsNavigationViewController.swift in Sources */,
 				45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */,

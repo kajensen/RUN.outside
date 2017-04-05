@@ -32,8 +32,11 @@ class MapViewController: UIViewController {
     @IBOutlet weak var distanceUnitsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeInfoLabel: UILabel!
-    @IBOutlet weak var toggleWorkoutButton: UIButton!
-    @IBOutlet weak var endWorkoutButton: UIButton!
+    @IBOutlet weak var toggleWorkoutButton: FloatingButton!
+    @IBOutlet weak var endWorkoutButton: FloatingButton!
+    @IBOutlet weak var resumeWorkoutButton: FloatingButton!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var weatherInfoLabel: UILabel!
     @IBOutlet weak var workoutsViewContraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewHeightConstraint: NSLayoutConstraint!
@@ -56,7 +59,8 @@ class MapViewController: UIViewController {
     }()
     
     var polyline: GMSPolyline?
-    
+    var lastWeatherUpdate: Date?
+
     var state: State = .none {
         didSet {
             switch state {
@@ -74,14 +78,18 @@ class MapViewController: UIViewController {
         workoutsViewContraint.constant = workoutsViewDefaultConstant
         settingsViewConstraint.constant = settingsViewHiddenConstant
         setupView(.none, animated: false)
+        setupWorkoutState(.none)
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
         workoutManager.delegate = self
         timeLabel.text = nil
         distanceLabel.text = nil
         distanceUnitsLabel.text = nil
+        temperatureLabel.text = nil
+        weatherInfoLabel.text = nil
+        weatherInfoLabel.font = UIFont(name: "owf-regular", size: 24)
         registerForThemeChange()
-            
+
         let wPanGestureRecognizer = RUNPanGestureRecognizer(target: self, action: #selector(MapViewController.workoutsViewPanned(_:)))
         wPanGestureRecognizer.delegate = self
         workoutsView.addGestureRecognizer(wPanGestureRecognizer)
@@ -109,14 +117,35 @@ class MapViewController: UIViewController {
         statusLabel.textColor = theme.secondaryTextColor
         timeLabel.textColor = theme.primaryTextColor
         timeInfoLabel.textColor = theme.secondaryTextColor
+        weatherInfoLabel.text = nil
+        temperatureLabel.textColor = theme.primaryTextColor
+        weatherInfoLabel.textColor = theme.secondaryTextColor
         if let styleURL = Bundle.main.url(forResource: theme.mapStyle, withExtension: "json") {
             mapView.mapStyle = try? GMSMapStyle(contentsOfFileURL: styleURL)
         }
         centerActionView.effect = theme.blurEffect
         settingsActionView.effect = theme.blurEffect
         workoutStatsView.effect = theme.blurEffect
-        toggleWorkoutButton.backgroundColor = theme.greenColor
-        endWorkoutButton.backgroundColor = theme.redColor
+        toggleWorkoutButton.fillColor = workoutManager.state != .paused ? theme.greenColor : theme.redColor
+        endWorkoutButton.fillColor = theme.redColor
+        resumeWorkoutButton.fillColor = theme.greenColor
+    }
+    
+    func updateWeatherIfNeeded(coordinate: CLLocationCoordinate2D) {
+        if let lastWeatherUpdate = lastWeatherUpdate, lastWeatherUpdate.timeIntervalSinceNow < 60*10 {
+            return
+        }
+        lastWeatherUpdate = Date()
+        updateWeather(coordinate: coordinate)
+    }
+    
+    func updateWeather(coordinate: CLLocationCoordinate2D) {
+        API.getCurrentWeather(coordinate.latitude, lng: coordinate.longitude) { [weak self] (success, weather) in
+            if success, let weather = weather {
+                self?.temperatureLabel.text = Utils.tempuratureString(kelvin: weather.temperatureInKelvin)
+                self?.weatherInfoLabel.text = weather.iconText
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -153,6 +182,7 @@ class MapViewController: UIViewController {
                 actionView.isHidden = false
             }
             toggleWorkoutButton.isHidden = false
+            workoutsView.isHidden = false
         case .live:
             for actionView in actionViews {
                 actionView.isHidden = false
@@ -161,6 +191,7 @@ class MapViewController: UIViewController {
             toggleWorkoutButton.isHidden = false
         case .past:
             workoutStatsView.isHidden = false
+            workoutsView.isHidden = false
         }
         statusView.isHidden = true
     }
@@ -172,17 +203,20 @@ class MapViewController: UIViewController {
                 actionView.alpha = 1
             }
             workoutStatsView.alpha = 0
+            workoutsView.alpha = 1
         case .live:
-            workoutsViewContraint.constant = workoutsViewHiddenConstant
             for actionView in actionViews {
                 actionView.alpha = 1
             }
             workoutStatsView.alpha = 1
+            workoutsView.alpha = 0
+            workoutsViewContraint.constant = workoutsViewDefaultConstant
         case .past:
             workoutStatsView.alpha = 1
             for actionView in actionViews {
                 actionView.alpha = 0
             }
+            workoutsView.alpha = 1
         }
         settingsViewConstraint.constant = settingsViewHiddenConstant
         workoutsViewOverlay.alpha = percentShowingWorkoutsView
@@ -196,6 +230,7 @@ class MapViewController: UIViewController {
             //endWorkoutButton.alpha = 0
         case .live:
             endWorkoutButton.isHidden = true
+            workoutsView.isHidden = true
             //endWorkoutButton.alpha = 0
         case .past:
             for actionView in actionViews {
@@ -246,6 +281,10 @@ extension MapViewController {
         } else {
             workoutManager.toggle()
         }
+    }
+    
+    @IBAction func resumeTapped(_ sender: Any) {
+        workoutManager.toggle()
     }
     
     func startWorkout() {
@@ -309,7 +348,7 @@ extension MapViewController: WorkoutManagerDelegate {
         default:
             break
         }
-        workoutsViewController?.updateWeatherIfNeeded(coordinate: location.coordinate)
+        updateWeatherIfNeeded(coordinate: location.coordinate)
     }
     
     func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from previousEvent: WorkoutEvent?, to newEvent: WorkoutEvent) {
@@ -317,18 +356,30 @@ extension MapViewController: WorkoutManagerDelegate {
     }
     
     func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState) {
+        setupWorkoutState(state)
+    }
+    
+    func setupWorkoutState(_ state: WorkoutManager.WorkoutState) {
         switch state {
         case .none:
-            toggleWorkoutButton.setTitle("START RUN", for: .normal)
+            toggleWorkoutButton.fillColor = Settings.theme.greenColor
+            toggleWorkoutButton.setTitle("START", for: .normal)
+            toggleWorkoutButton.isHidden = false
             endWorkoutButton.isHidden = true
+            resumeWorkoutButton.isHidden = true
             statusView.isHidden = true
         case .paused:
-            toggleWorkoutButton.setTitle("RESUME RUN", for: .normal)
+            toggleWorkoutButton.fillColor = Settings.theme.greenColor
+            toggleWorkoutButton.isHidden = true
             endWorkoutButton.isHidden = false
+            resumeWorkoutButton.isHidden = false
             statusView.isHidden = false
         case .running:
-            toggleWorkoutButton.setTitle("PAUSE RUN", for: .normal)
+            toggleWorkoutButton.setTitle("STOP", for: .normal)
+            toggleWorkoutButton.fillColor = Settings.theme.redColor
+            toggleWorkoutButton.isHidden = false
             endWorkoutButton.isHidden = true
+            resumeWorkoutButton.isHidden = true
             statusView.isHidden = true
         }
     }
@@ -339,9 +390,6 @@ extension MapViewController: WorkoutsViewControllerDelegate {
     
     var workoutsViewDefaultConstant: CGFloat {
         return view.bounds.height - 64 - 20
-    }
-    var workoutsViewHiddenConstant: CGFloat {
-        return view.bounds.height
     }
     var workoutsViewGraphConstant: CGFloat {
         return view.bounds.height - 64 - 200 - 20
@@ -400,7 +448,6 @@ extension MapViewController: WorkoutsViewControllerDelegate {
     }
     
     func showWorkout(_ workout: Workout) {
-        print(workout)
         setupView(.past, animated: true)
         polyline = nil
         resetMap(false)

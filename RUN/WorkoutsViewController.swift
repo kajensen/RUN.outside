@@ -35,8 +35,7 @@ class WorkoutsViewController: UIViewController {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var workoutsInfoLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherInfoLabel: UILabel!
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dataView: DataView!
     @IBOutlet weak var workoutDataSpanButtonStackView: UIStackView!
@@ -59,7 +58,6 @@ class WorkoutsViewController: UIViewController {
     weak var delegate: WorkoutsViewControllerDelegate?
     
     var workoutDataSpan: WorkoutDataSpan = .week
-    var lastWeatherUpdate: Date?
     
     var dateFormatter: DateFormatter {
         switch workoutDataSpan {
@@ -75,8 +73,6 @@ class WorkoutsViewController: UIViewController {
         tableView.rowHeight = WorkoutTableViewCell.rowHeight
         tableView.register(UINib(nibName: WorkoutTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: WorkoutTableViewCell.nibName)
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
-        temperatureLabel.text = nil
-        weatherInfoLabel.text = nil
         distanceLabel.text = nil
         workoutsInfoLabel.text = nil
         dataView.dataSource = self
@@ -89,8 +85,6 @@ class WorkoutsViewController: UIViewController {
         let theme = Settings.theme
         titleLabel.textColor = theme.primaryTextColor
         subTitleLabel.textColor = theme.secondaryTextColor
-        temperatureLabel.textColor = theme.primaryTextColor
-        weatherInfoLabel.textColor = theme.secondaryTextColor
         distanceLabel.textColor = theme.primaryTextColor
         workoutsInfoLabel.textColor = theme.secondaryTextColor
         if let bgView = view as? BGView {
@@ -103,23 +97,6 @@ class WorkoutsViewController: UIViewController {
         }
     }
 
-    func updateWeatherIfNeeded(coordinate: CLLocationCoordinate2D) {
-        if let lastWeatherUpdate = lastWeatherUpdate, lastWeatherUpdate.timeIntervalSinceNow < 60*10 {
-            return
-        }
-        lastWeatherUpdate = Date()
-        updateWeather(coordinate: coordinate)
-    }
-        
-    func updateWeather(coordinate: CLLocationCoordinate2D) {
-        API.getCurrentWeather(coordinate.latitude, lng: coordinate.longitude) { [weak self] (success, weather) in
-            if success, let weather = weather {
-                self?.temperatureLabel.text = Utils.tempuratureString(kelvin: weather.temperatureInKelvin)
-                self?.weatherInfoLabel.text = weather.description
-            }
-        }
-    }
-    
     func setupWorkoutsNotification() {
         workoutsNotificationToken?.stop()
         guard let realm = try? Realm() else { return }
@@ -231,7 +208,7 @@ extension WorkoutsViewController: DataViewDataSource {
         }
         distanceLabel.text = Utils.distanceString(meters: totalDistance)
         let totalNumWorkouts = workouts?.count ?? 0
-        workoutsInfoLabel.text = "\(totalNumWorkouts) run\(totalNumWorkouts == 1 ? "" : "s") in the past \(workoutDataSpan.title)"
+        workoutsInfoLabel.text = "\(totalNumWorkouts) run\(totalNumWorkouts == 1 ? "" : "s") this \(workoutDataSpan.title)"
         reloadData()
     }
     

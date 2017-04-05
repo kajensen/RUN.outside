@@ -9,11 +9,6 @@
 import SwiftyJSON
 import Alamofire
 
-struct Weather {
-    var temperatureInKelvin: Double
-    var description: String?
-}
-
 class API: NSObject {
     
     
@@ -41,7 +36,8 @@ class API: NSObject {
                     print(json)
                     let temperature = json["main"]["temp"].doubleValue
                     if temperature > 0 {
-                        let weather = Weather(temperatureInKelvin: temperature, description: json["weather"].array?.first?["description"].string)
+                        let weatherJSON = json["weather"].array?.first
+                        let weather = Weather(temperatureInKelvin: temperature, description: weatherJSON?["description"].string, id: weatherJSON?["id"].stringValue)
                         completion(true, weather)
                     } else {
                         completion(false, nil)

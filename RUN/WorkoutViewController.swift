@@ -29,6 +29,8 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var shareBGView: BGView!
+    @IBOutlet weak var closeBGView: BGView!
     @IBOutlet weak var dataView: DataView!
     @IBOutlet weak var workoutDataButtonStackView: UIStackView!
     
@@ -59,6 +61,8 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
         if let bgView = view as? BGView {
             bgView.effect = theme.blurEffect
         }
+        shareBGView.effect = theme.blurEffect
+        closeBGView.effect = theme.blurEffect
         //
         for button in workoutDataButtons {
             button.isSelected = button.workoutData == barWorkoutData

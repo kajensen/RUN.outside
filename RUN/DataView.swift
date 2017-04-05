@@ -44,6 +44,8 @@ class DataView: CombinedChartView {
         xAxis.drawGridLinesEnabled = false
         xAxis.labelPosition = .bottom
         xAxis.axisMinimum = 0
+        leftAxis.axisMinimum = 0
+        rightAxis.axisMinimum = 0
         xAxis.centerAxisLabelsEnabled = true
         rightAxis.enabled = true
         legend.enabled = true

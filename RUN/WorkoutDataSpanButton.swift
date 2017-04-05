@@ -16,13 +16,7 @@ class WorkoutDataSpanButton: UIButton {
     var workoutDataSpan: WorkoutDataSpan {
         return WorkoutDataSpan(rawValue: workoutDataSpanType) ?? .week
     }
-    
-    override var isSelected: Bool {
-        didSet {
-            backgroundColor = isSelected ? UIColor.white.withAlphaComponent(0.5) : nil
-        }
-    }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

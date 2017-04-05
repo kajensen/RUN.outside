@@ -52,7 +52,7 @@ class WorkoutLapTableViewCell: UITableViewCell {
         dateLabel.text = "LAP \(row)"
         timeElapsedLabel.text = TimeInterval(workoutLap.totalTimeActive).formatted()
         distanceLabel.text = Utils.distanceString(meters: workoutLap.totalDistance)
-        elevationLabel.text = "\(Utils.distanceString(meters: workoutLap.totalPositiveAltitude)) (+\(Utils.distanceString(meters: workoutLap.netAltitude)))"
+        elevationLabel.text = "\(Utils.distanceString(meters: workoutLap.netAltitude)) (+\(Utils.distanceString(meters: workoutLap.totalPositiveAltitude))"
         routeImageView.image = workoutLap.routeImage(rect: routeImageView.bounds)?.withRenderingMode(.alwaysTemplate)
     }
     

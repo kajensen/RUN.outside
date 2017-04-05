@@ -17,12 +17,6 @@ class WorkoutDataButton: UIButton {
         return WorkoutData(rawValue: workoutDataType) ?? .speed
     }
     
-    override var isSelected: Bool {
-        didSet {
-            backgroundColor = isSelected ? UIColor.white.withAlphaComponent(0.5) : nil
-        }
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
