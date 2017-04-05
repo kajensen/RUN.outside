@@ -128,6 +128,7 @@ class WorkoutManager: NSObject {
     
     func resume(_ isActuallyStart: Bool = false) {
         guard let workout = workout, let location = locationManager.location else { return }
+        guard state != .running else { return }
         speechManager.speak(isActuallyStart ? "start" : "resume")
         let update = workout.addEvent(location, type: .resume)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
@@ -137,6 +138,7 @@ class WorkoutManager: NSObject {
     
     func pause() {
         guard let workout = workout, let location = locationManager.location else { return }
+        guard state != .paused else { return }
         speechManager.speak("pause")
         let update = workout.addEvent(location, type: .pause)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)

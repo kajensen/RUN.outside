@@ -220,24 +220,19 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case 2:
             switch indexPath.row {
-            case 0:
-                UIApplication.shared.openURL(iRate.sharedInstance().ratingsURL)
-            case 1:
-                sendEmail()
-                break
             default:
                 showAlert(title: "TODO")
                 break
             }
             return
         default:
-            showAlert(title: "TODO")
-            return
+            break
         }
     }
     
     func showAbout() {
         // TODO
+        showAlert(title: "TODO")
     }
     
     private func selectTheme(_ cell: CustomizationTableViewCell) {
