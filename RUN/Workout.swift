@@ -93,7 +93,15 @@ class Workout: Object {
         return (newEvent, previousEvent)
     }
     
-    func pathImageForSize(rect: CGRect) -> UIImage? {
+    func routeImage(rect: CGRect) -> UIImage? {
+        return UIImage.routeImage(rect: rect, laps: laps)
+    }
+    
+}
+
+extension UIImage {
+    
+    class func routeImage(rect: CGRect, laps: List<WorkoutLap>) -> UIImage? {
         // TODO: fix me this is inverted horizontal
         var bounds = GMSCoordinateBounds()
         for lap in laps {
@@ -108,7 +116,7 @@ class Workout: Object {
         context.setStrokeColor(UIColor.black.cgColor)
         context.setLineWidth(1)
         context.beginPath()
-
+        
         let minLng = bounds.southWest.longitude
         let maxLng = bounds.northEast.longitude
         let minLat = bounds.southWest.latitude

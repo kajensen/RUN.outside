@@ -18,7 +18,7 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     
     static let storyboardId = "WorkoutViewController"
     
-    private (set) var intervals: [TimeInterval: [WorkoutEvent]] = [:]
+    internal var intervals: [TimeInterval: [WorkoutEvent]] = [:]
     var barDataSets: [BarChartDataSet]?
     var lineDataSet: LineChartDataSet?
     
@@ -43,9 +43,13 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = WorkoutTableViewCell.rowHeight
+        tableView.register(UINib(nibName: WorkoutTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: WorkoutTableViewCell.nibName)
+        tableView.dataSource = self
         dataView.dataSource = self
         configure()
         registerForThemeChange()
+        tableView.reloadData()
     }
     
     override func configureTheme() {
@@ -55,11 +59,19 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
         if let bgView = view as? BGView {
             bgView.effect = theme.blurEffect
         }
+        //
+        for button in workoutDataButtons {
+            button.isSelected = button.workoutData == barWorkoutData
+        }
     }
     
     @IBAction func closeTapped(_ sender: Any) {
         delegate?.workoutViewControllerTappedClose(self)
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func shareTapped(_ sender: Any) {
+        showAlert(title: "TODO")
     }
     
     @IBAction func barDataTapped(_ sender: WorkoutDataButton) {
@@ -70,6 +82,34 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
         reloadData()
     }
     
+}
+
+extension WorkoutViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let laps = workout?.laps else { return 0 }
+        return laps.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTableViewCell.nibName, for: indexPath) as! WorkoutTableViewCell
+        let lap = workout!.laps[indexPath.row]
+        //cell.configure(with: workout)
+        return cell
+    }
+
+}
+
+extension WorkoutViewController {
+
     func configure() {
         guard let workout = workout, !workout.isInvalidated else { return }
         titleLabel.text = workout.title
@@ -83,7 +123,7 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
         loadData(workout)
         dataView.reloadData()
     }
-    
+
     func loadData(_ workout: Workout) {
         var interval = nearest15Seconds(i: workout.startDate!.timeIntervalSince1970)
         let endInterval = nearest15Seconds(i: workout.endDate!.timeIntervalSince1970)

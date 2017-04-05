@@ -97,6 +97,10 @@ class WorkoutsViewController: UIViewController {
             bgView.effect = theme.blurEffect
         }
         tableView.reloadData()
+        //
+        for button in workoutDataSpanButtons {
+            button.isSelected = button.workoutDataSpan == workoutDataSpan
+        }
     }
 
     func updateWeatherIfNeeded(coordinate: CLLocationCoordinate2D) {

@@ -59,6 +59,8 @@
 		45E3B13A1E946607007F8805 /* WorkoutDataButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1391E946607007F8805 /* WorkoutDataButton.swift */; };
 		45E3B13C1E946D75007F8805 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B13B1E946D75007F8805 /* DataViewController.swift */; };
 		45E3B13F1E947AE9007F8805 /* WorkoutDataSpanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */; };
+		45E3B1421E9480C5007F8805 /* WorkoutLapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1401E9480C5007F8805 /* WorkoutLapTableViewCell.swift */; };
+		45E3B1431E9480C5007F8805 /* WorkoutLapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B1411E9480C5007F8805 /* WorkoutLapTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		45E3B1391E946607007F8805 /* WorkoutDataButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataButton.swift; sourceTree = "<group>"; };
 		45E3B13B1E946D75007F8805 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataSpanButton.swift; sourceTree = "<group>"; };
+		45E3B1401E9480C5007F8805 /* WorkoutLapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutLapTableViewCell.swift; sourceTree = "<group>"; };
+		45E3B1411E9480C5007F8805 /* WorkoutLapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutLapTableViewCell.xib; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
 		4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.debug.xcconfig"; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				45C411BF1E8B507F005A2FFB /* ActionTableViewCell */,
 				45C411C01E8B5085005A2FFB /* CustomizationTableViewCell */,
 				45C411AF1E8B08AA005A2FFB /* WorkoutTableViewCell */,
+				45E3B1441E9480C8007F8805 /* WorkoutLapTableViewCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -331,6 +336,15 @@
 				45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		45E3B1441E9480C8007F8805 /* WorkoutLapTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				45E3B1401E9480C5007F8805 /* WorkoutLapTableViewCell.swift */,
+				45E3B1411E9480C5007F8805 /* WorkoutLapTableViewCell.xib */,
+			);
+			name = WorkoutLapTableViewCell;
 			sourceTree = "<group>";
 		};
 		9B955E0F10076A2221F22E82 /* Pods */ = {
@@ -433,6 +447,7 @@
 				45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */,
 				45C411AE1E8B08A7005A2FFB /* WorkoutTableViewCell.xib in Resources */,
 				45C411C61E8B5189005A2FFB /* ReviewTableViewCell.xib in Resources */,
+				45E3B1431E9480C5007F8805 /* WorkoutLapTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +540,7 @@
 				456291851E89A606007A609D /* Util.swift in Sources */,
 				45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
+				45E3B1421E9480C5007F8805 /* WorkoutLapTableViewCell.swift in Sources */,
 				453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */,
 				45E3B13C1E946D75007F8805 /* DataViewController.swift in Sources */,
 				45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */,

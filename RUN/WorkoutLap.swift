@@ -65,4 +65,10 @@ class WorkoutLap: Object {
         }
     }
     
+    func routeImage(rect: CGRect) -> UIImage? {
+        let laps = List<WorkoutLap>()
+        laps.append(self)
+        return UIImage.routeImage(rect: rect, laps: laps)
+    }
+    
 }

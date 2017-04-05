@@ -13,7 +13,7 @@ extension UIViewController {
     
     func showAlert(title: String? = nil, message: String? = nil, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) -> Void in
             completion?()
         }
         alertController.addAction(okAction)
