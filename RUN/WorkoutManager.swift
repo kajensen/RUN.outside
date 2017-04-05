@@ -70,8 +70,8 @@ class WorkoutManager: NSObject {
     }
     
     fileprivate func addLocationUpdate(_ location: CLLocation) {
-        speechManager.speak("update")
         guard let workout = workout, state == .running else { return }
+        //speechManager.speak("update")
         let update = workout.addEvent(location, type: .locationUpdate)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         //lastActiveLocation = location

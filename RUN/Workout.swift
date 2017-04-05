@@ -133,10 +133,12 @@ extension UIImage {
                 let thumbPoint = point.convert(fromRect: mapRect, toRect: thumbRect)
                 if !thumbPoint.x.isNaN && !thumbPoint.y.isNaN {
                     switch event.workoutEventType {
-                    case .resume, .pause:
+                    case .resume:
                         context.move(to: thumbPoint)
                     case .locationUpdate:
                         context.addLine(to: thumbPoint)
+                    default:
+                        break
                     }
                 }
             }

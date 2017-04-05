@@ -43,8 +43,8 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = WorkoutTableViewCell.rowHeight
-        tableView.register(UINib(nibName: WorkoutTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: WorkoutTableViewCell.nibName)
+        tableView.rowHeight = WorkoutLapTableViewCell.rowHeight
+        tableView.register(UINib(nibName: WorkoutLapTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: WorkoutLapTableViewCell.nibName)
         tableView.dataSource = self
         dataView.dataSource = self
         configure()
@@ -100,9 +100,9 @@ extension WorkoutViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTableViewCell.nibName, for: indexPath) as! WorkoutTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutLapTableViewCell.nibName, for: indexPath) as! WorkoutLapTableViewCell
         let lap = workout!.laps[indexPath.row]
-        //cell.configure(with: workout)
+        cell.configure(with: lap, row: indexPath.row+1)
         return cell
     }
 

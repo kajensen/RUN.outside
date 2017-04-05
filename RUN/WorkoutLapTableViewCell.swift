@@ -48,8 +48,8 @@ class WorkoutLapTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(with workoutLap: WorkoutLap) {
-        dateLabel.text = "TODO"//workoutLap.title
+    func configure(with workoutLap: WorkoutLap, row: Int) {
+        dateLabel.text = "LAP \(row)"
         timeElapsedLabel.text = TimeInterval(workoutLap.totalTimeActive).formatted()
         distanceLabel.text = Utils.distanceString(meters: workoutLap.totalDistance)
         elevationLabel.text = "\(Utils.distanceString(meters: workoutLap.totalPositiveAltitude)) (+\(Utils.distanceString(meters: workoutLap.netAltitude)))"

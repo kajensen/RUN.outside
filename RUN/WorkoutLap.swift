@@ -50,7 +50,6 @@ class WorkoutLap: Object {
             netAltitude += altitudeDifference.net
             totalPositiveAltitude += altitudeDifference.positive
             totalDistance += newEvent.distanceDifference(to: lastEvent)
-            totalTimeActive += newEvent.timeDifference(to: lastEvent)
         }
         events.append(newEvent)
         switch type {
