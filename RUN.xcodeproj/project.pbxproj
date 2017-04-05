@@ -53,7 +53,6 @@
 		45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */; };
 		45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */; };
 		45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */; };
-		45E3B1341E944A47007F8805 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E3B1331E944A47007F8805 /* MapKit.framework */; };
 		45E3B1361E945E25007F8805 /* WorkoutsNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1351E945E25007F8805 /* WorkoutsNavigationViewController.swift */; };
 		45E3B1381E94614C007F8805 /* RUNPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1371E94614C007F8805 /* RUNPanGestureRecognizer.swift */; };
 		45E3B13A1E946607007F8805 /* WorkoutDataButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1391E946607007F8805 /* WorkoutDataButton.swift */; };
@@ -112,7 +111,6 @@
 		45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutEvent.swift; sourceTree = "<group>"; };
 		45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		45E3B1331E944A47007F8805 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		45E3B1351E945E25007F8805 /* WorkoutsNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsNavigationViewController.swift; sourceTree = "<group>"; };
 		45E3B1371E94614C007F8805 /* RUNPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RUNPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		45E3B1391E946607007F8805 /* WorkoutDataButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataButton.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */,
-				45E3B1341E944A47007F8805 /* MapKit.framework in Frameworks */,
 				454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,7 +139,6 @@
 		1009296CEC0CDBE32A929935 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				45E3B1331E944A47007F8805 /* MapKit.framework */,
 				454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */,
 				4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */,
 			);
@@ -405,7 +401,7 @@
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

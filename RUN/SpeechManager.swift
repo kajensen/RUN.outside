@@ -17,6 +17,7 @@ class SpeechManager: NSObject {
         super.init()
     }
     
+    /*
     func playWhiteNoise() {
         prepareAudioSession()
         if let url = Bundle.main.url(forResource: "silence", withExtension: "m4a") {
@@ -25,7 +26,7 @@ class SpeechManager: NSObject {
             audioPlayer?.numberOfLoops = 1
             audioPlayer?.play()
         }
-    }
+    }*/
     
     func speak(_ announcement: String, in language: String = "en-US") {
         DispatchQueue.main.async {
@@ -59,7 +60,7 @@ extension SpeechManager: AVSpeechSynthesizerDelegate {
         print("...done")
         if synthesizer == self.synthesizer {
             self.synthesizer = nil
-            try? session.setActive(false)
+            try? session.setActive(false, with: AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation)
         }
     }
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {

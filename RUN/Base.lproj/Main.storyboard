@@ -326,7 +326,7 @@
         <scene sceneID="GJZ-6E-bkG">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2oi-y3-HRa" customClass="WorkoutsNavigationViewController" customModule="RUN" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="I2m-Zd-MvE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2m-Zd-MvE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -434,7 +434,7 @@
                                             <rect key="frame" x="8" y="8" width="343" height="184"/>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XGJ-zm-ShM">
-                                            <rect key="frame" x="236" y="173" width="115" height="27"/>
+                                            <rect key="frame" x="229" y="165" width="115" height="27"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-NE-YWF" customClass="WorkoutDataSpanButton" customModule="RUN" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="32" height="27"/>
@@ -481,9 +481,9 @@
                                     <constraints>
                                         <constraint firstItem="ub9-qe-MYz" firstAttribute="leading" secondItem="CKM-tw-N7c" secondAttribute="leading" constant="8" id="41y-r6-zsC"/>
                                         <constraint firstItem="ub9-qe-MYz" firstAttribute="centerX" secondItem="CKM-tw-N7c" secondAttribute="centerX" id="6tB-9i-6cL"/>
-                                        <constraint firstAttribute="trailing" secondItem="XGJ-zm-ShM" secondAttribute="trailing" constant="8" id="AMu-yG-Dzc"/>
+                                        <constraint firstAttribute="trailing" secondItem="XGJ-zm-ShM" secondAttribute="trailing" constant="15" id="AMu-yG-Dzc"/>
                                         <constraint firstItem="ub9-qe-MYz" firstAttribute="top" secondItem="CKM-tw-N7c" secondAttribute="top" constant="8" id="Rzh-Sf-eBn"/>
-                                        <constraint firstAttribute="bottom" secondItem="XGJ-zm-ShM" secondAttribute="bottom" id="Vik-IT-uLl"/>
+                                        <constraint firstAttribute="bottom" secondItem="XGJ-zm-ShM" secondAttribute="bottom" constant="8" id="Vik-IT-uLl"/>
                                         <constraint firstItem="ub9-qe-MYz" firstAttribute="centerY" secondItem="CKM-tw-N7c" secondAttribute="centerY" id="m9p-4J-XBf"/>
                                     </constraints>
                                 </view>
@@ -492,7 +492,7 @@
                                         <rect key="frame" x="0.0" y="228" width="359" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gYr-zM-QMW" id="7zv-x9-o4N">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -500,7 +500,7 @@
                                         <rect key="frame" x="0.0" y="272" width="359" height="298"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y0d-2B-bzg" id="XuX-Uc-p5R">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="297.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -544,7 +544,7 @@
         <scene sceneID="pxw-WG-EXE">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2Md-z5-Kja" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W2Z-s0-awh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W2Z-s0-awh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

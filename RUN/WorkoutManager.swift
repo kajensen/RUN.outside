@@ -117,7 +117,6 @@ class WorkoutManager: NSObject {
         let update = workout.newLap(location: location)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         self.workout = workout
-        speechManager.playWhiteNoise()
         nextTimeUpdate = Settings.audioUpdateTime
         nextDistanceUpdate = Settings.audioUpdateDistance
         nextLap = Settings.lapDistance

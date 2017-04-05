@@ -57,6 +57,7 @@ class Workout: Object {
     convenience init(startDate: Date) {
         self.init()
         self.startDate = startDate
+        lastActiveDate = Date()
     }
 
     func newLap(location: CLLocation) -> (newEvent: WorkoutEvent, previousEvent: WorkoutEvent?) {
