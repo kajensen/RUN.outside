@@ -57,6 +57,7 @@
 		45E3B1361E945E25007F8805 /* WorkoutsNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1351E945E25007F8805 /* WorkoutsNavigationViewController.swift */; };
 		45E3B1381E94614C007F8805 /* RUNPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1371E94614C007F8805 /* RUNPanGestureRecognizer.swift */; };
 		45E3B13A1E946607007F8805 /* WorkoutDataButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1391E946607007F8805 /* WorkoutDataButton.swift */; };
+		45E3B13C1E946D75007F8805 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B13B1E946D75007F8805 /* DataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		45E3B1351E945E25007F8805 /* WorkoutsNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsNavigationViewController.swift; sourceTree = "<group>"; };
 		45E3B1371E94614C007F8805 /* RUNPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RUNPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		45E3B1391E946607007F8805 /* WorkoutDataButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataButton.swift; sourceTree = "<group>"; };
+		45E3B13B1E946D75007F8805 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
 		4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.debug.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */,
 				45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */,
 				45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */,
+				45E3B13B1E946D75007F8805 /* DataViewController.swift */,
 				454A15CE1E8C8E200098FB1E /* Select */,
 				453B434B1E8DA97B0005F8DA /* SplashViewController.swift */,
 			);
@@ -512,6 +515,7 @@
 				45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
 				453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */,
+				45E3B13C1E946D75007F8805 /* DataViewController.swift in Sources */,
 				45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */,
 				45E3B13A1E946607007F8805 /* WorkoutDataButton.swift in Sources */,
 				45E3B1381E94614C007F8805 /* RUNPanGestureRecognizer.swift in Sources */,

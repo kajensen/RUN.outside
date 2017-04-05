@@ -216,7 +216,7 @@
                                     <constraint firstAttribute="height" constant="300" id="Sks-c7-Sdd"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="kBG-Hf-thJ" kind="embed" identifier="embedSettings" id="NXR-9q-S9t"/>
+                                    <segue destination="2Md-z5-Kja" kind="embed" identifier="embedSettings" id="kUW-4o-ZxW"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -523,7 +523,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6n-L0-FJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="371"/>
+            <point key="canvasLocation" x="1575" y="371"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pxw-WG-EXE">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="2Md-z5-Kja" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W2Z-s0-awh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kBG-Hf-thJ" kind="relationship" relationship="rootViewController" id="0jM-Oe-bzF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dAt-RL-Rcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="-179"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Ibh-6j-ffI">
@@ -568,13 +584,31 @@
                             <constraint firstItem="0QJ-Px-FFx" firstAttribute="bottom" secondItem="bV5-wm-tZ6" secondAttribute="top" id="l5i-gg-KWE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qGl-RE-Qiq"/>
                     <connections>
                         <outlet property="tableView" destination="0QJ-Px-FFx" id="AQF-eH-1qa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEY-QE-idD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="877.60000000000002" y="-120.53973013493254"/>
+            <point key="canvasLocation" x="1582" y="-179"/>
+        </scene>
+        <!--Data View Controller-->
+        <scene sceneID="AwL-8d-KoZ">
+            <objects>
+                <viewController storyboardIdentifier="DataViewController" id="Z70-qV-wT3" customClass="DataViewController" customModule="RUN" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NbH-kr-SKd"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Rz-HY-c82"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YBX-S6-bKV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WbP-Zu-orQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2265" y="-344"/>
         </scene>
         <!--Workout View Controller-->
         <scene sceneID="r1T-3b-XVY">

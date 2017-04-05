@@ -128,7 +128,8 @@ class MapViewController: UIViewController {
                 workoutsNavigationViewController = nc
             }
         } else if segue.identifier == "embedSettings" {
-            if let vc = segue.destination as? SettingsViewController {
+            if let nc = segue.destination as? UINavigationController,
+                let vc = nc.childViewControllers.first as? SettingsViewController {
                 vc.delegate = self
                 settingsViewController = vc
             }
@@ -496,6 +497,7 @@ extension MapViewController: SettingsViewControllerDelegate {
         }) { (completed) in
             if completed {
                 self.updateView()
+                let _ = self.settingsViewController?.navigationController?.popToRootViewController(animated: false)
             }
         }
     }
@@ -529,6 +531,9 @@ extension MapViewController: SettingsViewControllerDelegate {
             }) { (completed) in
                 if completed {
                     self.updateView()
+                    if isContracting {
+                        let _ = self.settingsViewController?.navigationController?.popToRootViewController(animated: false)
+                    }
                 }
             }
             break

@@ -221,13 +221,19 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             switch indexPath.row {
             default:
-                showAlert(title: "TODO")
-                break
+                showDataVC()
             }
             return
         default:
             break
         }
+    }
+    
+    func showDataVC() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: DataViewController.storyboardId) else {
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func showAbout() {
