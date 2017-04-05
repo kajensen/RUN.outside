@@ -16,7 +16,6 @@ protocol WorkoutViewControllerDelegate: class {
 
 class WorkoutViewController: UIViewController, DataViewDataSource {
     
-    
     static let storyboardId = "WorkoutViewController"
     
     private (set) var intervals: [TimeInterval: [WorkoutEvent]] = [:]
@@ -39,8 +38,6 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let realm = try? Realm()
-        workout = realm?.objects(Workout.self).first
         dataView.dataSource = self
         configure()
         registerForThemeChange()
@@ -60,8 +57,8 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func barDataTapped(_ sender: Any) {
-        barWorkoutData = .distance
+    @IBAction func barDataTapped(_ sender: WorkoutDataButton) {
+        barWorkoutData = sender.workoutData
         reloadData()
     }
     
@@ -132,11 +129,11 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
             index += 1
         }
         let barDataSet = BarChartDataSet(values: barEntries, label: barWorkoutData.title)
-        barDataSet.colors = [UIColor.blue]
+        barDataSet.colors = [Settings.theme.alternateTextColor]
         barDataSet.axisDependency = .left
         let lineDataSet = LineChartDataSet(values: lineEntries, label: lineWorkoutData.title)
         lineDataSet.axisDependency = .right
-        lineDataSet.colors = [UIColor.orange]
+        lineDataSet.colors = [Settings.theme.primaryTextColor]
         self.lineDataSet = lineDataSet
         self.barDataSets = [barDataSet]
     }

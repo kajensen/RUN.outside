@@ -62,6 +62,7 @@ class WorkoutManager: NSObject {
         self.init()
         // assume already has permissions
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -69,6 +70,7 @@ class WorkoutManager: NSObject {
     }
     
     fileprivate func addLocationUpdate(_ location: CLLocation) {
+        speechManager.speak("update")
         guard let workout = workout, state == .running else { return }
         let update = workout.addEvent(location, type: .locationUpdate)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
@@ -99,6 +101,7 @@ class WorkoutManager: NSObject {
             nextDistanceUpdate += Settings.audioUpdateDistance
         }
         if nextLap > 0 && workout.totalDistance > nextLap {
+            speechManager.speak("new lap")
             print("starting new lap")
             let update = workout.newLap(location: location)
             delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
@@ -118,13 +121,14 @@ class WorkoutManager: NSObject {
         nextTimeUpdate = Settings.audioUpdateTime
         nextDistanceUpdate = Settings.audioUpdateDistance
         nextLap = Settings.lapDistance
-        resume()
+        resume(true)
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(WorkoutManager.timerFired(_:)), userInfo: nil, repeats: true)
         return true
     }
     
-    func resume() {
+    func resume(_ isActuallyStart: Bool = false) {
         guard let workout = workout, let location = locationManager.location else { return }
+        speechManager.speak(isActuallyStart ? "start" : "resume")
         let update = workout.addEvent(location, type: .resume)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         //lastActiveDate = Date()
@@ -133,6 +137,7 @@ class WorkoutManager: NSObject {
     
     func pause() {
         guard let workout = workout, let location = locationManager.location else { return }
+        speechManager.speak("pause")
         let update = workout.addEvent(location, type: .pause)
         delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
         //timeElapsed = currentTimeElapsed // lock it in
@@ -151,6 +156,7 @@ class WorkoutManager: NSObject {
     }
     
     func end() -> Workout? {
+        speechManager.speak("end")
         state = .none
         let completedWorkout = self.workout
         completedWorkout?.end()
@@ -175,6 +181,9 @@ extension WorkoutManager: CLLocationManagerDelegate {
         for location in locations {
             // make sure its good data, horizontal is more important.
             if location.horizontalAccuracy != -1 && location.horizontalAccuracy < 20 && location.verticalAccuracy < 50 {
+                guard let lastActiveDate = workout?.lastActiveDate, lastActiveDate.compare(location.timestamp) == .orderedAscending else {
+                    break
+                }
                 addLocationUpdate(location)
             }
         }

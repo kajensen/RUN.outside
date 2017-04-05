@@ -148,6 +148,15 @@ class Style {
             }
         }
         
+        var alternateTextColor: UIColor {
+            switch self {
+            case .retro, .silver:
+                return UIColor.lightGray
+            case .mirkwood, .electric:
+                return UIColor.gray
+            }
+        }
+        
         var greenColor: UIColor {
             switch self {
             case .retro:

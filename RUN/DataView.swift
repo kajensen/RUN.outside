@@ -35,8 +35,9 @@ class DataView: CombinedChartView {
         xAxis.valueFormatter = self
         leftAxis.valueFormatter = self
         //
-        gridBackgroundColor = backgroundColor ?? UIColor.clear
-        noDataText = "No data."
+        backgroundColor = UIColor.white.withAlphaComponent(0.01)
+        gridBackgroundColor = UIColor.clear
+        noDataText = "No data (yet)"
         chartDescription?.text = ""
         rightAxis.drawGridLinesEnabled = false
         leftAxis.drawGridLinesEnabled = false
@@ -76,7 +77,7 @@ class DataView: CombinedChartView {
         lineChartDataSet.lineWidth = 2
         let lineData = LineChartData(dataSet: lineChartDataSet)
         let barData = BarChartData(dataSets: barChartDataSets)
-        if barChartDataSets.count > 0 {
+        if barChartDataSets.count > 1 {
             let groupSpace: Double = 0
             let barWidth = 1/Double(barChartDataSets.count+1)
             let barSpace = barWidth/Double(barChartDataSets.count)

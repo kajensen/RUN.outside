@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum WorkoutData {
+enum WorkoutData: Int {
     
     case speed, elevation, heartbeat, distance
     

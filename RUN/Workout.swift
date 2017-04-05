@@ -26,9 +26,9 @@ class Workout: Object {
     dynamic var totalPositiveAltitude: Double = 0
     dynamic var totalDistance: Double = 0
     dynamic var totalTimeActive: TimeInterval = 0
-    var laps = List<WorkoutLap>()
+    private (set) var laps = List<WorkoutLap>()
     
-    private var lastActiveDate: Date?
+    private (set) var lastActiveDate: Date?
     override static func ignoredProperties() -> [String] {
         return ["lastActiveDate"]
     }
