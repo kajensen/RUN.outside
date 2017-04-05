@@ -62,6 +62,23 @@
                                     <constraint firstItem="w0s-4q-V6D" firstAttribute="centerX" secondItem="GQm-wB-4PX" secondAttribute="centerX" id="mEG-IE-hBh"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-KF-kjW" customClass="BGView" customModule="RUN" customModuleProvider="target">
+                                <rect key="frame" x="150" y="613" width="74" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAUSED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdC-iM-LMB">
+                                        <rect key="frame" x="8" y="8" width="58" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qdC-iM-LMB" firstAttribute="centerY" secondItem="DeM-KF-kjW" secondAttribute="centerY" id="1i2-Qw-tBG"/>
+                                    <constraint firstItem="qdC-iM-LMB" firstAttribute="leading" secondItem="DeM-KF-kjW" secondAttribute="leading" constant="8" id="THK-cf-fvT"/>
+                                    <constraint firstItem="qdC-iM-LMB" firstAttribute="top" secondItem="DeM-KF-kjW" secondAttribute="top" constant="8" id="WVD-j2-o7q"/>
+                                    <constraint firstItem="qdC-iM-LMB" firstAttribute="centerX" secondItem="DeM-KF-kjW" secondAttribute="centerX" id="egV-cK-IT5"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qn9-PQ-N9f" customClass="RoundedButton" customModule="RUN" customModuleProvider="target">
                                 <rect key="frame" x="69" y="517" width="236" height="50"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.67843137249999996" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,12 +117,6 @@
                                     <action selector="endWorkoutTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ps6-gU-luc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAUSED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdC-iM-LMB">
-                                <rect key="frame" x="158.5" y="640.5" width="58" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-rx-HuS" customClass="BGView" customModule="RUN" customModuleProvider="target">
                                 <rect key="frame" x="67" y="28" width="241" height="66"/>
                                 <subviews>
@@ -216,7 +227,7 @@
                             <constraint firstItem="Xxz-N4-V6o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6wS-j0-ZH3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qn9-PQ-N9f" secondAttribute="trailing" constant="54" id="98O-it-wDp"/>
                             <constraint firstItem="Qn9-PQ-N9f" firstAttribute="leading" secondItem="PM7-IT-gqT" secondAttribute="trailing" constant="8" symbolic="YES" id="9z3-r9-GBN"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qdC-iM-LMB" secondAttribute="bottom" constant="8" id="Cdv-JI-jiW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DeM-KF-kjW" secondAttribute="bottom" constant="20" id="B38-0s-Rm5"/>
                             <constraint firstItem="ItD-lc-EkX" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="EDJ-Cf-YM8"/>
                             <constraint firstItem="IUq-8i-JfF" firstAttribute="centerX" secondItem="Qn9-PQ-N9f" secondAttribute="centerX" id="H0e-ek-U3n"/>
                             <constraint firstItem="GQm-wB-4PX" firstAttribute="leading" secondItem="Qn9-PQ-N9f" secondAttribute="trailing" constant="8" symbolic="YES" id="KqU-tu-rHw"/>
@@ -226,12 +237,12 @@
                             <constraint firstItem="Qn9-PQ-N9f" firstAttribute="centerX" secondItem="mtc-mU-0HR" secondAttribute="centerX" id="Pgl-QD-DUN"/>
                             <constraint firstItem="jcL-0S-Oe3" firstAttribute="bottom" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="Q2S-5Q-SFo"/>
                             <constraint firstItem="mgI-rx-HuS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q8g-qr-qFB"/>
+                            <constraint firstItem="DeM-KF-kjW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T0i-w5-Z7B"/>
                             <constraint firstItem="mtc-mU-0HR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vk2-a7-LXp"/>
                             <constraint firstItem="PM7-IT-gqT" firstAttribute="centerY" secondItem="Qn9-PQ-N9f" secondAttribute="centerY" id="amf-yn-mSD"/>
                             <constraint firstItem="Qn9-PQ-N9f" firstAttribute="top" secondItem="IUq-8i-JfF" secondAttribute="bottom" constant="8" id="bFi-mR-LcK"/>
                             <constraint firstItem="Xxz-N4-V6o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="500" id="caK-EN-oQ2"/>
                             <constraint firstItem="Jhf-O0-b2a" firstAttribute="leading" secondItem="mtc-mU-0HR" secondAttribute="leading" id="e1c-Nh-A9Q"/>
-                            <constraint firstItem="qdC-iM-LMB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eEl-rn-bHY"/>
                             <constraint firstItem="jcL-0S-Oe3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gOJ-nW-Vqc"/>
                             <constraint firstItem="ItD-lc-EkX" firstAttribute="leading" secondItem="Jhf-O0-b2a" secondAttribute="leading" id="gOh-Pq-E6j"/>
                             <constraint firstItem="mtc-mU-0HR" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="30" id="gSA-lN-IDk"/>
@@ -257,7 +268,8 @@
                         <outlet property="settingsViewConstraint" destination="Q2S-5Q-SFo" id="wcC-ry-9MJ"/>
                         <outlet property="settingsViewHeightConstraint" destination="Sks-c7-Sdd" id="4nA-WJ-FqF"/>
                         <outlet property="settingsViewOverlay" destination="ItD-lc-EkX" id="Fdi-q2-Wb0"/>
-                        <outlet property="statusLabel" destination="qdC-iM-LMB" id="cvZ-lv-gKh"/>
+                        <outlet property="statusLabel" destination="qdC-iM-LMB" id="pHk-Yc-0Rl"/>
+                        <outlet property="statusView" destination="DeM-KF-kjW" id="Q1I-Nr-4gK"/>
                         <outlet property="timeInfoLabel" destination="y0i-eL-ifr" id="QaY-mh-21L"/>
                         <outlet property="timeLabel" destination="SXq-bT-fL0" id="pUF-Pp-U6J"/>
                         <outlet property="toggleWorkoutButton" destination="Qn9-PQ-N9f" id="fau-fI-2eS"/>
@@ -420,12 +432,12 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub9-qe-MYz" customClass="DataView" customModule="RUN" customModuleProvider="target">
                                             <rect key="frame" x="8" y="8" width="343" height="184"/>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGJ-zm-ShM">
-                                            <rect key="frame" x="261" y="170" width="90" height="30"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XGJ-zm-ShM">
+                                            <rect key="frame" x="221" y="170" width="130" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-NE-YWF" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                    <state key="normal" title="E"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
+                                                    <state key="normal" title="Week"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
                                                             <integer key="value" value="1"/>
@@ -433,8 +445,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0c-K0-ZO2" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="0.0" width="30" height="30"/>
-                                                    <state key="normal" title="H"/>
+                                                    <rect key="frame" x="47" y="0.0" width="44" height="30"/>
+                                                    <state key="normal" title="Month"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
                                                             <integer key="value" value="2"/>
@@ -442,8 +454,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y7-E3-T3g" customClass="WorkoutDataButton" customModule="RUN" customModuleProvider="target">
-                                                    <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                                    <state key="normal" title="D"/>
+                                                    <rect key="frame" x="99" y="0.0" width="31" height="30"/>
+                                                    <state key="normal" title="Year"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="workoutDataType">
                                                             <integer key="value" value="3"/>

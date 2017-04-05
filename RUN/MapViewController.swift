@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var settingsActionView: BGView!
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var workoutStatsView: BGView!
+    @IBOutlet weak var statusView: BGView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceUnitsLabel: UILabel!
@@ -104,6 +105,7 @@ class MapViewController: UIViewController {
         let theme = Settings.theme
         distanceLabel.textColor = theme.primaryTextColor
         distanceUnitsLabel.textColor = theme.secondaryTextColor
+        statusView.effect = theme.blurEffect
         statusLabel.textColor = theme.secondaryTextColor
         timeLabel.textColor = theme.primaryTextColor
         timeInfoLabel.textColor = theme.secondaryTextColor
@@ -159,7 +161,7 @@ class MapViewController: UIViewController {
         case .past:
             workoutStatsView.isHidden = false
         }
-        statusLabel.isHidden = true
+        statusView.isHidden = true
     }
     
     func transitionState(_ state: State) {
@@ -318,15 +320,15 @@ extension MapViewController: WorkoutManagerDelegate {
         case .none:
             toggleWorkoutButton.setTitle("START RUN", for: .normal)
             endWorkoutButton.isHidden = true
-            statusLabel.isHidden = true
+            statusView.isHidden = true
         case .paused:
             toggleWorkoutButton.setTitle("RESUME RUN", for: .normal)
             endWorkoutButton.isHidden = false
-            statusLabel.isHidden = false
+            statusView.isHidden = false
         case .running:
             toggleWorkoutButton.setTitle("PAUSE RUN", for: .normal)
             endWorkoutButton.isHidden = true
-            statusLabel.isHidden = true
+            statusView.isHidden = true
         }
     }
     
