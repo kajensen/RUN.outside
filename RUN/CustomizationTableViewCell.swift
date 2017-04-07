@@ -33,7 +33,7 @@ class CustomizationTableViewCell: UITableViewCell {
     func configure(audioUpdateDistance: Double) {
         titleLabel.text = "Coach Update every..."
         if audioUpdateDistance > 0 {
-            subTitleLabel.text = Utils.distanceString(meters: audioUpdateDistance)
+            subTitleLabel.text = Utils.longDistanceString(meters: audioUpdateDistance)
         } else {
             subTitleLabel.text = "Off"
         }
@@ -43,7 +43,7 @@ class CustomizationTableViewCell: UITableViewCell {
     func configure(lapDistance: Double) {
         titleLabel.text = "Start new lap every..."
         if lapDistance > 0 {
-            subTitleLabel.text = Utils.distanceString(meters: lapDistance)
+            subTitleLabel.text = Utils.longDistanceString(meters: lapDistance)
         } else {
             subTitleLabel.text = "Off"
         }

@@ -55,7 +55,8 @@ class Utils {
     
     static var distanceFormatter: LengthFormatter = {
         let distanceFormatter = LengthFormatter()
-        distanceFormatter.numberFormatter.maximumFractionDigits = 1
+        distanceFormatter.numberFormatter.minimumFractionDigits = 1
+        distanceFormatter.numberFormatter.maximumFractionDigits = 2
         return distanceFormatter
     }()
     
@@ -69,13 +70,13 @@ class Utils {
     static var temperatureFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         let numberFormatter = NumberFormatter()
-        numberFormatter.minimumFractionDigits = 1
-        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 1
         formatter.numberFormatter = numberFormatter
         return formatter
     }()
     
-    class var distanceForLocale: Double {
+    class var longDistanceForLocale: Double {
         if Settings.isMetricDistanceUnits {
             return 1000
         } else {
@@ -83,26 +84,40 @@ class Utils {
         }
     }
     
-    class func distanceString(meters: Double) -> String {
+    class var shortDistanceForLocale: Double {
+        if Settings.isMetricDistanceUnits {
+            return 1
+        } else {
+            return 3.28084
+        }
+    }
+    
+    class func shortDistanceString(meters: Double) -> String {
+        let unit: LengthFormatter.Unit = Settings.isMetricDistanceUnits ? .meter : .foot
+        let distanceInLocale = meters/shortDistanceForLocale
+        return distanceFormatter.string(fromValue: distanceInLocale, unit: unit)
+    }
+    
+    class func longDistanceString(meters: Double) -> String {
         let unit: LengthFormatter.Unit = Settings.isMetricDistanceUnits ? .kilometer : .mile
-        let distanceInLocale = meters/distanceForLocale
+        let distanceInLocale = meters/longDistanceForLocale
         return distanceFormatter.string(fromValue: distanceInLocale, unit: unit)
     }
     
     class func distanceRateString(unitsPerHour: Double) -> String {
-        return "\(distanceRateFormatter.string(fromDistance: unitsPerHour*distanceForLocale))/hr"
+        return "\(distanceRateFormatter.string(fromDistance: unitsPerHour*longDistanceForLocale))/hr"
     }
     
     class func distanceRateString(metersPerSecond: Double) -> String {
-        return "\(distanceRateFormatter.string(fromDistance: metersPerSecond*distanceForLocale))/hr"
+        return "\(distanceRateFormatter.string(fromDistance: metersPerSecond*longDistanceForLocale))/hr"
     }
     
     class func metersPerSecond(unitsPerHour: Double) -> Double {
-        return (distanceForLocale*unitsPerHour)/3600
+        return (longDistanceForLocale*unitsPerHour)/3600
     }
     
     class func unitsPerHour(metersPerSecond: Double) -> Double {
-        return (metersPerSecond*3600)/distanceForLocale
+        return (metersPerSecond*3600)/longDistanceForLocale
     }
     
     class func tempuratureString(kelvin: Double) -> String {
@@ -311,16 +326,8 @@ extension Date {
         let dateComponents = Calendar.current.dateComponents([.year], from: self)
         return dateComponents.year
     }
-    func date(hour: Int) -> Date {
-        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour], from: self)
-        dateComponents.hour = hour
-        return Calendar.current.date(from: dateComponents) ?? self
-    }
-    func dateWithoutTime(yearDiff: Int = 0) -> Date {
+    func dateWithoutTime() -> Date {
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        if let year = dateComponents.year {
-            dateComponents.year = year + yearDiff
-        }
         return Calendar.current.date(from: dateComponents) ?? self
     }
     func isSameDay(as otherDate: Date) -> Bool {

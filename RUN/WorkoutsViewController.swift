@@ -206,7 +206,7 @@ extension WorkoutsViewController: DataViewDataSource {
                 totalDistance += workout.totalDistance
             }
         }
-        distanceLabel.text = Utils.distanceString(meters: totalDistance)
+        distanceLabel.text = Utils.longDistanceString(meters: totalDistance)
         let totalNumWorkouts = workouts?.count ?? 0
         workoutsInfoLabel.text = "\(totalNumWorkouts) run\(totalNumWorkouts == 1 ? "" : "s") this \(workoutDataSpan.title)"
         reloadData()
@@ -236,7 +236,8 @@ extension WorkoutsViewController: DataViewDataSource {
         var barEntries: [BarChartDataEntry] = []
         var lineEntries: [ChartDataEntry] = []
         var index = 0
-        for (_, workouts) in dayWorkouts {
+        for date in days {
+            let workouts = dayWorkouts[date] ?? []
             var barSum: Double = 0
             var lineSum: Double = 0
             for workout in workouts {
@@ -282,7 +283,7 @@ extension WorkoutsViewController: DataViewDataSource {
 extension WorkoutsViewController {
     
     func xAxis(value: Double) -> String? {
-        guard let day = days[safe: Int(value)] else {
+        guard value >= 0, let day = days[safe: Int(value)] else {
             return nil
         }
         return dateFormatter.string(from: day)

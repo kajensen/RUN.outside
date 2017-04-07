@@ -334,7 +334,7 @@ extension MapViewController: WorkoutManagerDelegate {
     }
 
     func workoutManagerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance) {
-        let distanceString = Utils.distanceString(meters: distanceTraveled).components(separatedBy: " ")
+        let distanceString = Utils.longDistanceString(meters: distanceTraveled).components(separatedBy: " ")
         distanceLabel.text = distanceString.first
         distanceUnitsLabel.text = distanceString.last?.uppercased()
     }
@@ -463,7 +463,7 @@ extension MapViewController: WorkoutsViewControllerDelegate {
         let cameraUpdate = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(100, 20, 300, 20))
         mapView.animate(with: cameraUpdate)
         timeLabel.text = TimeInterval(workout.totalTimeActive).formatted()
-        let distanceString = Utils.distanceString(meters: workout.totalDistance).components(separatedBy: " ")
+        let distanceString = Utils.longDistanceString(meters: workout.totalDistance).components(separatedBy: " ")
         distanceLabel.text = distanceString.first
         distanceUnitsLabel.text = distanceString.last?.uppercased()
         UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseIn], animations: {

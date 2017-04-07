@@ -52,7 +52,7 @@ class Settings: NSObject {
     class var lapDistances: [Double] {
         var lapDistances: [Double] = []
         for i in [0, 0.1, 0.2, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 10] {
-            lapDistances.append(Utils.distanceForLocale*i)
+            lapDistances.append(Utils.longDistanceForLocale*i)
         }
         return lapDistances
     }
@@ -70,7 +70,7 @@ class Settings: NSObject {
     class var audioUpdateDistances: [Double] {
         var audioUpdateDistances: [Double] = []
         for i in [0, 0.1, 0.2, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 10] {
-            audioUpdateDistances.append(Utils.distanceForLocale*i)
+            audioUpdateDistances.append(Utils.longDistanceForLocale*i)
         }
         return audioUpdateDistances
     }

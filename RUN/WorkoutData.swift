@@ -30,11 +30,11 @@ enum WorkoutData: Int {
         case .speed:
             return Utils.distanceRateString(unitsPerHour: Utils.unitsPerHour(metersPerSecond: value))
         case .distance:
-            return Utils.distanceString(meters: value)
+            return Utils.longDistanceString(meters: value)
         case .heartrate:
             return "\(Int(value)) bmp"
         case .elevation:
-            return Utils.distanceString(meters: value)
+            return Utils.shortDistanceString(meters: value)
         }
     }
     

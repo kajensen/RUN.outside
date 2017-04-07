@@ -36,7 +36,7 @@ class SelectUpdateDistanceTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let distance = updateDistances[indexPath.row]
         if distance > 0 {
-            cell.textLabel?.text = Utils.distanceString(meters: distance)
+            cell.textLabel?.text = Utils.longDistanceString(meters: distance)
         } else {
             cell.textLabel?.text = "Off"
         }
