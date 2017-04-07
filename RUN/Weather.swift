@@ -24,6 +24,8 @@ struct Weather {
             return String(format: "%C", 0xEB28)
         case "201":
             return String(format: "%C", 0xEB29)
+        case "202":
+            return String(format: "%C", 0xEB2A)
         case "210":
             return String(format: "%C", 0xEB2A)
         case "211":
@@ -204,11 +206,9 @@ struct Weather {
         case "960":
             return String(format: "%C", 0xEE20)
             /*  Violent Storm  */
-        case "961":
+        case "961", "962":
             return String(format: "%C", 0xEE21)
             /* Hurricane */
-        case "961":
-            return String(format: "%C", 0xEE22)
         default:
             return nil
         }

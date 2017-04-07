@@ -213,8 +213,8 @@
 				45E3B13D1E947ADA007F8805 /* Views */,
 				45C8D7E01E85FC66003DB276 /* Objects */,
 				455FF2ED1E847F5E000C88A9 /* Storyboards */,
-				455FF2DE1E847438000C88A9 /* Assets.xcassets */,
 				45E3B15D1E955302007F8805 /* API */,
+				455FF2DE1E847438000C88A9 /* Assets.xcassets */,
 				455FF2EA1E847E26000C88A9 /* Supporting Files */,
 			);
 			path = RUN;

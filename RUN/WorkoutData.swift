@@ -10,19 +10,43 @@ import UIKit
 
 enum WorkoutData: Int {
     
-    case speed, elevation, heartbeat, distance
+    case speed, elevation, heartrate, distance
     
     var title: String {
         switch self {
         case .speed:
-            return "SPEED"
+            return "AVG SPEED"
         case .elevation:
             return "ELEVATION"
-        case .heartbeat:
-            return "HEARTBEAT"
+        case .heartrate:
+            return "AVG HEARTRATE"
         case .distance:
             return "DISTANCE"
         }
+    }
+    
+    func string(value: Double) -> String {
+        switch self {
+        case .speed:
+            return Utils.distanceRateString(unitsPerHour: Utils.unitsPerHour(metersPerSecond: value))
+        case .distance:
+            return Utils.distanceString(meters: value)
+        case .heartrate:
+            return "\(Int(value)) bmp"
+        case .elevation:
+            return Utils.distanceString(meters: value)
+        }
+    }
+    
+    func value(valueSums: Double, count: Int) -> Double {
+        let value: Double
+        switch self {
+        case .speed, .heartrate:
+            value = valueSums/Double(count)
+        case .distance, .elevation:
+            value = valueSums
+        }
+        return value.isNaN ? 0 : value
     }
 
 }

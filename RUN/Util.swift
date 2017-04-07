@@ -53,9 +53,9 @@ class Utils {
         return numberFormatter
     }()
     
-    static var distanceFormatter: MKDistanceFormatter = {
-        let distanceFormatter = MKDistanceFormatter()
-        distanceFormatter.units = Settings.isMetricDistanceUnits ? .metric : .imperial
+    static var distanceFormatter: LengthFormatter = {
+        let distanceFormatter = LengthFormatter()
+        distanceFormatter.numberFormatter.maximumFractionDigits = 1
         return distanceFormatter
     }()
     
@@ -69,7 +69,8 @@ class Utils {
     static var temperatureFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         let numberFormatter = NumberFormatter()
-        numberFormatter.maximumFractionDigits = 1
+        numberFormatter.minimumFractionDigits = 1
+        numberFormatter.maximumFractionDigits = 2
         formatter.numberFormatter = numberFormatter
         return formatter
     }()
@@ -83,7 +84,9 @@ class Utils {
     }
     
     class func distanceString(meters: Double) -> String {
-        return distanceFormatter.string(fromDistance: meters)
+        let unit: LengthFormatter.Unit = Settings.isMetricDistanceUnits ? .kilometer : .mile
+        let distanceInLocale = meters/distanceForLocale
+        return distanceFormatter.string(fromValue: distanceInLocale, unit: unit)
     }
     
     class func distanceRateString(unitsPerHour: Double) -> String {

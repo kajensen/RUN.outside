@@ -261,10 +261,10 @@ extension WorkoutsViewController: DataViewDataSource {
                     break
                 }
             }
-            let barAvg = barSum/Double(workouts.count)
-            let lineAvg = lineSum/Double(workouts.count)
-            barEntries.append(BarChartDataEntry(x: Double(index), y: barAvg.isNaN ? 0 : barAvg))
-            lineEntries.append(ChartDataEntry(x: Double(index), y: lineAvg.isNaN ? 0 : lineAvg))
+            let lineNum = lineWorkoutData.value(valueSums: lineSum, count: workouts.count)
+            let barNum = barWorkoutData.value(valueSums: barSum, count: workouts.count)
+            barEntries.append(BarChartDataEntry(x: Double(index), y: barNum))
+            lineEntries.append(ChartDataEntry(x: Double(index), y: lineNum))
             index += 1
         }
         let barDataSet = BarChartDataSet(values: barEntries, label: barWorkoutData.title)
@@ -290,16 +290,7 @@ extension WorkoutsViewController {
     
     func yAxis(value: Double, isLeft: Bool) -> String? {
         let data = isLeft ? barWorkoutData : lineWorkoutData
-        switch data {
-        case .speed:
-            return Utils.distanceRateString(unitsPerHour: Utils.unitsPerHour(metersPerSecond: value))
-        case .distance:
-            return Utils.distanceString(meters: value)
-        case .heartbeat:
-            return "\(Int(value)) bmp"
-        case .elevation:
-            return Utils.distanceString(meters: value)
-        }
+        return data.string(value: value)
     }
     
 }

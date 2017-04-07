@@ -158,7 +158,7 @@ extension WorkoutViewController {
                     lineSum += event.speed
                 case .distance:
                     lineSum += event.distanceTraveled
-                case .heartbeat:
+                case .heartrate:
                     lineSum += event.heartRate
                 case .elevation:
                     lineSum += event.altitude
@@ -168,16 +168,16 @@ extension WorkoutViewController {
                     barSum += event.speed
                 case .distance:
                     barSum += event.distanceTraveled
-                case .heartbeat:
+                case .heartrate:
                     barSum += event.heartRate
                 case .elevation:
                     barSum += event.altitude
                 }
             }
-            let barAvg = barSum/Double(events.count)
-            let lineAvg = lineSum/Double(events.count)
-            barEntries.append(BarChartDataEntry(x: Double(index), y: barAvg))
-            lineEntries.append(ChartDataEntry(x: Double(index), y: lineAvg))
+            let lineNum = lineWorkoutData.value(valueSums: lineSum, count: events.count)
+            let barNum = barWorkoutData.value(valueSums: barSum, count: events.count)
+            barEntries.append(BarChartDataEntry(x: Double(index), y: barNum))
+            lineEntries.append(ChartDataEntry(x: Double(index), y: lineNum))
             index += 1
         }
         let barDataSet = BarChartDataSet(values: barEntries, label: barWorkoutData.title)
@@ -204,16 +204,7 @@ extension WorkoutViewController {
     
     func yAxis(value: Double, isLeft: Bool) -> String? {
         let data = isLeft ? barWorkoutData : lineWorkoutData
-        switch data {
-        case .speed:
-            return Utils.distanceRateString(unitsPerHour: Utils.unitsPerHour(metersPerSecond: value))
-        case .distance:
-            return Utils.distanceString(meters: value)
-        case .heartbeat:
-            return "\(Int(value)) bmp"
-        case .elevation:
-            return Utils.distanceString(meters: value)
-        }
+        return data.string(value: value)
     }
     
 }
