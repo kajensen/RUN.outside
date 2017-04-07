@@ -23,6 +23,7 @@ class Settings: NSObject {
         static let SpeedRateFast = "SpeedRateFast"
         static let theme = "theme"
         static let hasAgreedToTerms = "hasAgreedToTerms"
+        static let hasOnboarded = "hasOnboarded"
         static let iapSubscriptionExpiration = "iA"
         static let iapLifetime = "iB"
     }
@@ -129,6 +130,16 @@ class Settings: NSObject {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.hasAgreedToTerms)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    class var hasOnboarded: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: Keys.hasOnboarded)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.hasOnboarded)
             UserDefaults.standard.synchronize()
         }
     }

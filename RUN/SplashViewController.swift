@@ -7,56 +7,35 @@
 //
 
 import UIKit
-import AVFoundation
+import CoreLocation
 
 class SplashViewController: UIViewController {
     
-    @IBOutlet weak var videoView: UIView!
-    
-    var player: AVPlayer?
-    let avPlayerLayer = AVPlayerLayer()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        showVideo()
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SplashViewController.viewTapped(_:)))
-        videoView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    func viewTapped(_ tapGesture: UITapGestureRecognizer) {
-        switch (tapGesture.state) {
-        case .ended:
-            showMap()
-            break
-        default:
-            break
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !Settings.hasOnboarded {
+            toOnboarding()
+        } else if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            promptLocation()
+        } else {
+            toMain()
         }
     }
-
-    override func viewDidLayoutSubviews() {
-        avPlayerLayer.frame = videoView.bounds
-        super.viewDidLayoutSubviews()
-    }
     
-    func showVideo() {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-        guard let videoURL = Bundle.main.url(forResource: "hero", withExtension: "mp4") else { return }
-        let asset = AVAsset(url: videoURL)
-        let playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-        videoView.layer.addSublayer(avPlayerLayer)
-        avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        avPlayerLayer.player = player
-        NotificationCenter.default.addObserver(self, selector: #selector(SplashViewController.showMap), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        player?.play()
-    }
-
-    func showMap() {
-        guard presentedViewController == nil else { return }
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.storyboardId) as? MapViewController else {
-            return
-        }
+    func toOnboarding() {
+        guard let vc = UIStoryboard(name: "Onboarding", bundle: nil).instantiateInitialViewController() else { return }
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
     }
+    
+    func toMain() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.storyboardId) else { return }
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func promptLocation() {
+        showAlert(title: "Location Permissions", message: "You haven't granted (or disabled) RUN to use your location. Please go to the settings app and allow location use.")
+    }
+    
 }

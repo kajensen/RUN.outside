@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="JUz-GC-SCt" customClass="OnboardingSplashCollectionViewCell" customModule="RUN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1I-Xz-s41">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0W-cw-p73">
+                                <rect key="frame" x="0.0" y="0.0" width="321" height="568"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn2-Ce-s6j">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="fn2-Ce-s6j" firstAttribute="centerY" secondItem="V1I-Xz-s41" secondAttribute="centerY" id="Do8-n4-YxD"/>
+                            <constraint firstItem="C0W-cw-p73" firstAttribute="centerX" secondItem="fn2-Ce-s6j" secondAttribute="centerX" id="Ked-UB-uy1"/>
+                            <constraint firstItem="C0W-cw-p73" firstAttribute="bottom" secondItem="fn2-Ce-s6j" secondAttribute="bottom" id="dGi-YP-LKk"/>
+                            <constraint firstItem="C0W-cw-p73" firstAttribute="top" secondItem="fn2-Ce-s6j" secondAttribute="top" id="dj9-Bl-XgW"/>
+                            <constraint firstItem="fn2-Ce-s6j" firstAttribute="centerX" secondItem="V1I-Xz-s41" secondAttribute="centerX" id="eUa-T9-lgg"/>
+                            <constraint firstItem="fn2-Ce-s6j" firstAttribute="leading" secondItem="V1I-Xz-s41" secondAttribute="leading" id="f3i-tc-0nO"/>
+                            <constraint firstItem="C0W-cw-p73" firstAttribute="leading" secondItem="fn2-Ce-s6j" secondAttribute="leading" id="rxI-wh-6Ux"/>
+                            <constraint firstItem="fn2-Ce-s6j" firstAttribute="top" secondItem="V1I-Xz-s41" secondAttribute="top" id="tzE-bz-7FG"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssm-ZO-KLF">
+                        <rect key="frame" x="125.5" y="447" width="69" height="41"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <state key="normal" title="BEGIN">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="beginTapped:" destination="JUz-GC-SCt" eventType="touchUpInside" id="sCN-Z7-PU1"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO RUN.outsi.de" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSZ-si-u5Q">
+                        <rect key="frame" x="15" y="211.5" width="290" height="105.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="44"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="XSZ-si-u5Q" firstAttribute="leading" secondItem="JUz-GC-SCt" secondAttribute="leading" constant="15" id="2Ug-dU-Ord"/>
+                <constraint firstAttribute="bottom" secondItem="ssm-ZO-KLF" secondAttribute="bottom" constant="80" id="9oZ-uA-xjX"/>
+                <constraint firstItem="V1I-Xz-s41" firstAttribute="top" secondItem="JUz-GC-SCt" secondAttribute="top" id="BP1-aB-wC6"/>
+                <constraint firstItem="V1I-Xz-s41" firstAttribute="leading" secondItem="JUz-GC-SCt" secondAttribute="leading" id="EWd-oK-t2n"/>
+                <constraint firstAttribute="bottom" secondItem="V1I-Xz-s41" secondAttribute="bottom" id="Rqz-Nu-t1f"/>
+                <constraint firstItem="XSZ-si-u5Q" firstAttribute="centerY" secondItem="JUz-GC-SCt" secondAttribute="centerY" constant="-20" id="VwR-Tt-os3"/>
+                <constraint firstAttribute="trailing" secondItem="V1I-Xz-s41" secondAttribute="trailing" id="nrF-ey-57f"/>
+                <constraint firstItem="ssm-ZO-KLF" firstAttribute="centerX" secondItem="JUz-GC-SCt" secondAttribute="centerX" id="sdX-gT-umW"/>
+                <constraint firstItem="XSZ-si-u5Q" firstAttribute="centerX" secondItem="JUz-GC-SCt" secondAttribute="centerX" id="xNG-7l-Ida"/>
+            </constraints>
+            <connections>
+                <outlet property="contentHolderView" destination="V1I-Xz-s41" id="gYQ-IU-47V"/>
+                <outlet property="titleLabel" destination="XSZ-si-u5Q" id="e5B-u5-psl"/>
+                <outlet property="videoView" destination="C0W-cw-p73" id="3TN-FU-nGV"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

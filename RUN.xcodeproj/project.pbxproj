@@ -64,6 +64,13 @@
 		45E3B15C1E9552FC007F8805 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B15B1E9552FC007F8805 /* Weather.swift */; };
 		45E3B15F1E955469007F8805 /* owfont-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B15E1E955469007F8805 /* owfont-regular.otf */; };
 		45E3B1611E9561EA007F8805 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1601E9561EA007F8805 /* FloatingButton.swift */; };
+		45E3B1671E97E6D5007F8805 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B1661E97E6D5007F8805 /* Onboarding.storyboard */; };
+		45E3B16A1E97E6F3007F8805 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1691E97E6F3007F8805 /* OnboardingViewController.swift */; };
+		45E3B16E1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B16C1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.swift */; };
+		45E3B16F1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E3B16D1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.xib */; };
+		45E3B1781E97EB60007F8805 /* RUNShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1711E97EB60007F8805 /* RUNShimmeringView.swift */; };
+		45E3B1791E97EB60007F8805 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1751E97EB60007F8805 /* FBShimmeringLayer.m */; };
+		45E3B17A1E97EB60007F8805 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1771E97EB60007F8805 /* FBShimmeringView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +133,17 @@
 		45E3B15B1E9552FC007F8805 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		45E3B15E1E955469007F8805 /* owfont-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "owfont-regular.otf"; sourceTree = "<group>"; };
 		45E3B1601E9561EA007F8805 /* FloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		45E3B1661E97E6D5007F8805 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		45E3B1691E97E6F3007F8805 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		45E3B16C1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSplashCollectionViewCell.swift; sourceTree = "<group>"; };
+		45E3B16D1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingSplashCollectionViewCell.xib; sourceTree = "<group>"; };
+		45E3B1711E97EB60007F8805 /* RUNShimmeringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RUNShimmeringView.swift; sourceTree = "<group>"; };
+		45E3B1731E97EB60007F8805 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		45E3B1741E97EB60007F8805 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		45E3B1751E97EB60007F8805 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		45E3B1761E97EB60007F8805 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		45E3B1771E97EB60007F8805 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
+		45E3B17B1E97EB97007F8805 /* RUN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUN-Bridging-Header.h"; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
 		4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.debug.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +251,7 @@
 				456291821E89A5BF007A609D /* Settings.swift */,
 				45C411C11E8B50A6005A2FFB /* Style.swift */,
 				456291841E89A606007A609D /* Util.swift */,
+				45E3B17B1E97EB97007F8805 /* RUN-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				455FF2DB1E847438000C88A9 /* Main.storyboard */,
+				45E3B1661E97E6D5007F8805 /* Onboarding.storyboard */,
 				455FF2E01E847438000C88A9 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -249,14 +269,9 @@
 		455FF2EE1E847F64000C88A9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				455FF2D91E847438000C88A9 /* MapViewController.swift */,
-				45E3B1351E945E25007F8805 /* WorkoutsNavigationViewController.swift */,
-				45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */,
-				45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */,
-				45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */,
-				45E3B13B1E946D75007F8805 /* DataViewController.swift */,
-				454A15CE1E8C8E200098FB1E /* Select */,
 				453B434B1E8DA97B0005F8DA /* SplashViewController.swift */,
+				45E3B16B1E97E6F6007F8805 /* Onboarding */,
+				45E3B1681E97E6E5007F8805 /* Main */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -278,6 +293,7 @@
 				45C411C01E8B5085005A2FFB /* CustomizationTableViewCell */,
 				45C411AF1E8B08AA005A2FFB /* WorkoutTableViewCell */,
 				45E3B1441E9480C8007F8805 /* WorkoutLapTableViewCell */,
+				45E3B1701E97EA5B007F8805 /* OnboardingSplashCollectionViewCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -335,6 +351,8 @@
 		45E3B13D1E947ADA007F8805 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				45E3B1711E97EB60007F8805 /* RUNShimmeringView.swift */,
+				45E3B1721E97EB60007F8805 /* FBShimmering */,
 				455FF2EF1E848F73000C88A9 /* BGView.swift */,
 				45C411B21E8B3DFA005A2FFB /* RoundedView.swift */,
 				45E3B1601E9561EA007F8805 /* FloatingButton.swift */,
@@ -361,6 +379,49 @@
 				45E3B15B1E9552FC007F8805 /* Weather.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		45E3B1681E97E6E5007F8805 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				455FF2D91E847438000C88A9 /* MapViewController.swift */,
+				45E3B1351E945E25007F8805 /* WorkoutsNavigationViewController.swift */,
+				45C8D7D81E85DF6E003DB276 /* WorkoutsViewController.swift */,
+				45C8D7EA1E875063003DB276 /* WorkoutViewController.swift */,
+				45C8D7EC1E8755DB003DB276 /* SettingsViewController.swift */,
+				45E3B13B1E946D75007F8805 /* DataViewController.swift */,
+				454A15CE1E8C8E200098FB1E /* Select */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		45E3B16B1E97E6F6007F8805 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				45E3B1691E97E6F3007F8805 /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		45E3B1701E97EA5B007F8805 /* OnboardingSplashCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				45E3B16C1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.swift */,
+				45E3B16D1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.xib */,
+			);
+			name = OnboardingSplashCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		45E3B1721E97EB60007F8805 /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				45E3B1731E97EB60007F8805 /* FBShimmering.h */,
+				45E3B1741E97EB60007F8805 /* FBShimmeringLayer.h */,
+				45E3B1751E97EB60007F8805 /* FBShimmeringLayer.m */,
+				45E3B1761E97EB60007F8805 /* FBShimmeringView.h */,
+				45E3B1771E97EB60007F8805 /* FBShimmeringView.m */,
+			);
+			path = FBShimmering;
 			sourceTree = "<group>";
 		};
 		9B955E0F10076A2221F22E82 /* Pods */ = {
@@ -452,6 +513,7 @@
 			files = (
 				455783391E8DAD5B000B177A /* hero.mp4 in Resources */,
 				45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */,
+				45E3B16F1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.xib in Resources */,
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
 				45E3B1581E954D44007F8805 /* owfont-regular.ttf in Resources */,
 				45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */,
@@ -460,6 +522,7 @@
 				45C411BC1E8B507A005A2FFB /* ActionTableViewCell.xib in Resources */,
 				455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */,
 				453B43441E8CD15D0005F8DA /* silence.m4a in Resources */,
+				45E3B1671E97E6D5007F8805 /* Onboarding.storyboard in Resources */,
 				45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */,
 				45C411BE1E8B507A005A2FFB /* CustomizationTableViewCell.xib in Resources */,
 				45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */,
@@ -545,6 +608,7 @@
 				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
 				4530F6BC1E8EB3F900906393 /* WorkoutDataSpan.swift in Sources */,
 				4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */,
+				45E3B1781E97EB60007F8805 /* RUNShimmeringView.swift in Sources */,
 				45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */,
 				454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */,
 				453B434A1E8D85610005F8DA /* WorkoutLap.swift in Sources */,
@@ -552,18 +616,22 @@
 				45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */,
 				455FF2F01E848F73000C88A9 /* BGView.swift in Sources */,
 				45C411B11E8B329C005A2FFB /* API.swift in Sources */,
+				45E3B16E1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.swift in Sources */,
 				455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */,
 				45C411B31E8B3DFA005A2FFB /* RoundedView.swift in Sources */,
 				453B43461E8D59010005F8DA /* SelectSpeedScaleViewController.swift in Sources */,
 				456291851E89A606007A609D /* Util.swift in Sources */,
 				45C411BD1E8B507A005A2FFB /* CustomizationTableViewCell.swift in Sources */,
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
+				45E3B17A1E97EB60007F8805 /* FBShimmeringView.m in Sources */,
+				45E3B1791E97EB60007F8805 /* FBShimmeringLayer.m in Sources */,
 				45E3B1421E9480C5007F8805 /* WorkoutLapTableViewCell.swift in Sources */,
 				453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */,
 				45E3B13C1E946D75007F8805 /* DataViewController.swift in Sources */,
 				45C411B51E8B420A005A2FFB /* RoundedButton.swift in Sources */,
 				45E3B13A1E946607007F8805 /* WorkoutDataButton.swift in Sources */,
 				45E3B13F1E947AE9007F8805 /* WorkoutDataSpanButton.swift in Sources */,
+				45E3B16A1E97E6F3007F8805 /* OnboardingViewController.swift in Sources */,
 				45E3B1381E94614C007F8805 /* RUNPanGestureRecognizer.swift in Sources */,
 				4530F6BE1E8EB60300906393 /* WorkoutData.swift in Sources */,
 				45E3B1611E9561EA007F8805 /* FloatingButton.swift in Sources */,
@@ -704,6 +772,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.RUN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RUN/RUN-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -720,6 +789,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.RUN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RUN/RUN-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
