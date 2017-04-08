@@ -59,6 +59,7 @@ class MapViewController: UIViewController {
     }()
     
     var polyline: GMSPolyline?
+    var markers: [GMSMarker] = []
     var lastWeatherUpdate: Date?
 
     var state: State = .none {
@@ -266,6 +267,7 @@ class MapViewController: UIViewController {
     
     func resetMap(_ center: Bool) {
         mapView.clear()
+        markers.removeAll()
         if center {
             centerMapOnUserLocation()
         }
@@ -336,7 +338,7 @@ extension MapViewController: WorkoutManagerDelegate {
     func workoutManagerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance) {
         let distanceString = Utils.longDistanceString(meters: distanceTraveled).components(separatedBy: " ")
         distanceLabel.text = distanceString.first
-        distanceUnitsLabel.text = distanceString.last?.uppercased()
+        distanceUnitsLabel.text = Utils.longDistanceUnitString().uppercased()
     }
     
     func workoutManagerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation) {
@@ -493,6 +495,7 @@ extension MapViewController: WorkoutsViewControllerDelegate {
             marker.snippet = lap.infoString
             marker.iconView?.backgroundColor = Settings.theme.primaryTextColor
             marker.map = mapView
+            markers.append(marker)
         }
     }
     
@@ -505,6 +508,7 @@ extension MapViewController: WorkoutsViewControllerDelegate {
                 marker.title = "End"
                 marker.iconView?.backgroundColor = Settings.theme.redColor
                 marker.map = mapView
+                markers.append(marker)
             }
         case .resume, .start:
             let path = GMSMutablePath()
@@ -519,6 +523,7 @@ extension MapViewController: WorkoutsViewControllerDelegate {
                 marker.title = "Start"
                 marker.iconView?.backgroundColor = Settings.theme.greenColor
                 marker.map = mapView
+                markers.append(marker)
             }
         case .locationUpdate:
             let mutablePath: GMSMutablePath
@@ -637,8 +642,19 @@ extension MapViewController: SettingsViewControllerDelegate {
 }
 
 extension MapViewController: GMSMapViewDelegate {
+
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        for marker in markers {
+            marker.tracksViewChanges = false
+        }
+    }
     
-    // TODO
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        for marker in markers {
+            marker.tracksViewChanges = true
+        }
+    }
+    
 }
 
 extension MapViewController: UIGestureRecognizerDelegate {

@@ -226,10 +226,10 @@ extension WorkoutsViewController: DataViewDataSource {
             days.append(date)
         }
         for workout in workouts {
-            if let date = workout.startDate?.dateWithoutTime() {
-                if var workouts = dayWorkouts[date] {
+            if let date = workout.startDate, let normalizedDate = workoutDataSpan.normalizedDate(date: date) {
+                if var workouts = dayWorkouts[normalizedDate] {
                     workouts.append(workout)
-                    dayWorkouts[date] = workouts
+                    dayWorkouts[normalizedDate] = workouts
                 }
             }
         }
@@ -238,34 +238,34 @@ extension WorkoutsViewController: DataViewDataSource {
         var index = 0
         for date in days {
             let workouts = dayWorkouts[date] ?? []
-            var barSum: Double = 0
-            var lineSum: Double = 0
+            var barValues: [Double] = []
+            var lineValues: [Double] = []
             for workout in workouts {
                 switch lineWorkoutData {
                 case .speed:
-                    lineSum += workout.totalDistance/workout.totalTimeActive
+                    lineValues.append(workout.speed)
                 case .distance:
-                    lineSum += workout.totalDistance
+                    lineValues.append(workout.totalDistance)
                 case .elevation:
-                    lineSum += workout.totalPositiveAltitude
+                    lineValues.append(workout.totalPositiveAltitude)
                 default:
                     break
                 }
                 switch barWorkoutData {
                 case .speed:
-                    barSum += workout.totalDistance/workout.totalTimeActive
+                    barValues.append(workout.speed)
                 case .distance:
-                    barSum += workout.totalDistance
+                    barValues.append(workout.totalDistance)
                 case .elevation:
-                    barSum += workout.totalPositiveAltitude
+                    barValues.append(workout.totalPositiveAltitude)
                 default:
                     break
                 }
             }
-            let lineNum = lineWorkoutData.value(valueSums: lineSum, count: workouts.count)
-            let barNum = barWorkoutData.value(valueSums: barSum, count: workouts.count)
-            barEntries.append(BarChartDataEntry(x: Double(index), y: barNum))
-            lineEntries.append(ChartDataEntry(x: Double(index), y: lineNum))
+            let lineValue = lineWorkoutData.value(values: lineValues)
+            let barValue = barWorkoutData.value(values: barValues)
+            barEntries.append(BarChartDataEntry(x: Double(index), y: barValue))
+            lineEntries.append(ChartDataEntry(x: Double(index), y: lineValue))
             index += 1
         }
         let barDataSet = BarChartDataSet(values: barEntries, label: barWorkoutData.title)

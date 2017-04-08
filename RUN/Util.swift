@@ -94,7 +94,7 @@ class Utils {
     
     class func shortDistanceString(meters: Double) -> String {
         let unit: LengthFormatter.Unit = Settings.isMetricDistanceUnits ? .meter : .foot
-        let distanceInLocale = meters/shortDistanceForLocale
+        let distanceInLocale = meters*shortDistanceForLocale
         return distanceFormatter.string(fromValue: distanceInLocale, unit: unit)
     }
     
@@ -102,6 +102,10 @@ class Utils {
         let unit: LengthFormatter.Unit = Settings.isMetricDistanceUnits ? .kilometer : .mile
         let distanceInLocale = meters/longDistanceForLocale
         return distanceFormatter.string(fromValue: distanceInLocale, unit: unit)
+    }
+    
+    class func longDistanceUnitString() -> String {
+        return Settings.isMetricDistanceUnits ? "kilometers" : "miles"
     }
     
     class func distanceRateString(unitsPerHour: Double) -> String {

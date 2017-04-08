@@ -38,15 +38,35 @@ enum WorkoutData: Int {
         }
     }
     
-    func value(valueSums: Double, count: Int) -> Double {
+    func value(values: [Double]) -> Double {
+        guard values.count > 0 else {
+            return 0
+        }
+        var valueSum: Double = 0
+        for value in values {
+            valueSum += value
+        }
         let value: Double
         switch self {
-        case .speed, .heartrate:
-            value = valueSums/Double(count)
-        case .distance, .elevation:
-            value = valueSums
+        case .speed, .heartrate, .elevation:
+            value = valueSum/Double(values.count)
+        case .distance:
+            value = valueSum
         }
         return value.isNaN ? 0 : value
+    }
+    
+    func value(_ event: WorkoutEvent, previousEvent: WorkoutEvent?) -> Double {
+        switch self {
+        case .speed:
+            return event.speed
+        case .distance:
+            return event.distanceTraveled
+        case .heartrate:
+            return event.heartRate
+        case .elevation:
+            return event.altitude
+        }
     }
 
 }

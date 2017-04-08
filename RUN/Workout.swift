@@ -33,6 +33,10 @@ class Workout: Object {
         return ["lastActiveDate"]
     }
     
+    var speed: Double {
+        return totalDistance/totalTimeActive
+    }
+    
     var currentTimeActive: TimeInterval {
         var currentTimeElapsed = totalTimeActive
         if let lastActiveDate = lastActiveDate, lastActiveDate.timeIntervalSinceNow < 0 {

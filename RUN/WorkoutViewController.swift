@@ -18,12 +18,11 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     
     static let storyboardId = "WorkoutViewController"
     
-    internal var intervals: [TimeInterval: [WorkoutEvent]] = [:]
     var barDataSets: [BarChartDataSet]?
     var lineDataSet: LineChartDataSet?
     
     var lineWorkoutData: WorkoutData = .speed
-    var barWorkoutData: WorkoutData = .distance
+    var barWorkoutData: WorkoutData = .elevation
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topView: UIView!
@@ -37,8 +36,6 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     var workoutDataButtons: [WorkoutDataButton] {
         return workoutDataButtonStackView.arrangedSubviews as! [WorkoutDataButton]
     }
-    
-    var interval: TimeInterval = 15
     
     weak var delegate: WorkoutViewControllerDelegate?
     var workout: Workout?
@@ -123,70 +120,39 @@ extension WorkoutViewController {
     
     func reloadData() {
         guard let workout = workout, !workout.isInvalidated else { return }
-        intervals.removeAll()
         loadData(workout)
         dataView.reloadData()
     }
 
     func loadData(_ workout: Workout) {
-        var interval = nearest15Seconds(i: workout.startDate!.timeIntervalSince1970)
-        let endInterval = nearest15Seconds(i: workout.endDate!.timeIntervalSince1970)
-        while interval <= endInterval {
-            intervals[interval] = []
-            interval += 15
-        }
-        for lap in workout.laps {
-            for event in lap.events {
-                if event.workoutEventType == .locationUpdate {
-                    let interval = nearest15Seconds(i: event.timestamp.timeIntervalSince1970)
-                    if var events = intervals[interval] {
-                        events.append(event)
-                        intervals[interval] = events
-                    }
-                }
-            }
-        }
+        guard let startDate = workout.startDate else { return }
         var barEntries: [BarChartDataEntry] = []
         var lineEntries: [ChartDataEntry] = []
-        var index = 0
-        var lastEvent: WorkoutEvent?
-        for (_, events) in intervals {
-            var barSum: Double = 0
-            var lineSum: Double = 0
-            for event in events {
-                switch lineWorkoutData {
-                case .speed:
-                    lineSum += event.speed
-                case .distance:
-                    lineSum += event.distanceTraveled
-                case .heartrate:
-                    lineSum += event.heartRate
-                case .elevation:
-                    if let lastEvent = lastEvent {
-                        barSum += event.altitudeDifference(to: lastEvent).net
-                    }
-                }
-                switch barWorkoutData {
-                case .speed:
-                    barSum += event.speed
-                case .distance:
-                    barSum += event.distanceTraveled
-                case .heartrate:
-                    barSum += event.heartRate
-                case .elevation:
-                    if let lastEvent = lastEvent {
-                        barSum += event.altitudeDifference(to: lastEvent).net
-                    }
-                }
-                lastEvent = event
-                if event.workoutEventType == .
+        var previousEvent: WorkoutEvent?
+        
+        var intervals: [Int: WorkoutDataInterval] = [:]
+        let interval = 15
+        for lap in workout.laps {
+            for event in lap.events {
+                let index = (Int(event.timestamp.timeIntervalSince(startDate))/interval)*interval
+                let lineValue = lineWorkoutData.value(event, previousEvent: previousEvent)
+                let barValue = barWorkoutData.value(event, previousEvent: previousEvent)
+                var interval = intervals[index] ?? WorkoutDataInterval()
+                interval.barValues.append(barValue)
+                interval.lineValues.append(lineValue)
+                intervals[index] = interval
+                previousEvent = event
             }
-            let lineNum = lineWorkoutData.value(valueSums: lineSum, count: events.count)
-            let barNum = barWorkoutData.value(valueSums: barSum, count: events.count)
-            barEntries.append(BarChartDataEntry(x: Double(index), y: barNum))
-            lineEntries.append(ChartDataEntry(x: Double(index), y: lineNum))
-            index += 1
         }
+        
+        for index in intervals.keys.sorted() {
+            if let interval = intervals[index] {
+                let barValue = barWorkoutData.value(values: interval.barValues)
+                barEntries.append(BarChartDataEntry(x: Double(index), y: barValue))
+                lineEntries.append(ChartDataEntry(x: Double(index), y: interval.lineValue))
+            }
+        }
+
         let barDataSet = BarChartDataSet(values: barEntries, label: barWorkoutData.title)
         barDataSet.colors = [Settings.theme.alternateTextColor]
         barDataSet.axisDependency = .left
@@ -196,17 +162,38 @@ extension WorkoutViewController {
         self.lineDataSet = lineDataSet
         self.barDataSets = [barDataSet]
     }
- 
-    func nearest15Seconds(i: TimeInterval) -> TimeInterval {
-        return interval * TimeInterval(Darwin.round(i / interval))
-    }
     
+}
+
+struct WorkoutDataInterval {
+    var barValues: [Double] = []
+    var lineValues: [Double] = []
+    var barValue: Double {
+        guard barValues.count > 0 else {
+            return 0
+        }
+        var barValue: Double = 0
+        for value in barValues {
+            barValue += value
+        }
+        return barValue/Double(barValues.count)
+    }
+    var lineValue: Double {
+        guard lineValues.count > 0 else {
+            return 0
+        }
+        var lineValue: Double = 0
+        for value in lineValues {
+            lineValue += value
+        }
+        return lineValue/Double(lineValues.count)
+    }
 }
 
 extension WorkoutViewController {
     
     func xAxis(value: Double) -> String? {
-        return TimeInterval(value*15).formatted(false)
+        return TimeInterval(value).formatted(false)
     }
     
     func yAxis(value: Double, isLeft: Bool) -> String? {

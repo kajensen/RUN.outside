@@ -11,9 +11,9 @@ import UIKit
 enum WorkoutDataSpan: Int {
     case week, month, year
     
-    func date(componentValue: Int) -> Date? {
+    func normalizedDate(date: Date, added componentValue: Int = 0) -> Date? {
         let calendar = Calendar.current
-        var components = calendar.dateComponents(calendarUnits, from: Date())
+        var components = calendar.dateComponents(calendarUnits, from: date)
         switch self {
         case .week:
             if let day = components.day {
@@ -56,7 +56,7 @@ enum WorkoutDataSpan: Int {
     var dates: [Date] {
         var dates: [Date] = []
         for i in -value...0 {
-            if let date = date(componentValue: i) {
+            if let date = normalizedDate(date: Date(), added: i) {
                 dates.append(date)
             }
         }
