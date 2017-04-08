@@ -13,6 +13,7 @@
 		4508DD931E986102008B2536 /* OnboardingInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4508DD911E986102008B2536 /* OnboardingInfoCollectionViewCell.xib */; };
 		4508DD961E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508DD941E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift */; };
 		4508DD971E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4508DD951E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib */; };
+		4508DD9B1E9948C8008B2536 /* FootMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508DD9A1E9948C8008B2536 /* FootMarker.swift */; };
 		4512555B1E9825A9000ED6D3 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4512555A1E9825A9000ED6D3 /* HealthKit.framework */; };
 		4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6B91E8EB38C00906393 /* DataView.swift */; };
 		4530F6BC1E8EB3F900906393 /* WorkoutDataSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6BB1E8EB3F900906393 /* WorkoutDataSpan.swift */; };
@@ -90,6 +91,7 @@
 		4508DD911E986102008B2536 /* OnboardingInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		4508DD941E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPermissionCollectionViewCell.swift; sourceTree = "<group>"; };
 		4508DD951E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingPermissionCollectionViewCell.xib; sourceTree = "<group>"; };
+		4508DD9A1E9948C8008B2536 /* FootMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FootMarker.swift; sourceTree = "<group>"; };
 		451255581E9825A4000ED6D3 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		4512555A1E9825A9000ED6D3 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4530F6B91E8EB38C00906393 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
@@ -241,16 +243,6 @@
 				4530F6BD1E8EB60300906393 /* WorkoutData.swift */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		4530F6C01E8EB65300906393 /* Workout */ = {
-			isa = PBXGroup;
-			children = (
-				45C8D7DA1E85F905003DB276 /* Workout.swift */,
-				453B43491E8D85610005F8DA /* WorkoutLap.swift */,
-				45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */,
-			);
-			name = Workout;
 			sourceTree = "<group>";
 		};
 		454A15CE1E8C8E200098FB1E /* Select */ = {
@@ -422,6 +414,7 @@
 				45C411B41E8B420A005A2FFB /* RoundedButton.swift */,
 				45E3B1391E946607007F8805 /* WorkoutDataButton.swift */,
 				45E3B13E1E947AE9007F8805 /* WorkoutDataSpanButton.swift */,
+				4508DD9A1E9948C8008B2536 /* FootMarker.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -491,7 +484,9 @@
 		45EB54FC1E98483800DF10D7 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				4530F6C01E8EB65300906393 /* Workout */,
+				45C8D7DA1E85F905003DB276 /* Workout.swift */,
+				453B43491E8D85610005F8DA /* WorkoutLap.swift */,
+				45C8D7DE1E85FB60003DB276 /* WorkoutEvent.swift */,
 				45EB54FD1E98484800DF10D7 /* Session.swift */,
 				4508DD8D1E9850C2008B2536 /* MapMyRunUser.swift */,
 			);
@@ -693,6 +688,7 @@
 				45C8D7DD1E85F911003DB276 /* WorkoutManager.swift in Sources */,
 				4530F6BC1E8EB3F900906393 /* WorkoutDataSpan.swift in Sources */,
 				4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */,
+				4508DD9B1E9948C8008B2536 /* FootMarker.swift in Sources */,
 				45E3B1781E97EB60007F8805 /* RUNShimmeringView.swift in Sources */,
 				45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */,
 				4508DD921E986102008B2536 /* OnboardingInfoCollectionViewCell.swift in Sources */,

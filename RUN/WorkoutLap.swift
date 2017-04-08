@@ -24,6 +24,13 @@ class WorkoutLap: Object {
         return ["lastActiveDate"]
     }
     
+    var infoString: String {
+        let time = TimeInterval(totalTimeActive).formatted()
+        let distance = Utils.longDistanceString(meters: totalDistance)
+        let elevation = "\(Utils.shortDistanceString(meters: netAltitude)) (+\(Utils.shortDistanceString(meters: totalPositiveAltitude)))"
+        return "\(time) • \(distance) • \(elevation)"
+    }
+    
     var currentTimeActive: TimeInterval {
         var currentTimeElapsed = totalTimeActive
         if let lastActiveDate = lastActiveDate, lastActiveDate.timeIntervalSinceNow < 0 {
@@ -32,10 +39,10 @@ class WorkoutLap: Object {
         return currentTimeElapsed
     }
     
-    convenience init(startDate: Date, location: CLLocation) {
+    convenience init(startDate: Date, location: CLLocation, type: WorkoutEvent.WorkoutEventType) {
         self.init()
         self.startDate = startDate
-        addEvent(location, type: .resume)
+        addEvent(location, type: type)
     }
     
     func end() {
@@ -56,10 +63,10 @@ class WorkoutLap: Object {
         case .locationUpdate:
             totalTimeActive = currentTimeActive
             lastActiveDate = Date()
-        case .pause:
+        case .pause, .end:
             totalTimeActive = currentTimeActive
             lastActiveDate = nil
-        case .resume:
+        case .resume, .start:
             lastActiveDate = Date()
         }
     }

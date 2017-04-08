@@ -149,6 +149,7 @@ extension WorkoutViewController {
         var barEntries: [BarChartDataEntry] = []
         var lineEntries: [ChartDataEntry] = []
         var index = 0
+        var lastEvent: WorkoutEvent?
         for (_, events) in intervals {
             var barSum: Double = 0
             var lineSum: Double = 0
@@ -161,7 +162,9 @@ extension WorkoutViewController {
                 case .heartrate:
                     lineSum += event.heartRate
                 case .elevation:
-                    lineSum += event.altitude
+                    if let lastEvent = lastEvent {
+                        barSum += event.altitudeDifference(to: lastEvent).net
+                    }
                 }
                 switch barWorkoutData {
                 case .speed:
@@ -171,8 +174,12 @@ extension WorkoutViewController {
                 case .heartrate:
                     barSum += event.heartRate
                 case .elevation:
-                    barSum += event.altitude
+                    if let lastEvent = lastEvent {
+                        barSum += event.altitudeDifference(to: lastEvent).net
+                    }
                 }
+                lastEvent = event
+                if event.workoutEventType == .
             }
             let lineNum = lineWorkoutData.value(valueSums: lineSum, count: events.count)
             let barNum = barWorkoutData.value(valueSums: barSum, count: events.count)

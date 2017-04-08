@@ -55,7 +55,7 @@ enum WorkoutDataSpan: Int {
     
     var dates: [Date] {
         var dates: [Date] = []
-        for i in -value..<0 {
+        for i in -value...0 {
             if let date = date(componentValue: i) {
                 dates.append(date)
             }

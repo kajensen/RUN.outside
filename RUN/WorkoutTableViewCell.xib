@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88W-6m-Zpt">
-                                <rect key="frame" x="254" y="4" width="42" height="21"/>
+                                <rect key="frame" x="254" y="8" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72a-DM-ui6">
-                                <rect key="frame" x="258" y="29" width="37.5" height="18"/>
+                                <rect key="frame" x="258" y="33" width="37.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -59,10 +59,10 @@
                             <constraint firstItem="72a-DM-ui6" firstAttribute="trailing" secondItem="88W-6m-Zpt" secondAttribute="trailing" id="2eA-Cj-1Zb"/>
                             <constraint firstItem="w0V-Be-Ij4" firstAttribute="centerY" secondItem="zzs-QL-bRY" secondAttribute="centerY" id="5ul-5t-Y1p"/>
                             <constraint firstItem="w0V-Be-Ij4" firstAttribute="leading" secondItem="zzs-QL-bRY" secondAttribute="leading" constant="8" id="7Ct-AU-kcT"/>
-                            <constraint firstItem="88W-6m-Zpt" firstAttribute="top" secondItem="zzs-QL-bRY" secondAttribute="top" constant="4" id="Loa-JF-kJ7"/>
+                            <constraint firstItem="88W-6m-Zpt" firstAttribute="baseline" secondItem="zOR-Ww-tDq" secondAttribute="baseline" id="DI2-zP-ClZ"/>
+                            <constraint firstItem="72a-DM-ui6" firstAttribute="baseline" secondItem="nSx-On-Hmu" secondAttribute="baseline" id="GxD-9K-z2f"/>
                             <constraint firstItem="nSx-On-Hmu" firstAttribute="leading" secondItem="zOR-Ww-tDq" secondAttribute="leading" id="OFi-G1-hA2"/>
                             <constraint firstAttribute="trailing" secondItem="88W-6m-Zpt" secondAttribute="trailing" constant="8" id="OKb-KX-efl"/>
-                            <constraint firstItem="72a-DM-ui6" firstAttribute="top" secondItem="88W-6m-Zpt" secondAttribute="bottom" constant="4" id="YRP-pE-Dcy"/>
                             <constraint firstItem="zOR-Ww-tDq" firstAttribute="leading" secondItem="w0V-Be-Ij4" secondAttribute="trailing" constant="8" id="cy9-B7-bwX"/>
                             <constraint firstItem="w0V-Be-Ij4" firstAttribute="top" secondItem="zzs-QL-bRY" secondAttribute="top" constant="8" id="i4I-bH-fWF"/>
                             <constraint firstItem="nSx-On-Hmu" firstAttribute="top" secondItem="zOR-Ww-tDq" secondAttribute="bottom" constant="4" id="nXN-rn-Odw"/>

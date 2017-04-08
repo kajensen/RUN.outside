@@ -345,7 +345,7 @@
         <scene sceneID="GJZ-6E-bkG">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2oi-y3-HRa" customClass="WorkoutsNavigationViewController" customModule="RUN" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="I2m-Zd-MvE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2m-Zd-MvE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -544,7 +544,7 @@
         <scene sceneID="pxw-WG-EXE">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2Md-z5-Kja" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W2Z-s0-awh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W2Z-s0-awh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -861,7 +861,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbf-yf-aEN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="7ao-Zd-kPY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7ao-Zd-kPY">
                                         <rect key="frame" x="147" y="293" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="1rm-lR-KdM"/>
@@ -902,7 +902,7 @@
         <image name="altitude" width="16" height="16"/>
         <image name="distance" width="16" height="16"/>
         <image name="heartrate" width="21" height="21"/>
-        <image name="icon" width="1024" height="1024"/>
+        <image name="icon_transparent" width="67" height="85"/>
         <image name="running" width="2806" height="1510"/>
     </resources>
 </document>

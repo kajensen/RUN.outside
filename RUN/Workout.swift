@@ -60,14 +60,21 @@ class Workout: Object {
         lastActiveDate = Date()
     }
 
-    func newLap(location: CLLocation) -> (newEvent: WorkoutEvent, previousEvent: WorkoutEvent?) {
+    func newLap(location: CLLocation) -> (newEvent: WorkoutEvent, previousEvent: WorkoutEvent?, newLap: WorkoutLap, previousLap: WorkoutLap?) {
         currentLap?.end()
-        laps.append(WorkoutLap(startDate: Date(), location: location))
-        return addEvent(location, type: .resume)
+        let previousLap = currentLap
+        let newLap = WorkoutLap(startDate: Date(), location: location, type: previousLap == nil ? .start : .resume)
+        laps.append(newLap)
+        let eventUpdate = addEvent(location, type: .resume)
+        return (eventUpdate.newEvent, eventUpdate.previousEvent, newLap, previousLap)
     }
     
-    func end() {
+    func endLap() {
         currentLap?.end()
+    }
+    
+    func endWorkout(location: CLLocation) {
+        let _ = addEvent(location, type: .end)
         self.endDate = Date()
     }
     
@@ -85,10 +92,10 @@ class Workout: Object {
         case .locationUpdate:
             totalTimeActive = currentTimeActive
             lastActiveDate = Date()
-        case .pause:
+        case .pause, .end:
             totalTimeActive = currentTimeActive
             lastActiveDate = nil
-        case .resume:
+        case .resume, .start:
             lastActiveDate = Date()
         }
         return (newEvent, previousEvent)
@@ -134,7 +141,7 @@ extension UIImage {
                 let thumbPoint = point.convert(fromRect: mapRect, toRect: thumbRect)
                 if !thumbPoint.x.isNaN && !thumbPoint.y.isNaN {
                     switch event.workoutEventType {
-                    case .resume, .pause:
+                    case .resume, .pause, .start, .end:
                         context.move(to: thumbPoint)
                     case .locationUpdate:
                         context.addLine(to: thumbPoint)

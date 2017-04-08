@@ -14,6 +14,7 @@ import RealmSwift
 protocol WorkoutManagerDelegate: class {
     func workoutManagerDidMove(_ workoutManager: WorkoutManager, to location: CLLocation)
     func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from previousEvent: WorkoutEvent?, to newEvent: WorkoutEvent)
+    func workoutManagerDidStartNewLap(_ workoutManager: WorkoutManager, previousLap: WorkoutLap?, to newLap: WorkoutLap)
     func workoutManagerDidChangeTime(_ workoutManager: WorkoutManager, timeElapsed: TimeInterval)
     func workoutManagerDidChangeDistance(_ workoutManager: WorkoutManager, distanceTraveled: CLLocationDistance)
     func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState)
@@ -100,8 +101,10 @@ class WorkoutManager: NSObject {
         if nextLap > 0 && workout.totalDistance > nextLap {
             speechManager.speak("new lap")
             print("starting new lap")
+            workout.endLap()
             let update = workout.newLap(location: location)
             delegate?.workoutManagerDidUpdate(self, from: update.previousEvent, to: update.newEvent)
+            delegate?.workoutManagerDidStartNewLap(self, previousLap: update.previousLap, to: update.newLap)
             nextLap += Settings.lapDistance
         }
     }
@@ -194,10 +197,11 @@ class WorkoutManager: NSObject {
     }
     
     func end() -> Workout? {
+        guard let workout = workout, let location = locationManager.location else { return nil }
         speechManager.speak("end")
         state = .ended
-        let completedWorkout = self.workout
-        completedWorkout?.end()
+        let completedWorkout = workout
+        completedWorkout.endWorkout(location: location)
         reset()
         return completedWorkout
     }

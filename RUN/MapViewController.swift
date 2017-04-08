@@ -352,7 +352,7 @@ extension MapViewController: WorkoutManagerDelegate {
     }
     
     func workoutManagerDidUpdate(_ workoutManager: WorkoutManager, from previousEvent: WorkoutEvent?, to newEvent: WorkoutEvent) {
-        addEvent(newEvent)//, previousEvent: previousEvent)
+        addEvent(newEvent, previousEvent: previousEvent)
     }
     
     func workoutManagerDidChangeState(_ workoutManager: WorkoutManager, state: WorkoutManager.WorkoutState) {
@@ -447,6 +447,12 @@ extension MapViewController: WorkoutsViewControllerDelegate {
         showWorkout(workout)
     }
     
+    func workoutManagerDidStartNewLap(_ workoutManager: WorkoutManager, previousLap: WorkoutLap?, to newLap: WorkoutLap) {
+        if let previousLap = previousLap {
+            closeLap(previousLap)
+        }
+    }
+    
     func showWorkout(_ workout: Workout) {
         setupView(.past, animated: true)
         polyline = nil
@@ -455,9 +461,12 @@ extension MapViewController: WorkoutsViewControllerDelegate {
         var previousEvent: WorkoutEvent?
         for lap in workout.laps {
             for event in lap.events {
-                addEvent(event)//, previousEvent: previousEvent)
+                addEvent(event, previousEvent: previousEvent)
                 previousEvent = event
                 bounds = bounds.includingCoordinate(event.coordinate)
+            }
+            if lap != workout.laps.last {
+                closeLap(lap)
             }
         }
         let cameraUpdate = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(100, 20, 300, 20))
@@ -477,11 +486,27 @@ extension MapViewController: WorkoutsViewControllerDelegate {
         }
     }
     
-    func addEvent(_ event: WorkoutEvent) {
+    func closeLap(_ lap: WorkoutLap) {
+        if let event = lap.events.last {
+            let marker = FootMarker(position: event.coordinate)
+            marker.title = "Lap"
+            marker.snippet = lap.infoString
+            marker.iconView?.backgroundColor = Settings.theme.primaryTextColor
+            marker.map = mapView
+        }
+    }
+    
+    func addEvent(_ event: WorkoutEvent, previousEvent: WorkoutEvent?) {
         switch event.workoutEventType {
-        case .pause:
+        case .pause, .end:
             polyline = nil
-        case .resume:
+            if event.workoutEventType == .end {
+                let marker = FootMarker(position: event.coordinate)
+                marker.title = "End"
+                marker.iconView?.backgroundColor = Settings.theme.redColor
+                marker.map = mapView
+            }
+        case .resume, .start:
             let path = GMSMutablePath()
             path.add(event.coordinate)
             let newPolyline = GMSPolyline(path: path)
@@ -489,6 +514,12 @@ extension MapViewController: WorkoutsViewControllerDelegate {
             newPolyline.map = mapView
             newPolyline.spans = [GMSStyleSpan(color: CLLocationSpeed(event.speed).color)]
             polyline = newPolyline
+            if event.workoutEventType == .start {
+                let marker = FootMarker(position: event.coordinate)
+                marker.title = "Start"
+                marker.iconView?.backgroundColor = Settings.theme.greenColor
+                marker.map = mapView
+            }
         case .locationUpdate:
             let mutablePath: GMSMutablePath
             if let path = polyline?.path {
@@ -499,10 +530,14 @@ extension MapViewController: WorkoutsViewControllerDelegate {
             mutablePath.add(event.coordinate)
             let newPolyline = GMSPolyline(path: mutablePath)
             newPolyline.path = mutablePath
-            var spans = newPolyline.spans ?? []
-            //let style = GMSStrokeStyle.gradient(from: previousEvent.speed.color, to: event.speed.color)
-            //let span = GMSStyleSpan(style: style)
-            let span = GMSStyleSpan(color: event.speed.color)
+            var spans = polyline?.spans ?? []
+            let span: GMSStyleSpan
+            if let previousEvent = previousEvent {
+                let style = GMSStrokeStyle.gradient(from: previousEvent.speed.color, to: event.speed.color)
+                span = GMSStyleSpan(style: style)
+            } else {
+                span = GMSStyleSpan(color: event.speed.color)
+            }
             spans.append(span)
             newPolyline.spans = spans
             newPolyline.map = mapView

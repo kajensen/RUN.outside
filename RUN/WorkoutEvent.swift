@@ -12,7 +12,7 @@ import CoreLocation
 class WorkoutEvent: Object {
     
     enum WorkoutEventType: Int {
-        case locationUpdate, pause, resume
+        case locationUpdate, pause, resume, start, end
     }
 
     dynamic var latitude: Double = 0

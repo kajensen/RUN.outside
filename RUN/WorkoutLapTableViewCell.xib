@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AaT-t5-hAE" id="rrd-DC-rYU">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sd5-Ih-Dvs" customClass="RoundedView" customModule="RUN" customModuleProvider="target">
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyB-Ju-8Zb">
-                                <rect key="frame" x="254" y="4" width="42" height="21"/>
+                                <rect key="frame" x="254" y="8" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fi-Zk-6Rz">
-                                <rect key="frame" x="258" y="29" width="37.5" height="18"/>
+                                <rect key="frame" x="258" y="33" width="37.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -58,14 +58,14 @@
                         <constraints>
                             <constraint firstItem="Lcb-Xs-SUq" firstAttribute="top" secondItem="sd5-Ih-Dvs" secondAttribute="top" constant="8" id="2fm-lX-rWv"/>
                             <constraint firstItem="1Fi-Zk-6Rz" firstAttribute="trailing" secondItem="NyB-Ju-8Zb" secondAttribute="trailing" id="47D-1l-uRI"/>
-                            <constraint firstItem="1Fi-Zk-6Rz" firstAttribute="top" secondItem="NyB-Ju-8Zb" secondAttribute="bottom" constant="4" id="78T-v3-qc3"/>
                             <constraint firstItem="vWj-e6-7pY" firstAttribute="centerY" secondItem="sd5-Ih-Dvs" secondAttribute="centerY" id="8JB-as-fbB"/>
-                            <constraint firstItem="NyB-Ju-8Zb" firstAttribute="top" secondItem="sd5-Ih-Dvs" secondAttribute="top" constant="4" id="XG2-89-JMr"/>
+                            <constraint firstItem="NyB-Ju-8Zb" firstAttribute="baseline" secondItem="Lcb-Xs-SUq" secondAttribute="baseline" id="9dE-Bs-ipL"/>
                             <constraint firstItem="RHc-RG-oP8" firstAttribute="top" secondItem="Lcb-Xs-SUq" secondAttribute="bottom" constant="4" id="nI2-ZM-F1L"/>
                             <constraint firstItem="vWj-e6-7pY" firstAttribute="leading" secondItem="sd5-Ih-Dvs" secondAttribute="leading" constant="8" id="nZM-nu-Nn4"/>
                             <constraint firstItem="Lcb-Xs-SUq" firstAttribute="leading" secondItem="vWj-e6-7pY" secondAttribute="trailing" constant="8" id="p2g-VO-QEp"/>
                             <constraint firstItem="RHc-RG-oP8" firstAttribute="leading" secondItem="Lcb-Xs-SUq" secondAttribute="leading" id="qN8-vy-0Yy"/>
                             <constraint firstItem="vWj-e6-7pY" firstAttribute="top" secondItem="sd5-Ih-Dvs" secondAttribute="top" constant="8" id="u5S-wC-NUG"/>
+                            <constraint firstItem="1Fi-Zk-6Rz" firstAttribute="baseline" secondItem="RHc-RG-oP8" secondAttribute="baseline" id="yAM-vf-RaU"/>
                             <constraint firstAttribute="trailing" secondItem="NyB-Ju-8Zb" secondAttribute="trailing" constant="8" id="zQt-s6-UUO"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

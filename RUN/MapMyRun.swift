@@ -12,8 +12,10 @@ import SwiftyJSON
 extension Session {
     var mapMyRunHeaders: HTTPHeaders? {
         guard let accessToken = accessToken else { return nil }
-        let headers: HTTPHeaders = ["Api-Key": Constants.MapMyRun.apiKey,
+        let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded",
+                                    "Api-Key": Constants.MapMyRun.apiKey,
                                     "Authorization": "Bearer \(accessToken)"]
+        
         return headers
     }
 }
