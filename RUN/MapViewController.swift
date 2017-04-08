@@ -361,10 +361,10 @@ extension MapViewController: WorkoutManagerDelegate {
     
     func setupWorkoutState(_ state: WorkoutManager.WorkoutState) {
         switch state {
-        case .none:
+        case .none, .ended:
             toggleWorkoutButton.fillColor = Settings.theme.greenColor
             toggleWorkoutButton.setTitle("START", for: .normal)
-            toggleWorkoutButton.isHidden = false
+            toggleWorkoutButton.isHidden = state == .ended
             endWorkoutButton.isHidden = true
             resumeWorkoutButton.isHidden = true
             statusView.isHidden = true
@@ -552,7 +552,7 @@ extension MapViewController: SettingsViewControllerDelegate {
     func settingsViewPanned(_ panGesture: RUNPanGestureRecognizer) {
         switch (panGesture.state) {
         case .began:
-            panGesture.beginningConstant = workoutsViewContraint.constant
+            panGesture.beginningConstant = settingsViewConstraint.constant
             break
         case .changed:
             var newConstant = settingsViewConstraint.constant + panGesture.translation(in: view).y
@@ -564,7 +564,7 @@ extension MapViewController: SettingsViewControllerDelegate {
             break
         case .ended:
             view.layoutIfNeeded()
-            let isContracting = (panGesture.beginningConstant - settingsViewConstraint.constant) > 0
+            let isContracting = (panGesture.beginningConstant - settingsViewConstraint.constant) > 20
             let constant: CGFloat
             if isContracting {
                 constant = settingsViewHiddenConstant

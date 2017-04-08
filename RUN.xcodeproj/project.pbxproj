@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */; };
+		4508DD8E1E9850C2008B2536 /* MapMyRunUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508DD8D1E9850C2008B2536 /* MapMyRunUser.swift */; };
+		4508DD921E986102008B2536 /* OnboardingInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508DD901E986102008B2536 /* OnboardingInfoCollectionViewCell.swift */; };
+		4508DD931E986102008B2536 /* OnboardingInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4508DD911E986102008B2536 /* OnboardingInfoCollectionViewCell.xib */; };
+		4508DD961E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508DD941E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift */; };
+		4508DD971E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4508DD951E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib */; };
+		4512555B1E9825A9000ED6D3 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4512555A1E9825A9000ED6D3 /* HealthKit.framework */; };
 		4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6B91E8EB38C00906393 /* DataView.swift */; };
 		4530F6BC1E8EB3F900906393 /* WorkoutDataSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6BB1E8EB3F900906393 /* WorkoutDataSpan.swift */; };
 		4530F6BE1E8EB60300906393 /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4530F6BD1E8EB60300906393 /* WorkoutData.swift */; };
@@ -71,9 +77,21 @@
 		45E3B1781E97EB60007F8805 /* RUNShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1711E97EB60007F8805 /* RUNShimmeringView.swift */; };
 		45E3B1791E97EB60007F8805 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1751E97EB60007F8805 /* FBShimmeringLayer.m */; };
 		45E3B17A1E97EB60007F8805 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B1771E97EB60007F8805 /* FBShimmeringView.m */; };
+		45E3B17D1E980572007F8805 /* MapMyRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B17C1E980572007F8805 /* MapMyRun.swift */; };
+		45E3B17F1E980628007F8805 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B17E1E980628007F8805 /* LoginViewController.swift */; };
+		45EB54FE1E98484800DF10D7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB54FD1E98484800DF10D7 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2091703707F07DEE975FFE07 /* Pods-watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-watch/Pods-watch.release.xcconfig"; sourceTree = "<group>"; };
+		261F805CD4C5EB318D4FCAC4 /* Pods-RUN watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN watch Extension/Pods-RUN watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		4508DD8D1E9850C2008B2536 /* MapMyRunUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMyRunUser.swift; sourceTree = "<group>"; };
+		4508DD901E986102008B2536 /* OnboardingInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		4508DD911E986102008B2536 /* OnboardingInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingInfoCollectionViewCell.xib; sourceTree = "<group>"; };
+		4508DD941E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPermissionCollectionViewCell.swift; sourceTree = "<group>"; };
+		4508DD951E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingPermissionCollectionViewCell.xib; sourceTree = "<group>"; };
+		451255581E9825A4000ED6D3 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		4512555A1E9825A9000ED6D3 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4530F6B91E8EB38C00906393 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		4530F6BB1E8EB3F900906393 /* WorkoutDataSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDataSpan.swift; sourceTree = "<group>"; };
 		4530F6BD1E8EB60300906393 /* WorkoutData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
@@ -144,8 +162,18 @@
 		45E3B1761E97EB60007F8805 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
 		45E3B1771E97EB60007F8805 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		45E3B17B1E97EB97007F8805 /* RUN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUN-Bridging-Header.h"; sourceTree = "<group>"; };
+		45E3B17C1E980572007F8805 /* MapMyRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMyRun.swift; sourceTree = "<group>"; };
+		45E3B17E1E980628007F8805 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		45EB54FD1E98484800DF10D7 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.release.xcconfig"; sourceTree = "<group>"; };
 		4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53C35ECCB51D84E6AC17137B /* Pods-RUN watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN watch Extension/Pods-RUN watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		6B1FB86AC0749D63D37F25D4 /* Pods_RUN_watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUN_watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81C8FE6F61FA6686971B1907 /* Pods_watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC9A22E61E2F2457745A689 /* Pods-watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watch Extension/Pods-watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		C16002D8B711CED91CEE6D1E /* Pods-watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watch Extension/Pods-watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		C2F1A412FF62F06ED672B7D0 /* Pods-watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watch/Pods-watch.debug.xcconfig"; sourceTree = "<group>"; };
+		C7C5DEA3DA3BD5D4A8FB167E /* Pods_watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUN/Pods-RUN.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4512555B1E9825A9000ED6D3 /* HealthKit.framework in Frameworks */,
 				082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */,
 				454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */,
 			);
@@ -165,10 +194,43 @@
 		1009296CEC0CDBE32A929935 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4512555A1E9825A9000ED6D3 /* HealthKit.framework */,
+				451255581E9825A4000ED6D3 /* HealthKit.framework */,
 				454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */,
 				4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */,
+				81C8FE6F61FA6686971B1907 /* Pods_watch.framework */,
+				C7C5DEA3DA3BD5D4A8FB167E /* Pods_watch_Extension.framework */,
+				6B1FB86AC0749D63D37F25D4 /* Pods_RUN_watch_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4508DD8F1E9860E9008B2536 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				45E3B1701E97EA5B007F8805 /* OnboardingSplashCollectionViewCell */,
+				4508DD991E98611A008B2536 /* OnboardingInfoCollectionViewCell */,
+				4508DD981E986114008B2536 /* OnboardingPermissionCollectionViewCell */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		4508DD981E986114008B2536 /* OnboardingPermissionCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4508DD941E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift */,
+				4508DD951E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib */,
+			);
+			name = OnboardingPermissionCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		4508DD991E98611A008B2536 /* OnboardingInfoCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4508DD901E986102008B2536 /* OnboardingInfoCollectionViewCell.swift */,
+				4508DD911E986102008B2536 /* OnboardingInfoCollectionViewCell.xib */,
+			);
+			name = OnboardingInfoCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		4530F6BF1E8EB64900906393 /* Data */ = {
@@ -247,6 +309,7 @@
 				453B43431E8CD0EF0005F8DA /* silence.m4a */,
 				45C8D7CF1E85C8A2003DB276 /* Map Styles */,
 				455FF2E31E847438000C88A9 /* Info.plist */,
+				45E3B1371E94614C007F8805 /* RUNPanGestureRecognizer.swift */,
 				455FF2EB1E847E36000C88A9 /* Constants.swift */,
 				456291821E89A5BF007A609D /* Settings.swift */,
 				45C411C11E8B50A6005A2FFB /* Style.swift */,
@@ -272,6 +335,7 @@
 				453B434B1E8DA97B0005F8DA /* SplashViewController.swift */,
 				45E3B16B1E97E6F6007F8805 /* Onboarding */,
 				45E3B1681E97E6E5007F8805 /* Main */,
+				45E3B17E1E980628007F8805 /* LoginViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -293,7 +357,7 @@
 				45C411C01E8B5085005A2FFB /* CustomizationTableViewCell */,
 				45C411AF1E8B08AA005A2FFB /* WorkoutTableViewCell */,
 				45E3B1441E9480C8007F8805 /* WorkoutLapTableViewCell */,
-				45E3B1701E97EA5B007F8805 /* OnboardingSplashCollectionViewCell */,
+				4508DD8F1E9860E9008B2536 /* Onboarding */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -339,11 +403,10 @@
 		45C8D7E01E85FC66003DB276 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				45EB54FC1E98483800DF10D7 /* Realm */,
 				45C8D7DC1E85F911003DB276 /* WorkoutManager.swift */,
 				454A15D11E8CA5370098FB1E /* SpeechManager.swift */,
-				4530F6C01E8EB65300906393 /* Workout */,
 				4530F6BF1E8EB64900906393 /* Data */,
-				45E3B1371E94614C007F8805 /* RUNPanGestureRecognizer.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -377,6 +440,7 @@
 			children = (
 				45C411B01E8B329C005A2FFB /* API.swift */,
 				45E3B15B1E9552FC007F8805 /* Weather.swift */,
+				45E3B17C1E980572007F8805 /* MapMyRun.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -424,11 +488,27 @@
 			path = FBShimmering;
 			sourceTree = "<group>";
 		};
+		45EB54FC1E98483800DF10D7 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				4530F6C01E8EB65300906393 /* Workout */,
+				45EB54FD1E98484800DF10D7 /* Session.swift */,
+				4508DD8D1E9850C2008B2536 /* MapMyRunUser.swift */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
 		9B955E0F10076A2221F22E82 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				EE5D6634A4FA67B58367F520 /* Pods-RUN.debug.xcconfig */,
 				4C1922625EC9E23ABE008114 /* Pods-RUN.release.xcconfig */,
+				C2F1A412FF62F06ED672B7D0 /* Pods-watch.debug.xcconfig */,
+				2091703707F07DEE975FFE07 /* Pods-watch.release.xcconfig */,
+				C16002D8B711CED91CEE6D1E /* Pods-watch Extension.debug.xcconfig */,
+				BFC9A22E61E2F2457745A689 /* Pods-watch Extension.release.xcconfig */,
+				53C35ECCB51D84E6AC17137B /* Pods-RUN watch Extension.debug.xcconfig */,
+				261F805CD4C5EB318D4FCAC4 /* Pods-RUN watch Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -463,7 +543,7 @@
 		455FF2CC1E847437000C88A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Arbor Apps";
 				TargetAttributes = {
@@ -472,11 +552,14 @@
 						DevelopmentTeam = JSQ8N76B4C;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
@@ -517,6 +600,7 @@
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
 				45E3B1581E954D44007F8805 /* owfont-regular.ttf in Resources */,
 				45C8D7D51E85C90B003DB276 /* map_mirkwood.json in Resources */,
+				4508DD971E986110008B2536 /* OnboardingPermissionCollectionViewCell.xib in Resources */,
 				45E3B15F1E955469007F8805 /* owfont-regular.otf in Resources */,
 				455FF2DF1E847438000C88A9 /* Assets.xcassets in Resources */,
 				45C411BC1E8B507A005A2FFB /* ActionTableViewCell.xib in Resources */,
@@ -525,6 +609,7 @@
 				45E3B1671E97E6D5007F8805 /* Onboarding.storyboard in Resources */,
 				45C8D7D11E85C8C7003DB276 /* map_retro.json in Resources */,
 				45C411BE1E8B507A005A2FFB /* CustomizationTableViewCell.xib in Resources */,
+				4508DD931E986102008B2536 /* OnboardingInfoCollectionViewCell.xib in Resources */,
 				45C8D7D71E85C91D003DB276 /* map_electric.json in Resources */,
 				45C411AE1E8B08A7005A2FFB /* WorkoutTableViewCell.xib in Resources */,
 				45C411C61E8B5189005A2FFB /* ReviewTableViewCell.xib in Resources */,
@@ -610,12 +695,15 @@
 				4530F6BA1E8EB38C00906393 /* DataView.swift in Sources */,
 				45E3B1781E97EB60007F8805 /* RUNShimmeringView.swift in Sources */,
 				45C8D7DF1E85FB60003DB276 /* WorkoutEvent.swift in Sources */,
+				4508DD921E986102008B2536 /* OnboardingInfoCollectionViewCell.swift in Sources */,
 				454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */,
+				45E3B17D1E980572007F8805 /* MapMyRun.swift in Sources */,
 				453B434A1E8D85610005F8DA /* WorkoutLap.swift in Sources */,
 				45C8D7ED1E8755DB003DB276 /* SettingsViewController.swift in Sources */,
 				45C8D7EB1E875063003DB276 /* WorkoutViewController.swift in Sources */,
 				455FF2F01E848F73000C88A9 /* BGView.swift in Sources */,
 				45C411B11E8B329C005A2FFB /* API.swift in Sources */,
+				4508DD8E1E9850C2008B2536 /* MapMyRunUser.swift in Sources */,
 				45E3B16E1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.swift in Sources */,
 				455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */,
 				45C411B31E8B3DFA005A2FFB /* RoundedView.swift in Sources */,
@@ -625,6 +713,7 @@
 				45C411AD1E8B08A7005A2FFB /* WorkoutTableViewCell.swift in Sources */,
 				45E3B17A1E97EB60007F8805 /* FBShimmeringView.m in Sources */,
 				45E3B1791E97EB60007F8805 /* FBShimmeringLayer.m in Sources */,
+				45E3B17F1E980628007F8805 /* LoginViewController.swift in Sources */,
 				45E3B1421E9480C5007F8805 /* WorkoutLapTableViewCell.swift in Sources */,
 				453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */,
 				45E3B13C1E946D75007F8805 /* DataViewController.swift in Sources */,
@@ -638,9 +727,11 @@
 				455FF2EC1E847E36000C88A9 /* Constants.swift in Sources */,
 				45C411BB1E8B507A005A2FFB /* ActionTableViewCell.swift in Sources */,
 				45C8D7D91E85DF6E003DB276 /* WorkoutsViewController.swift in Sources */,
+				4508DD961E986110008B2536 /* OnboardingPermissionCollectionViewCell.swift in Sources */,
 				454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */,
 				45C411C51E8B5189005A2FFB /* ReviewTableViewCell.swift in Sources */,
 				45E3B15C1E9552FC007F8805 /* Weather.swift in Sources */,
+				45EB54FE1E98484800DF10D7 /* Session.swift in Sources */,
 				456291831E89A5BF007A609D /* Settings.swift in Sources */,
 				45E3B1361E945E25007F8805 /* WorkoutsNavigationViewController.swift in Sources */,
 				45C8D7DB1E85F905003DB276 /* Workout.swift in Sources */,

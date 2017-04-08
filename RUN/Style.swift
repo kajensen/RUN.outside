@@ -283,7 +283,7 @@ class RSActivityViewController: UIActivityViewController {
 class RSSafariViewController: SFSafariViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.tintColor = Settings.theme.primaryTextColor
+        preferredControlTintColor = Settings.theme.primaryTextColor
     }
 }
 

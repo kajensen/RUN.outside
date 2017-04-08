@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="dh2-Wu-nJW" customClass="OnboardingInfoCollectionViewCell" customModule="RUN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWJ-1h-rAu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running1" translatesAutoresizingMaskIntoConstraints="NO" id="FzJ-mc-z8h">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTB-Ay-0gL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="FzJ-mc-z8h" firstAttribute="bottom" secondItem="uTB-Ay-0gL" secondAttribute="bottom" id="1g2-EH-2Xt"/>
+                            <constraint firstItem="uTB-Ay-0gL" firstAttribute="centerY" secondItem="yWJ-1h-rAu" secondAttribute="centerY" id="Aca-Ad-XgD"/>
+                            <constraint firstItem="uTB-Ay-0gL" firstAttribute="leading" secondItem="yWJ-1h-rAu" secondAttribute="leading" id="J6m-Zf-YmN"/>
+                            <constraint firstItem="uTB-Ay-0gL" firstAttribute="top" secondItem="yWJ-1h-rAu" secondAttribute="top" id="QyZ-D2-bfE"/>
+                            <constraint firstItem="FzJ-mc-z8h" firstAttribute="top" secondItem="uTB-Ay-0gL" secondAttribute="top" id="SqQ-vE-FmV"/>
+                            <constraint firstItem="uTB-Ay-0gL" firstAttribute="centerX" secondItem="yWJ-1h-rAu" secondAttribute="centerX" id="W2M-nD-2yj"/>
+                            <constraint firstItem="FzJ-mc-z8h" firstAttribute="trailing" secondItem="uTB-Ay-0gL" secondAttribute="trailing" id="gMW-O5-Xom"/>
+                            <constraint firstItem="FzJ-mc-z8h" firstAttribute="leading" secondItem="uTB-Ay-0gL" secondAttribute="leading" id="nkm-SX-Rf1"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT RUN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxH-vn-tkl">
+                        <rect key="frame" x="15" y="150" width="345" height="38.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gN4-Xc-RPO">
+                        <rect key="frame" x="25" y="228.5" width="325" height="310.5"/>
+                        <string key="text">[+] Track your workouts. View them later. Look at cool graphs and stuff.
+
+[+] We'll never try to sell you any of our "gear". We don't have any anyway.
+
+[+] No ads. Ever.
+
+[+] No login = more privacy. Your data is only ever stored on your device.
+</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="hxH-vn-tkl" firstAttribute="centerX" secondItem="dh2-Wu-nJW" secondAttribute="centerX" id="1jZ-2M-o3Y"/>
+                <constraint firstAttribute="bottom" secondItem="yWJ-1h-rAu" secondAttribute="bottom" id="8SU-8i-7e3"/>
+                <constraint firstItem="gN4-Xc-RPO" firstAttribute="leading" secondItem="hxH-vn-tkl" secondAttribute="leading" constant="10" id="9fD-qK-KWL"/>
+                <constraint firstItem="yWJ-1h-rAu" firstAttribute="leading" secondItem="dh2-Wu-nJW" secondAttribute="leading" id="YAC-Np-Ube"/>
+                <constraint firstItem="gN4-Xc-RPO" firstAttribute="centerX" secondItem="hxH-vn-tkl" secondAttribute="centerX" id="Z6O-94-qLr"/>
+                <constraint firstAttribute="trailing" secondItem="yWJ-1h-rAu" secondAttribute="trailing" id="d4x-yN-FAB"/>
+                <constraint firstItem="gN4-Xc-RPO" firstAttribute="top" secondItem="hxH-vn-tkl" secondAttribute="bottom" constant="40" id="hFb-cK-fsN"/>
+                <constraint firstItem="yWJ-1h-rAu" firstAttribute="top" secondItem="dh2-Wu-nJW" secondAttribute="top" id="kYX-Lx-bwG"/>
+                <constraint firstItem="hxH-vn-tkl" firstAttribute="leading" secondItem="dh2-Wu-nJW" secondAttribute="leading" constant="15" id="mWZ-KC-TXr"/>
+                <constraint firstItem="hxH-vn-tkl" firstAttribute="top" secondItem="dh2-Wu-nJW" secondAttribute="top" constant="150" id="sPO-tn-Xwg"/>
+            </constraints>
+            <connections>
+                <outlet property="contentHolderView" destination="yWJ-1h-rAu" id="lP4-PE-oeB"/>
+                <outlet property="imageView" destination="FzJ-mc-z8h" id="7Hg-tg-N8u"/>
+            </connections>
+            <point key="canvasLocation" x="-156" y="39"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="running1" width="1300" height="1300"/>
+    </resources>
+</document>

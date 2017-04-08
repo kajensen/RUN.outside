@@ -8,15 +8,20 @@
 
 import UIKit
 import AVFoundation
+import CoreLocation
 
 class OnboardingViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: OnboardingSplashCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: OnboardingSplashCollectionViewCell.nibName)
+        collectionView.register(UINib(nibName: OnboardingInfoCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: OnboardingInfoCollectionViewCell.nibName)
+        collectionView.register(UINib(nibName: OnboardingPermissionCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: OnboardingPermissionCollectionViewCell.nibName)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -44,9 +49,19 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingSplashCollectionViewCell.nibName, for: indexPath) as! OnboardingSplashCollectionViewCell
-        cell.delegate = self
-        return cell
+        switch indexPath.row {
+        case 0:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingSplashCollectionViewCell.nibName, for: indexPath) as! OnboardingSplashCollectionViewCell
+            cell.delegate = self
+            return cell
+        case 1:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingInfoCollectionViewCell.nibName, for: indexPath) as! OnboardingInfoCollectionViewCell
+            return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingPermissionCollectionViewCell.nibName, for: indexPath) as! OnboardingPermissionCollectionViewCell
+            cell.delegate = self
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -70,11 +85,11 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
         }
         // parallax
         for cell in collectionView.visibleCells {
-            if let cell = cell as? OnboardingSplashCollectionViewCell {
+            if let parallax = cell as? ParallaxCell {
                 let bounceOffset = min(0, collectionView.contentOffset.x)
-                cell.contentOffset = CGPoint(x: bounceOffset, y: 0)
+                parallax.contentOffset = CGPoint(x: bounceOffset, y: 0)
                 let xOffset = ((collectionView.contentOffset.x - cell.frame.origin.x) / cell.frame.width) * OnboardingSplashCollectionViewCell.parallaxFactor
-                cell.parallaxOffset = CGPoint(x: xOffset, y: 0)
+                parallax.parallaxOffset = CGPoint(x: xOffset, y: 0)
             }
         }
     }
@@ -86,6 +101,30 @@ extension OnboardingViewController: OnboardingSplashCollectionViewCellDelegate {
     func beginTapped(_ cell: OnboardingSplashCollectionViewCell) {
         let contentOffset = CGPoint(x: collectionView.bounds.width, y: 0)
         collectionView.setContentOffset(contentOffset, animated: true)
+    }
+    
+}
+
+extension OnboardingViewController: OnboardingPermissionCollectionViewCellDelegate {
+    
+    func actionTapped(_ cell: OnboardingPermissionCollectionViewCell) {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.delegate = self
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+        Settings.hasOnboarded = true
+    }
+    
+}
+
+extension OnboardingViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
 }

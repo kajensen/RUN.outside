@@ -13,7 +13,12 @@ protocol OnboardingSplashCollectionViewCellDelegate: class {
     func beginTapped(_ cell: OnboardingSplashCollectionViewCell)
 }
 
-class OnboardingSplashCollectionViewCell: UICollectionViewCell {
+protocol ParallaxCell: class {
+    var parallaxOffset: CGPoint { get set }
+    var contentOffset: CGPoint { get set }
+}
+
+class OnboardingSplashCollectionViewCell: UICollectionViewCell, ParallaxCell {
     
     static let nibName = "OnboardingSplashCollectionViewCell"
     static let parallaxFactor: CGFloat = 25
@@ -46,7 +51,7 @@ class OnboardingSplashCollectionViewCell: UICollectionViewCell {
             contentHolderView.frame = frame
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         playHero()

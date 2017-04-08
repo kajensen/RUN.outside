@@ -627,9 +627,18 @@
                                     <action selector="backTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="j0I-c9-PYX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-ig-2tz">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="mapMyRunTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="Ri7-qg-lUQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="ZXh-nr-4KO"/>
                             <constraint firstItem="5Rz-HY-c82" firstAttribute="top" secondItem="E0x-xi-LfQ" secondAttribute="bottom" constant="8" id="csV-lu-cQ7"/>
+                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerY" secondItem="YBX-S6-bKV" secondAttribute="centerY" id="s4S-PZ-B4O"/>
                             <constraint firstItem="E0x-xi-LfQ" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="xuw-fV-Ehs"/>
                         </constraints>
                     </view>

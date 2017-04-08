@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if !Settings.hasOnboarded {
             toOnboarding()
         } else if CLLocationManager.authorizationStatus() != .authorizedAlways {

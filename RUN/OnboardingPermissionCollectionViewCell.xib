@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="KrF-jL-xvW" customClass="OnboardingPermissionCollectionViewCell" customModule="RUN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUC-G4-HhI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running2" translatesAutoresizingMaskIntoConstraints="NO" id="mPi-Jx-t16">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izq-kW-nYR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="mPi-Jx-t16" firstAttribute="bottom" secondItem="Izq-kW-nYR" secondAttribute="bottom" id="7Ik-zl-ScE"/>
+                            <constraint firstItem="Izq-kW-nYR" firstAttribute="centerX" secondItem="WUC-G4-HhI" secondAttribute="centerX" id="ElA-B7-GAJ"/>
+                            <constraint firstItem="mPi-Jx-t16" firstAttribute="trailing" secondItem="Izq-kW-nYR" secondAttribute="trailing" id="G7P-3I-URK"/>
+                            <constraint firstItem="mPi-Jx-t16" firstAttribute="leading" secondItem="Izq-kW-nYR" secondAttribute="leading" id="IYu-ca-1ec"/>
+                            <constraint firstItem="Izq-kW-nYR" firstAttribute="centerY" secondItem="WUC-G4-HhI" secondAttribute="centerY" id="Idt-X2-EwV"/>
+                            <constraint firstItem="Izq-kW-nYR" firstAttribute="top" secondItem="WUC-G4-HhI" secondAttribute="top" id="fkP-N6-H8e"/>
+                            <constraint firstItem="mPi-Jx-t16" firstAttribute="top" secondItem="Izq-kW-nYR" secondAttribute="top" id="iXO-AU-X7O"/>
+                            <constraint firstItem="Izq-kW-nYR" firstAttribute="leading" secondItem="WUC-G4-HhI" secondAttribute="leading" id="qWM-kO-z3N"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAN WE USE YOUR LOCATION?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCc-en-0OB">
+                        <rect key="frame" x="15" y="150" width="290" height="76.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U16-jU-ih3">
+                        <rect key="frame" x="25" y="266.5" width="270" height="143.5"/>
+                        <string key="text">RUN needs your location data to track workouts. We never share your data with anyone, in fact, we can't- all data is only stored locally on your device.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pg3-m1-VVp" customClass="BGView" customModule="RUN" customModuleProvider="target">
+                        <rect key="frame" x="27.5" y="427" width="265" height="61"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIi-P4-cuH">
+                                <rect key="frame" x="20" y="10" width="225" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="GRANT PERMISSION"/>
+                                <connections>
+                                    <action selector="actionTapped:" destination="KrF-jL-xvW" eventType="touchUpInside" id="5w2-Wi-ZwJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="dIi-P4-cuH" firstAttribute="top" secondItem="Pg3-m1-VVp" secondAttribute="top" constant="10" id="5EF-Un-kYd"/>
+                            <constraint firstItem="dIi-P4-cuH" firstAttribute="centerY" secondItem="Pg3-m1-VVp" secondAttribute="centerY" id="IcD-mp-3h5"/>
+                            <constraint firstItem="dIi-P4-cuH" firstAttribute="centerX" secondItem="Pg3-m1-VVp" secondAttribute="centerX" id="Vqz-0d-aUX"/>
+                            <constraint firstItem="dIi-P4-cuH" firstAttribute="leading" secondItem="Pg3-m1-VVp" secondAttribute="leading" constant="20" id="xTo-6a-sKR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Pg3-m1-VVp" secondAttribute="bottom" constant="80" id="1dR-Nx-jhX"/>
+                <constraint firstItem="U16-jU-ih3" firstAttribute="top" secondItem="gCc-en-0OB" secondAttribute="bottom" constant="40" id="4EJ-Pe-aKB"/>
+                <constraint firstItem="Pg3-m1-VVp" firstAttribute="centerX" secondItem="KrF-jL-xvW" secondAttribute="centerX" id="9VL-xz-xVi"/>
+                <constraint firstAttribute="trailing" secondItem="WUC-G4-HhI" secondAttribute="trailing" id="Bmk-sg-i9L"/>
+                <constraint firstItem="gCc-en-0OB" firstAttribute="centerX" secondItem="KrF-jL-xvW" secondAttribute="centerX" id="Imk-Ip-Y0t"/>
+                <constraint firstItem="U16-jU-ih3" firstAttribute="centerX" secondItem="gCc-en-0OB" secondAttribute="centerX" id="Mz5-ji-Q9c"/>
+                <constraint firstItem="U16-jU-ih3" firstAttribute="leading" secondItem="gCc-en-0OB" secondAttribute="leading" constant="10" id="RPJ-hY-VEg"/>
+                <constraint firstItem="WUC-G4-HhI" firstAttribute="top" secondItem="KrF-jL-xvW" secondAttribute="top" id="Tk5-Wy-1sh"/>
+                <constraint firstItem="WUC-G4-HhI" firstAttribute="leading" secondItem="KrF-jL-xvW" secondAttribute="leading" id="Twe-qH-NXq"/>
+                <constraint firstAttribute="bottom" secondItem="WUC-G4-HhI" secondAttribute="bottom" id="Vbv-yy-9ce"/>
+                <constraint firstItem="gCc-en-0OB" firstAttribute="leading" secondItem="KrF-jL-xvW" secondAttribute="leading" constant="15" id="el8-qm-zSn"/>
+                <constraint firstItem="gCc-en-0OB" firstAttribute="top" secondItem="KrF-jL-xvW" secondAttribute="top" constant="150" id="lGM-h0-U88"/>
+            </constraints>
+            <connections>
+                <outlet property="contentHolderView" destination="WUC-G4-HhI" id="cJF-kk-gFm"/>
+                <outlet property="imageView" destination="mPi-Jx-t16" id="hj0-d5-IVY"/>
+            </connections>
+            <point key="canvasLocation" x="-156" y="39"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="running2" width="974" height="1300"/>
+    </resources>
+</document>

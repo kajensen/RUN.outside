@@ -353,6 +353,21 @@ extension CLLocationSpeed {
     
 }
 
+extension URL {
+    
+    var queryParameters: [String: String] {
+        var queryParameters: [String: String] = [:]
+        for queryParameter in query?.components(separatedBy: "&") ?? [] {
+            let keyVal = queryParameter.components(separatedBy: "=")
+            if keyVal.count == 2 {
+                queryParameters[keyVal.first!] = keyVal.last!
+            }
+        }
+        return queryParameters
+    }
+    
+}
+
 extension UIColor {
     
     var rgb: (red:CGFloat, green:CGFloat, blue:CGFloat, alpha:CGFloat)? {
