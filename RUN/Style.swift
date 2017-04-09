@@ -38,6 +38,7 @@ class Style {
         UIButton.appearance().tintColor = theme.primaryTextColor
         UIImageView.appearance().tintColor = theme.primaryTextColor
 
+        UIApplication.shared.statusBarStyle = theme.statusBarStyle
         
         //UIVisualEffectView.appearance().add
 
@@ -266,21 +267,21 @@ class Style {
 
 }
 
-class RSAlertController: UIAlertController {
+class RUNAlertController: UIAlertController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         view.tintColor = Settings.theme.primaryTextColor
     }
 }
 
-class RSActivityViewController: UIActivityViewController {
+class RUNActivityViewController: UIActivityViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         view.tintColor = Settings.theme.primaryTextColor
     }
 }
 
-class RSSafariViewController: SFSafariViewController {
+class RUNSafariViewController: SFSafariViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         preferredControlTintColor = Settings.theme.primaryTextColor

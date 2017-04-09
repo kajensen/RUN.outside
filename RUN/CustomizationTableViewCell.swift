@@ -62,7 +62,12 @@ class CustomizationTableViewCell: UITableViewCell {
     
     func configure(speedRateSlow: Double, speedRateMedium: Double, speedRateFast: Double) {
         titleLabel.text = "My Speeds"
-        subTitleLabel.text = "\(Utils.distanceRateString(unitsPerHour: speedRateSlow)) > \(Utils.distanceRateString(unitsPerHour: speedRateMedium)) > \(Utils.distanceRateString(unitsPerHour: speedRateFast))"
+        let theme = Settings.theme
+        let text = NSMutableAttributedString()
+        text.append(NSAttributedString(string: "\(Utils.distanceRateString(unitsPerHour: speedRateSlow))", attributes: [NSFontAttributeName: titleLabel.font, NSForegroundColorAttributeName: theme.orangeColor]))
+        text.append(NSAttributedString(string: " \(Utils.distanceRateString(unitsPerHour: speedRateMedium))", attributes: [NSFontAttributeName: titleLabel.font, NSForegroundColorAttributeName: theme.yellowColor]))
+        text.append(NSAttributedString(string: " \(Utils.distanceRateString(unitsPerHour: speedRateFast))", attributes: [NSFontAttributeName: titleLabel.font, NSForegroundColorAttributeName: theme.greenColor]))
+        subTitleLabel.attributedText = text
         iconImageView.image = UIImage(named: "icon_speed")
     }
     

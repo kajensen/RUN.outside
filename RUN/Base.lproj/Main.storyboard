@@ -346,7 +346,7 @@
         <scene sceneID="GJZ-6E-bkG">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2oi-y3-HRa" customClass="WorkoutsNavigationViewController" customModule="RUN" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="I2m-Zd-MvE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2m-Zd-MvE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -545,7 +545,7 @@
         <scene sceneID="pxw-WG-EXE">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2Md-z5-Kja" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W2Z-s0-awh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W2Z-s0-awh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -628,25 +628,67 @@
                                     <action selector="backTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="j0I-c9-PYX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-ig-2tz">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="mapMyRunTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="Ri7-qg-lUQ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AdZ-vL-twR">
+                                <rect key="frame" x="29.5" y="241.5" width="317" height="185"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-Hm-ScX" customClass="BGView" customModule="RUN" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="317" height="82.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-ig-2tz">
+                                                <rect key="frame" x="8" y="8" width="300" height="65"/>
+                                                <state key="normal" title="Export Data"/>
+                                                <connections>
+                                                    <action selector="exportDataTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="lOl-Co-MFf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerX" secondItem="hXJ-Hm-ScX" secondAttribute="centerX" id="6qA-Ty-GcE"/>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="top" secondItem="hXJ-Hm-ScX" secondAttribute="top" constant="8" id="Tdi-rk-OOM"/>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerY" secondItem="hXJ-Hm-ScX" secondAttribute="centerY" id="xcj-fL-2AI"/>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="leading" secondItem="hXJ-Hm-ScX" secondAttribute="leading" constant="8" id="zhS-2W-lq2"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-9n-YUi" customClass="BGView" customModule="RUN" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="102.5" width="317" height="82.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import from MapMyRun/Walk/Fitness" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJV-Cw-mU8">
+                                                <rect key="frame" x="16" y="16" width="283.5" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wei-aJ-gwF">
+                                                <rect key="frame" x="60.5" y="38.5" width="196" height="28"/>
+                                                <state key="normal" backgroundImage="mapmyrun"/>
+                                                <connections>
+                                                    <action selector="mapMyRunTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="8AL-3Q-gE2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="wei-aJ-gwF" firstAttribute="centerX" secondItem="hlh-9n-YUi" secondAttribute="centerX" id="2OO-V8-87R"/>
+                                            <constraint firstItem="MJV-Cw-mU8" firstAttribute="leading" secondItem="hlh-9n-YUi" secondAttribute="leading" constant="16" id="Dm9-hJ-LGn"/>
+                                            <constraint firstItem="MJV-Cw-mU8" firstAttribute="centerX" secondItem="hlh-9n-YUi" secondAttribute="centerX" id="Imu-8l-UQy"/>
+                                            <constraint firstAttribute="bottom" secondItem="wei-aJ-gwF" secondAttribute="bottom" constant="16" id="Us4-rG-o3j"/>
+                                            <constraint firstItem="wei-aJ-gwF" firstAttribute="top" secondItem="MJV-Cw-mU8" secondAttribute="bottom" constant="8" symbolic="YES" id="n7x-I7-AFt"/>
+                                            <constraint firstItem="MJV-Cw-mU8" firstAttribute="top" secondItem="hlh-9n-YUi" secondAttribute="top" constant="16" id="q91-vN-Oub"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="ZXh-nr-4KO"/>
+                            <constraint firstItem="AdZ-vL-twR" firstAttribute="centerY" secondItem="YBX-S6-bKV" secondAttribute="centerY" id="DuG-9U-nXY"/>
                             <constraint firstItem="5Rz-HY-c82" firstAttribute="top" secondItem="E0x-xi-LfQ" secondAttribute="bottom" constant="8" id="csV-lu-cQ7"/>
-                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerY" secondItem="YBX-S6-bKV" secondAttribute="centerY" id="s4S-PZ-B4O"/>
+                            <constraint firstItem="AdZ-vL-twR" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="wk6-xB-Hvk"/>
                             <constraint firstItem="E0x-xi-LfQ" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="xuw-fV-Ehs"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WbP-Zu-orQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2265" y="-344"/>
+            <point key="canvasLocation" x="2264.8000000000002" y="-344.07796101949026"/>
         </scene>
         <!--Workout View Controller-->
         <scene sceneID="r1T-3b-XVY">
@@ -691,14 +733,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Ab-gR-C8o">
                                         <rect key="frame" x="15" y="10" width="44" height="44"/>
                                         <subviews>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZQ-0P-gux" customClass="BGView" customModule="RUN" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZQ-0P-gux" customClass="BGView" customModule="RUN" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-Ca-SQF">
-                                                        <rect key="frame" x="7" y="7.5" width="29" height="29"/>
+                                                        <rect key="frame" x="7.5" y="7.5" width="29" height="29"/>
                                                         <state key="normal" image="icon_share"/>
                                                         <connections>
-                                                            <action selector="closeTapped:" destination="8Dw-bB-5hH" eventType="touchUpInside" id="8yo-lb-PDE"/>
+                                                            <action selector="shareTapped:" destination="8Dw-bB-5hH" eventType="touchUpInside" id="FPW-q1-2s2"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -858,6 +900,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7ao-Zd-kPY">
                                 <rect key="frame" x="147" y="293" width="80" height="80"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="1rm-lR-KdM"/>
                                     <constraint firstAttribute="width" secondItem="7ao-Zd-kPY" secondAttribute="height" multiplier="1:1" id="5IJ-5B-Xcv"/>
@@ -927,5 +970,6 @@
         <image name="icon_settings" width="29" height="29"/>
         <image name="icon_share" width="29" height="29"/>
         <image name="icon_transparent" width="67" height="85"/>
+        <image name="mapmyrun" width="196" height="28"/>
     </resources>
 </document>

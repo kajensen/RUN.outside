@@ -16,6 +16,7 @@ class Constants {
     static let email = "arborapps+run@gmail.com"
     static let appGroup = "group.io.arborapps.RUN"
     static let redirectURL = "http://10.0.0.180:9999/run/auth/"//"http://arborapps.io/run/auth"
+    static let appStoreURL = URL(string: "")!
     
     class MapMyRun {
         

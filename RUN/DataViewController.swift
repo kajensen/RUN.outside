@@ -19,8 +19,13 @@ class DataViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    @IBAction func exportDataTapped(_ sender: Any) {
+        showAlert(title: "TODO")
+    }
+    
     @IBAction func mapMyRunTapped(_ sender: Any) {
-        presentMapMyRun(self)
+        showAlert(title: "Feature unavailable", message: "Please let us know that you want it!")
+        //presentMapMyRun(self)
     }
     
     @IBAction func backTapped(_ sender: Any) {

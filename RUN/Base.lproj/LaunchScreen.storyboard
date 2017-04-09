@@ -24,6 +24,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="JAd-uL-Nxg">
                                 <rect key="frame" x="147" y="293" width="80" height="80"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="JAd-uL-Nxg" secondAttribute="height" multiplier="1:1" id="LGg-c1-QXf"/>
                                     <constraint firstAttribute="height" constant="80" id="upL-Si-5zM"/>

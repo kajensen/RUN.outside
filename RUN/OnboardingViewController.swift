@@ -35,11 +35,7 @@ class OnboardingViewController: UIViewController {
             layout.minimumLineSpacing = 0
         }
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
 }
 
 extension OnboardingViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

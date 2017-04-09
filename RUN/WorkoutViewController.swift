@@ -71,8 +71,11 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func shareTapped(_ sender: Any) {
-        showAlert(title: "TODO")
+    @IBAction func shareTapped(_ sender: UIButton) {
+        guard let image = view.snapshot() else { return }
+        let activityViewController = RUNActivityViewController(activityItems: ["Check out my workout I just completed with RUN", image, Constants.appStoreURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = sender
+        present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func barDataTapped(_ sender: WorkoutDataButton) {

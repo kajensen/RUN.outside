@@ -64,7 +64,7 @@ extension UIViewController {
     
     func presentMapMyRun(_ delegate: LoginDelegate) {
         guard let url = Constants.MapMyRun.oauthURL else { return }
-        let svc = RSSafariViewController(url: url)
+        let svc = RUNSafariViewController(url: url)
         let login = Login(app: .mapMyRun, vc: svc)
         login.delegate = delegate
         Login.login = login

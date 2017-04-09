@@ -12,7 +12,7 @@ import MapKit
 extension UIViewController {
     
     func showAlert(title: String? = nil, message: String? = nil, completion: (() -> Void)? = nil) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = RUNAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) -> Void in
             completion?()
         }
@@ -181,6 +181,22 @@ extension UIApplication {
         }
         return "Version \(version) (\(build))"
     }
+}
+
+extension UIView {
+    
+    func snapshot(of rect: CGRect? = nil) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
+        let wholeImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        guard let image = wholeImage, let rect = rect else { return wholeImage }
+        let scale = image.scale
+        let scaledRect = CGRect(x: rect.origin.x * scale, y: rect.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
+        guard let cgImage = image.cgImage?.cropping(to: scaledRect) else { return nil }
+        return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
+    }
+    
 }
 
 extension TimeInterval {
