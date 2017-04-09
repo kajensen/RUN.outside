@@ -346,7 +346,7 @@
         <scene sceneID="GJZ-6E-bkG">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2oi-y3-HRa" customClass="WorkoutsNavigationViewController" customModule="RUN" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2m-Zd-MvE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="I2m-Zd-MvE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -545,7 +545,7 @@
         <scene sceneID="pxw-WG-EXE">
             <objects>
                 <navigationController navigationBarHidden="YES" id="2Md-z5-Kja" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W2Z-s0-awh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W2Z-s0-awh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -954,6 +954,9 @@
                             <constraint firstItem="cqT-Zk-5Ih" firstAttribute="centerX" secondItem="7oR-hz-7KV" secondAttribute="centerX" id="nxK-K8-wjS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="cxM-pR-Hcq" id="a9b-72-uIq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OU8-lu-2q6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

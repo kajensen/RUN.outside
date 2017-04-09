@@ -183,6 +183,26 @@ extension UIApplication {
     }
 }
 
+extension UIScreen {
+    
+    func snapshot(of rect: CGRect? = nil) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        UIColor.black.set()
+        context.fill(rect ?? bounds)
+        guard let window = UIApplication.shared.keyWindow else {
+            return nil
+        }
+        window.layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext()
+        return image
+    }
+
+}
+
 extension UIView {
     
     func snapshot(of rect: CGRect? = nil) -> UIImage? {

@@ -14,10 +14,12 @@ class Constants {
     static let openWeatherApiKey = "36db18e14455b23d4c6db032972f0f9e"
     
     static let email = "arborapps+run@gmail.com"
-    static let appGroup = "group.io.arborapps.RUN"
+    static let appStoreURL = URL(string: "https://itunes.apple.com/us/app/run-outside/id1217683177?ls=1&mt=8")!
+    static let termsURL = URL(string: "http://arborapps.io/app/1217683177/terms")!
+    static let privacyURL = URL(string: "http://arborapps.io/app/1217683177/privacy")!
+
     static let redirectURL = "http://10.0.0.180:9999/run/auth/"//"http://arborapps.io/run/auth"
-    static let appStoreURL = URL(string: "")!
-    
+
     class MapMyRun {
         
         static let apiKey = "ac2gucaz5w6248q2nbgmsz2rvczffvts"

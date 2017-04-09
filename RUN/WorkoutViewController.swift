@@ -72,7 +72,7 @@ class WorkoutViewController: UIViewController, DataViewDataSource {
     }
     
     @IBAction func shareTapped(_ sender: UIButton) {
-        guard let image = view.snapshot() else { return }
+        guard let image = UIScreen.main.snapshot() else { return }
         let activityViewController = RUNActivityViewController(activityItems: ["Check out my workout I just completed with RUN", image, Constants.appStoreURL], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = sender
         present(activityViewController, animated: true, completion: nil)
