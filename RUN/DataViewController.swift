@@ -19,8 +19,28 @@ class DataViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func exportDataTapped(_ sender: Any) {
-        showAlert(title: "TODO")
+    @IBAction func exportDataTapped(_ sender: UIButton) {
+        let alertController = RUNAlertController(title: "Export", message: nil, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.sourceView = sender
+        let csvAction = UIAlertAction(title: "CSV", style: .default) { (action) -> Void in
+            let filename = "data.csv"
+            guard let csvURL = self.exportToCSV(fileName: filename) else {
+                return
+            }
+            self.export(sender, url: csvURL)
+        }
+        let jsonAction = UIAlertAction(title: "JSON", style: .default) { (action) -> Void in
+            let filename = "data.json"
+            guard let csvURL = self.exportToJSON(fileName: filename) else {
+                return
+            }
+            self.export(sender, url: csvURL)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(csvAction)
+        alertController.addAction(jsonAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func mapMyRunTapped(_ sender: Any) {
@@ -79,6 +99,51 @@ extension DataViewController: LoginDelegate {
                 }
             })
         }
+    }
+    
+}
+
+extension DataViewController {
+    
+    func exportToCSV(fileName: String) -> URL? {
+        guard let realm = try? Realm() else { return nil }
+        guard let docPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first, let fileURL = NSURL(fileURLWithPath: docPath).appendingPathComponent(fileName) else {
+            return nil
+        }
+        var csv = ""
+        let workouts = realm.objects(Workout.self).sorted(byKeyPath: "startDate", ascending: false)
+        for workout in workouts {
+            csv += workout.toCSV()
+        }
+        try? csv.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        return fileURL
+    }
+    
+    func exportToJSON(fileName: String) -> URL? {
+        guard let realm = try? Realm() else { return nil }
+        guard let docPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first, let fileURL = NSURL(fileURLWithPath: docPath).appendingPathComponent(fileName) else {
+            return nil
+        }
+        var workoutsJSON: [[String: Any?]] = []
+        let workouts = realm.objects(Workout.self).sorted(byKeyPath: "startDate", ascending: false)
+        for workout in workouts {
+            let json = workout.toJSON()
+            workoutsJSON.append(json)
+        }
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: ["workouts": workoutsJSON], options: .prettyPrinted)
+            try jsonData.write(to: fileURL, options: Data.WritingOptions.atomic)
+            return fileURL
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func export(_ sender: UIButton, url: URL) {
+        let activityViewController = RUNActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = sender
+        present(activityViewController, animated: true, completion: nil)
     }
     
 }

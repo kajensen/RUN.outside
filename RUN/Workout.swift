@@ -167,3 +167,39 @@ extension CGPoint {
         return CGPoint(x: (toRect.size.width/fromRect.size.width) * self.x, y: (toRect.size.height/fromRect.size.height) * self.y)
     }
 }
+
+extension Workout {
+    
+    func toCSV() -> String {
+        var csv = "Workout,startDateTimestamp,endDateTimestamp,netAltitude,totalPositiveAltitude,totalDistance,totalTimeActive\n"
+        if let startDate = startDate, let endDate = endDate {
+            csv += ",\(startDate.timeIntervalSince1970),\(endDate.timeIntervalSince1970)"
+        } else {
+            csv += ",,"
+        }
+        csv += ",\(netAltitude),\(totalPositiveAltitude),\(totalDistance),\(totalTimeActive)\n"
+        var index = 1
+        for lap in self.laps {
+            csv += "Lap #\(index),\(lap.toCSV())"
+            index += 1
+        }
+        return csv
+    }
+    
+    func toJSON() -> [String: Any?] {
+        var lapsJSON: [[String: Any?]] = []
+        for lap in self.laps {
+            lapsJSON.append(lap.toJSON())
+        }
+        return [
+            "startDateTimestamp": self.startDate?.timeIntervalSince1970 ?? 0,
+            "endDateTimestamp": self.endDate?.timeIntervalSince1970 ?? 0,
+            "netAltitude": self.netAltitude,
+            "totalPositiveAltitude": self.netAltitude,
+            "totalDistance": self.netAltitude,
+            "totalTimeActive": self.netAltitude,
+            "laps": lapsJSON,
+        ]
+    }
+    
+}

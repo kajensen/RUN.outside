@@ -622,7 +622,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0x-xi-LfQ">
-                                <rect key="frame" x="172.5" y="630" width="29" height="29"/>
+                                <rect key="frame" x="172.5" y="618" width="29" height="29"/>
                                 <state key="normal" image="icon_backward"/>
                                 <connections>
                                     <action selector="backTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="j0I-c9-PYX"/>
@@ -631,26 +631,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AdZ-vL-twR">
                                 <rect key="frame" x="29.5" y="241.5" width="317" height="185"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-Hm-ScX" customClass="BGView" customModule="RUN" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="317" height="82.5"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-ig-2tz">
-                                                <rect key="frame" x="8" y="8" width="300" height="65"/>
-                                                <state key="normal" title="Export Data"/>
-                                                <connections>
-                                                    <action selector="exportDataTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="lOl-Co-MFf"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerX" secondItem="hXJ-Hm-ScX" secondAttribute="centerX" id="6qA-Ty-GcE"/>
-                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="top" secondItem="hXJ-Hm-ScX" secondAttribute="top" constant="8" id="Tdi-rk-OOM"/>
-                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerY" secondItem="hXJ-Hm-ScX" secondAttribute="centerY" id="xcj-fL-2AI"/>
-                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="leading" secondItem="hXJ-Hm-ScX" secondAttribute="leading" constant="8" id="zhS-2W-lq2"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-9n-YUi" customClass="BGView" customModule="RUN" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="102.5" width="317" height="82.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="317" height="82.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import from MapMyRun/Walk/Fitness" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJV-Cw-mU8">
                                                 <rect key="frame" x="16" y="16" width="283.5" height="14.5"/>
@@ -675,12 +657,30 @@
                                             <constraint firstItem="MJV-Cw-mU8" firstAttribute="top" secondItem="hlh-9n-YUi" secondAttribute="top" constant="16" id="q91-vN-Oub"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-Hm-ScX" customClass="BGView" customModule="RUN" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="102.5" width="317" height="82.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-ig-2tz">
+                                                <rect key="frame" x="8" y="8" width="300" height="65"/>
+                                                <state key="normal" title="Export Data"/>
+                                                <connections>
+                                                    <action selector="exportDataTapped:" destination="Z70-qV-wT3" eventType="touchUpInside" id="lOl-Co-MFf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerX" secondItem="hXJ-Hm-ScX" secondAttribute="centerX" id="6qA-Ty-GcE"/>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="top" secondItem="hXJ-Hm-ScX" secondAttribute="top" constant="8" id="Tdi-rk-OOM"/>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="centerY" secondItem="hXJ-Hm-ScX" secondAttribute="centerY" id="xcj-fL-2AI"/>
+                                            <constraint firstItem="aZ1-ig-2tz" firstAttribute="leading" secondItem="hXJ-Hm-ScX" secondAttribute="leading" constant="8" id="zhS-2W-lq2"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="AdZ-vL-twR" firstAttribute="centerY" secondItem="YBX-S6-bKV" secondAttribute="centerY" id="DuG-9U-nXY"/>
-                            <constraint firstItem="5Rz-HY-c82" firstAttribute="top" secondItem="E0x-xi-LfQ" secondAttribute="bottom" constant="8" id="csV-lu-cQ7"/>
+                            <constraint firstItem="5Rz-HY-c82" firstAttribute="top" secondItem="E0x-xi-LfQ" secondAttribute="bottom" constant="20" id="csV-lu-cQ7"/>
                             <constraint firstItem="AdZ-vL-twR" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="wk6-xB-Hvk"/>
                             <constraint firstItem="E0x-xi-LfQ" firstAttribute="centerX" secondItem="YBX-S6-bKV" secondAttribute="centerX" id="xuw-fV-Ehs"/>
                         </constraints>
@@ -931,14 +931,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqT-Zk-5Ih">
-                                <rect key="frame" x="172.5" y="630" width="29" height="29"/>
+                                <rect key="frame" x="172.5" y="618" width="29" height="29"/>
                                 <state key="normal" image="icon_backward"/>
                                 <connections>
                                     <action selector="backTapped:" destination="6So-Nw-hg8" eventType="touchUpInside" id="hf7-id-nUt"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cxM-pR-Hcq">
-                                <rect key="frame" x="26" y="40" width="323" height="582"/>
+                                <rect key="frame" x="26" y="40" width="323" height="570"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -950,7 +950,7 @@
                             <constraint firstItem="cxM-pR-Hcq" firstAttribute="leading" secondItem="7oR-hz-7KV" secondAttribute="leadingMargin" constant="10" id="ArX-cb-YZz"/>
                             <constraint firstItem="cxM-pR-Hcq" firstAttribute="top" secondItem="SHL-6f-aQa" secondAttribute="bottom" constant="20" id="G2v-ew-MPi"/>
                             <constraint firstItem="cqT-Zk-5Ih" firstAttribute="top" secondItem="cxM-pR-Hcq" secondAttribute="bottom" constant="8" symbolic="YES" id="Tws-c5-UtI"/>
-                            <constraint firstItem="F2X-yS-1tT" firstAttribute="top" secondItem="cqT-Zk-5Ih" secondAttribute="bottom" constant="8" id="jXq-f0-JOC"/>
+                            <constraint firstItem="F2X-yS-1tT" firstAttribute="top" secondItem="cqT-Zk-5Ih" secondAttribute="bottom" constant="20" id="jXq-f0-JOC"/>
                             <constraint firstItem="cqT-Zk-5Ih" firstAttribute="centerX" secondItem="7oR-hz-7KV" secondAttribute="centerX" id="nxK-K8-wjS"/>
                         </constraints>
                     </view>

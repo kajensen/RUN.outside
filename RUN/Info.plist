@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -30,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>6</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -65,6 +63,8 @@
 	<string>RUN uses your health data to sync workout data</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>RUN uses your location to track your runs</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>RUN uses your photo library to save workout photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>owfont-regular.ttf</string>
@@ -86,11 +86,11 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>RUN uses your photo library to save workout photos</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

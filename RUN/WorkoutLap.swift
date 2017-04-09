@@ -78,3 +78,40 @@ class WorkoutLap: Object {
     }
     
 }
+
+extension WorkoutLap {
+    
+    func toCSV() -> String {
+        var csv = ""
+        if let startDate = startDate, let endDate = endDate {
+            csv += "\(startDate.timeIntervalSince1970),\(endDate.timeIntervalSince1970)"
+        } else {
+            csv += ","
+        }
+        csv += ",\(netAltitude),\(totalPositiveAltitude),\(totalDistance),\(totalTimeActive)\n"
+        csv += "latitude,longitude,floor,horizontal​Accuracy,vertical​Accuracy,course,speed,distanceTraveled,heartRate,type\n"
+        var index = 1
+        for event in self.events {
+            csv += "\(index),\(event.toCSV())"
+            index += 1
+        }
+        return csv
+    }
+    
+    func toJSON() -> [String: Any?] {
+        var eventsJSON: [[String: Any?]] = []
+        for event in self.events {
+            eventsJSON.append(event.toJSON())
+        }
+        return [
+            "startDateTimestamp": self.startDate?.timeIntervalSince1970 ?? 0,
+            "endDateTimestamp": self.endDate?.timeIntervalSince1970 ?? 0,
+            "netAltitude": self.netAltitude,
+            "totalPositiveAltitude": self.netAltitude,
+            "totalDistance": self.netAltitude,
+            "totalTimeActive": self.netAltitude,
+            "events": eventsJSON,
+        ]
+    }
+    
+}

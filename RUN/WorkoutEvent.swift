@@ -73,3 +73,33 @@ class WorkoutEvent: Object {
     }
     
 }
+
+extension WorkoutEvent {
+    
+    func toCSV() -> String {
+        var csv = ""
+        if let timestamp = timestamp {
+            csv += "\(timestamp.timeIntervalSince1970)"
+        }
+        csv += ",\(latitude),\(longitude),\(floor),\(horizontal​Accuracy),\(vertical​Accuracy),\(course),\(speed),\(distanceTraveled),\(heartRate),\(type)\n"
+        return csv
+    }
+    
+    func toJSON() -> [String: Any?] {
+        return [
+            "timestamp": self.timestamp.timeIntervalSince1970,
+            "latitude": latitude,
+            "longitude": longitude,
+            "floor": floor,
+            "horizontal​Accuracy": horizontal​Accuracy,
+            "vertical​Accuracy": vertical​Accuracy,
+            "course": course,
+            "speed": speed,
+            "distanceTraveled": distanceTraveled,
+            "heartRate": heartRate,
+            "type": type,
+
+        ]
+    }
+    
+}

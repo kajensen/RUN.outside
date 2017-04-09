@@ -78,6 +78,9 @@ class WorkoutsViewController: UIViewController {
         dataView.dataSource = self
         setupWorkoutsNotification()
         registerForThemeChange()
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }
     }
     
     override func configureTheme() {
@@ -292,6 +295,28 @@ extension WorkoutsViewController {
     func yAxis(value: Double, isLeft: Bool) -> String? {
         let data = isLeft ? barWorkoutData : lineWorkoutData
         return data.string(value: value)
+    }
+    
+}
+
+extension WorkoutsViewController: UIViewControllerPreviewingDelegate {
+    
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
+        guard let workout = workouts?[indexPath.row] else { return nil }
+        previewingContext.sourceRect = cell.frame
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: WorkoutViewController.storyboardId) as? WorkoutViewController else { return nil }
+        vc.workout = workout
+        vc.delegate = self
+        return vc
+    }
+    
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: false)
+        if let workout = (viewControllerToCommit as? WorkoutViewController)?.workout {
+            delegate?.workoutsViewControllerDidSelect(self, workout: workout)
+        }
     }
     
 }
