@@ -173,6 +173,16 @@ extension Date {
     
 }
 
+extension UIApplication {
+    
+    class var versionString: String? {
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString"), let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) else {
+            return nil
+        }
+        return "Version \(version) (\(build))"
+    }
+}
+
 extension TimeInterval {
     
     var dayComponent: Int {

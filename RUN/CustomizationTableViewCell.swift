@@ -31,13 +31,13 @@ class CustomizationTableViewCell: UITableViewCell {
     }
     
     func configure(audioUpdateDistance: Double) {
-        titleLabel.text = "Coach Update every..."
+        titleLabel.text = "Distance Update every..."
         if audioUpdateDistance > 0 {
             subTitleLabel.text = Utils.longDistanceString(meters: audioUpdateDistance)
         } else {
             subTitleLabel.text = "Off"
         }
-        iconImageView.image = UIImage(named: "icon_time")
+        iconImageView.image = UIImage(named: "icon_distance")
     }
     
     func configure(lapDistance: Double) {
@@ -47,11 +47,11 @@ class CustomizationTableViewCell: UITableViewCell {
         } else {
             subTitleLabel.text = "Off"
         }
-        iconImageView.image = UIImage(named: "icon_time")
+        iconImageView.image = UIImage(named: "icon_lap")
     }
     
     func configure(audioUpdateTime: Double) {
-        titleLabel.text = "Coach Update every..."
+        titleLabel.text = "Timed Update every..."
         if audioUpdateTime > 0 {
             subTitleLabel.text = TimeInterval(audioUpdateTime).formatted(false)
         } else {
@@ -61,9 +61,9 @@ class CustomizationTableViewCell: UITableViewCell {
     }
     
     func configure(speedRateSlow: Double, speedRateMedium: Double, speedRateFast: Double) {
-        titleLabel.text = "Speeds"
+        titleLabel.text = "My Speeds"
         subTitleLabel.text = "\(Utils.distanceRateString(unitsPerHour: speedRateSlow)) > \(Utils.distanceRateString(unitsPerHour: speedRateMedium)) > \(Utils.distanceRateString(unitsPerHour: speedRateFast))"
-        iconImageView.image = UIImage(named: "icon_time")
+        iconImageView.image = UIImage(named: "icon_speed")
     }
     
     func configure(theme: Style.Theme) {

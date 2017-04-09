@@ -14,7 +14,8 @@ class ActionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        accessoryView = UIImageView(image: #imageLiteral(resourceName: "Forward-48")) // TODO
+        let image = UIImage(named: "icon_forward")?.withRenderingMode(.alwaysTemplate)
+        //accessoryView = UIImageView(image: image)
         prepareForReuse()
     }
     

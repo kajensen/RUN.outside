@@ -60,9 +60,12 @@ class DataView: CombinedChartView {
         xAxis.labelTextColor = theme.primaryTextColor
         xAxis.gridColor = theme.secondaryTextColor
         xAxis.axisLineColor = theme.secondaryTextColor
-        leftAxis.labelTextColor = theme.primaryTextColor
+        leftAxis.labelTextColor = theme.secondaryTextColor
         leftAxis.gridColor = theme.secondaryTextColor
         leftAxis.axisLineColor = theme.secondaryTextColor
+        rightAxis.labelTextColor = theme.primaryTextColor
+        rightAxis.gridColor = theme.secondaryTextColor
+        rightAxis.axisLineColor = theme.secondaryTextColor
         legend.textColor = theme.primaryTextColor
     }
     

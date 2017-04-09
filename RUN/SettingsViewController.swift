@@ -26,22 +26,20 @@ class SettingsViewController: UIViewController {
         versionLabel.font = Style.Font.regular(of: 12)
         versionLabel.numberOfLines = 0
         versionLabel.textAlignment = .center
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            versionLabel.text = "Version \(version)"
-        }
+        versionLabel.text = UIApplication.versionString
         return versionLabel
     }()
     
     lazy var feedbackButton: UIButton = {
         let feedbackButton = UIButton(type: .system)
-        feedbackButton.setTitle("Feedback", for: .normal)
+        feedbackButton.setImage(UIImage(named: "icon_feedback"), for: .normal)
         feedbackButton.addTarget(self, action: #selector(SettingsViewController.sendEmail), for: .touchUpInside)
         return feedbackButton
     }()
     
     lazy var aboutButton: UIButton = {
         let aboutButton = UIButton(type: .system)
-        aboutButton.setTitle("About", for: .normal)
+        aboutButton.setImage(UIImage(named: "icon_about"), for: .normal)
         aboutButton.addTarget(self, action: #selector(SettingsViewController.showAbout), for: .touchUpInside)
         return aboutButton
     }()
@@ -237,8 +235,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func showAbout() {
-        // TODO
-        showAlert(title: "TODO")
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: AboutViewController.storyboardId) else {
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func selectTheme(_ cell: CustomizationTableViewCell) {

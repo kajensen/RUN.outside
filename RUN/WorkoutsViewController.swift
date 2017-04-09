@@ -132,7 +132,7 @@ class WorkoutsViewController: UIViewController {
             button.isSelected = sender == button
         }
         workoutDataSpan = sender.workoutDataSpan
-        reloadData()
+        configure()
     }
     
 }

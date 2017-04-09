@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var settingsViewOverlay: UIView!
     @IBOutlet weak var centerActionView: BGView!
     @IBOutlet weak var settingsActionView: BGView!
+    @IBOutlet weak var weatherView: BGView!
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var workoutStatsView: BGView!
     @IBOutlet weak var statusView: BGView!
@@ -45,7 +46,7 @@ class MapViewController: UIViewController {
     weak var settingsViewController: SettingsViewController?
     
     var actionViews: [UIView] {
-        return [centerActionView, settingsActionView]
+        return [centerActionView, weatherView, settingsActionView]
     }
     var defaultViews: [UIView?] {
         return [workoutsViewOverlay]
@@ -88,7 +89,7 @@ class MapViewController: UIViewController {
         distanceUnitsLabel.text = nil
         temperatureLabel.text = nil
         weatherInfoLabel.text = nil
-        weatherInfoLabel.font = UIFont(name: "owf-regular", size: 24)
+        weatherInfoLabel.font = UIFont(name: "owf-regular", size: 20)
         registerForThemeChange()
 
         let wPanGestureRecognizer = RUNPanGestureRecognizer(target: self, action: #selector(MapViewController.workoutsViewPanned(_:)))
@@ -124,6 +125,7 @@ class MapViewController: UIViewController {
         if let styleURL = Bundle.main.url(forResource: theme.mapStyle, withExtension: "json") {
             mapView.mapStyle = try? GMSMapStyle(contentsOfFileURL: styleURL)
         }
+        weatherView.effect = theme.blurEffect
         centerActionView.effect = theme.blurEffect
         settingsActionView.effect = theme.blurEffect
         workoutStatsView.effect = theme.blurEffect
@@ -476,7 +478,7 @@ extension MapViewController: WorkoutsViewControllerDelegate {
         timeLabel.text = TimeInterval(workout.totalTimeActive).formatted()
         let distanceString = Utils.longDistanceString(meters: workout.totalDistance).components(separatedBy: " ")
         distanceLabel.text = distanceString.first
-        distanceUnitsLabel.text = distanceString.last?.uppercased()
+        distanceUnitsLabel.text = Utils.longDistanceUnitString().uppercased()
         UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseIn], animations: {
             self.workoutsViewContraint.constant = self.workoutsViewGraphConstant
             self.updateView()
@@ -493,7 +495,7 @@ extension MapViewController: WorkoutsViewControllerDelegate {
             let marker = FootMarker(position: event.coordinate)
             marker.title = "Lap"
             marker.snippet = lap.infoString
-            marker.iconView?.backgroundColor = Settings.theme.primaryTextColor
+            marker.iconView?.backgroundColor = UIColor.black
             marker.map = mapView
             markers.append(marker)
         }
