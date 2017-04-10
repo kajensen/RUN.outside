@@ -29,7 +29,6 @@
 		454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */; };
 		454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */; };
 		454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */; };
-		455783391E8DAD5B000B177A /* hero.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 455783381E8DAD59000B177A /* hero.mp4 */; };
 		455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D71E847438000C88A9 /* AppDelegate.swift */; };
 		455FF2DA1E847438000C88A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D91E847438000C88A9 /* MapViewController.swift */; };
 		455FF2DD1E847438000C88A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455FF2DB1E847438000C88A9 /* Main.storyboard */; };
@@ -592,7 +591,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455783391E8DAD5B000B177A /* hero.mp4 in Resources */,
 				45C8D7D31E85C8E4003DB276 /* map_silver.json in Resources */,
 				45E3B16F1E97EA58007F8805 /* OnboardingSplashCollectionViewCell.xib in Resources */,
 				455FF2E21E847438000C88A9 /* LaunchScreen.storyboard in Resources */,
