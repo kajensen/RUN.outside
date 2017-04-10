@@ -21,7 +21,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWJ-1h-rAu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running1" translatesAutoresizingMaskIntoConstraints="NO" id="FzJ-mc-z8h">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running_2" translatesAutoresizingMaskIntoConstraints="NO" id="FzJ-mc-z8h">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTB-Ay-0gL">
@@ -82,6 +82,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="running1" width="1300" height="1300"/>
+        <image name="running_2" width="1920" height="1275"/>
     </resources>
 </document>

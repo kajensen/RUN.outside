@@ -11,6 +11,8 @@ import AVFoundation
 
 protocol OnboardingSplashCollectionViewCellDelegate: class {
     func beginTapped(_ cell: OnboardingSplashCollectionViewCell)
+    func privacyTapped(_ cell: OnboardingSplashCollectionViewCell)
+    func termsTapped(_ cell: OnboardingSplashCollectionViewCell)
 }
 
 protocol ParallaxCell: class {
@@ -25,7 +27,8 @@ class OnboardingSplashCollectionViewCell: UICollectionViewCell, ParallaxCell {
     
     @IBOutlet weak var contentHolderView: UIView!
     @IBOutlet weak var videoView: UIView!
-    
+    @IBOutlet weak var imageView: UIImageView!
+
     @IBOutlet weak var titleLabel: UILabel!
     
     var player: AVPlayer?
@@ -36,6 +39,7 @@ class OnboardingSplashCollectionViewCell: UICollectionViewCell, ParallaxCell {
         didSet {
             let frame = videoView.bounds.offsetBy(dx: parallaxOffset.x, dy: parallaxOffset.y)
             videoView.frame = frame
+            imageView.frame = frame
             avPlayerLayer.frame = videoView.bounds
         }
     }
@@ -54,7 +58,7 @@ class OnboardingSplashCollectionViewCell: UICollectionViewCell, ParallaxCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        playHero()
+        //playHero()
         prepareForReuse()
     }
     
@@ -87,6 +91,14 @@ class OnboardingSplashCollectionViewCell: UICollectionViewCell, ParallaxCell {
     
     @IBAction func beginTapped(_ sender: Any) {
         delegate?.beginTapped(self)
+    }
+    
+    @IBAction func termsTapped(_ sender: Any) {
+        delegate?.termsTapped(self)
+    }
+    
+    @IBAction func privacyTapped(_ sender: Any) {
+        delegate?.privacyTapped(self)
     }
     
 }

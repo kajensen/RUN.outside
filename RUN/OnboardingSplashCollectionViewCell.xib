@@ -24,6 +24,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0W-cw-p73">
                                 <rect key="frame" x="0.0" y="0.0" width="321" height="568"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running_1" translatesAutoresizingMaskIntoConstraints="NO" id="YVF-gu-nwJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn2-Ce-s6j">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -34,10 +37,14 @@
                             <constraint firstItem="C0W-cw-p73" firstAttribute="centerX" secondItem="fn2-Ce-s6j" secondAttribute="centerX" id="Ked-UB-uy1"/>
                             <constraint firstItem="C0W-cw-p73" firstAttribute="bottom" secondItem="fn2-Ce-s6j" secondAttribute="bottom" id="dGi-YP-LKk"/>
                             <constraint firstItem="C0W-cw-p73" firstAttribute="top" secondItem="fn2-Ce-s6j" secondAttribute="top" id="dj9-Bl-XgW"/>
+                            <constraint firstItem="YVF-gu-nwJ" firstAttribute="leading" secondItem="V1I-Xz-s41" secondAttribute="leading" id="dyb-9Q-R70"/>
                             <constraint firstItem="fn2-Ce-s6j" firstAttribute="centerX" secondItem="V1I-Xz-s41" secondAttribute="centerX" id="eUa-T9-lgg"/>
                             <constraint firstItem="fn2-Ce-s6j" firstAttribute="leading" secondItem="V1I-Xz-s41" secondAttribute="leading" id="f3i-tc-0nO"/>
+                            <constraint firstItem="YVF-gu-nwJ" firstAttribute="centerY" secondItem="V1I-Xz-s41" secondAttribute="centerY" id="opQ-87-ccj"/>
+                            <constraint firstItem="YVF-gu-nwJ" firstAttribute="top" secondItem="V1I-Xz-s41" secondAttribute="top" id="orR-nW-wpy"/>
                             <constraint firstItem="C0W-cw-p73" firstAttribute="leading" secondItem="fn2-Ce-s6j" secondAttribute="leading" id="rxI-wh-6Ux"/>
                             <constraint firstItem="fn2-Ce-s6j" firstAttribute="top" secondItem="V1I-Xz-s41" secondAttribute="top" id="tzE-bz-7FG"/>
+                            <constraint firstItem="YVF-gu-nwJ" firstAttribute="centerX" secondItem="V1I-Xz-s41" secondAttribute="centerX" id="vwR-yt-Nn4"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kS-sD-ndZ" customClass="BGView" customModule="RUN" customModuleProvider="target">
@@ -59,30 +66,80 @@
                             <constraint firstItem="mYT-L5-kWr" firstAttribute="leading" secondItem="9kS-sD-ndZ" secondAttribute="leading" constant="20" id="jrA-eR-egU"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By continuing, you agree to our Terms &amp; Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QmF-kG-aMA">
+                        <rect key="frame" x="20" y="526" width="280" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO RUN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSZ-si-u5Q">
                         <rect key="frame" x="15" y="211.5" width="290" height="105.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="44"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xeE-Ar-Wv6">
+                        <rect key="frame" x="60.5" y="541" width="207" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TmO-Kq-2V8">
+                                <rect key="frame" x="0.0" y="0.0" width="111" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Terms &amp; Conditions">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="termsTapped:" destination="JUz-GC-SCt" eventType="touchUpInside" id="KbT-73-3ew"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ch1-i6-hly">
+                                <rect key="frame" x="119" y="0.0" width="1" height="20"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="Gmc-Zx-fn3"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpW-Qz-wbh">
+                                <rect key="frame" x="128" y="0.0" width="79" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Privacy Policy">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="privacyTapped:" destination="JUz-GC-SCt" eventType="touchUpInside" id="B4W-7C-nA5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="oHi-5k-cKI"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="XSZ-si-u5Q" firstAttribute="leading" secondItem="JUz-GC-SCt" secondAttribute="leading" constant="15" id="2Ug-dU-Ord"/>
+                <constraint firstItem="ch1-i6-hly" firstAttribute="centerX" secondItem="QmF-kG-aMA" secondAttribute="centerX" constant="20" id="64Z-6e-TwN"/>
                 <constraint firstItem="V1I-Xz-s41" firstAttribute="top" secondItem="JUz-GC-SCt" secondAttribute="top" id="BP1-aB-wC6"/>
                 <constraint firstItem="V1I-Xz-s41" firstAttribute="leading" secondItem="JUz-GC-SCt" secondAttribute="leading" id="EWd-oK-t2n"/>
+                <constraint firstAttribute="bottom" secondItem="QmF-kG-aMA" secondAttribute="bottom" constant="30" id="Lde-Og-YyE"/>
                 <constraint firstItem="9kS-sD-ndZ" firstAttribute="centerX" secondItem="JUz-GC-SCt" secondAttribute="centerX" id="Oge-Xt-8wS"/>
                 <constraint firstAttribute="bottom" secondItem="V1I-Xz-s41" secondAttribute="bottom" id="Rqz-Nu-t1f"/>
                 <constraint firstItem="XSZ-si-u5Q" firstAttribute="centerY" secondItem="JUz-GC-SCt" secondAttribute="centerY" constant="-20" id="VwR-Tt-os3"/>
+                <constraint firstItem="xeE-Ar-Wv6" firstAttribute="top" secondItem="QmF-kG-aMA" secondAttribute="bottom" constant="3" id="X88-R1-KQk"/>
+                <constraint firstItem="QmF-kG-aMA" firstAttribute="centerX" secondItem="JUz-GC-SCt" secondAttribute="centerX" id="iLW-rv-XEC"/>
                 <constraint firstAttribute="trailing" secondItem="V1I-Xz-s41" secondAttribute="trailing" id="nrF-ey-57f"/>
+                <constraint firstItem="QmF-kG-aMA" firstAttribute="leading" secondItem="JUz-GC-SCt" secondAttribute="leading" constant="20" id="tZM-cR-OoV"/>
                 <constraint firstAttribute="bottom" secondItem="9kS-sD-ndZ" secondAttribute="bottom" constant="80" id="vgQ-V0-r30"/>
                 <constraint firstItem="XSZ-si-u5Q" firstAttribute="centerX" secondItem="JUz-GC-SCt" secondAttribute="centerX" id="xNG-7l-Ida"/>
             </constraints>
             <connections>
                 <outlet property="contentHolderView" destination="V1I-Xz-s41" id="gYQ-IU-47V"/>
+                <outlet property="imageView" destination="YVF-gu-nwJ" id="sV3-j0-U8M"/>
                 <outlet property="titleLabel" destination="XSZ-si-u5Q" id="e5B-u5-psl"/>
                 <outlet property="videoView" destination="C0W-cw-p73" id="3TN-FU-nGV"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="running_1" width="1920" height="1277"/>
+    </resources>
 </document>

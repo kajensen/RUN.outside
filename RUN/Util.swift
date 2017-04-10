@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SafariServices
 
 extension UIViewController {
     
@@ -26,6 +27,11 @@ extension UIViewController {
     
     func showErrorMessageAlert(message: String?, completion: (() -> Void)? = nil) {
         showAlert(title: "Error", message: message, completion: completion)
+    }
+    
+    func showURL(_ url: URL) {
+        let svc = RUNSafariViewController(url: url)
+        present(svc, animated: true, completion: nil)
     }
     
 }

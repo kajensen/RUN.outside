@@ -21,7 +21,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUC-G4-HhI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running2" translatesAutoresizingMaskIntoConstraints="NO" id="mPi-Jx-t16">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="running_3" translatesAutoresizingMaskIntoConstraints="NO" id="mPi-Jx-t16">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izq-kW-nYR">
@@ -96,6 +96,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="running2" width="974" height="1300"/>
+        <image name="running_3" width="1920" height="1275"/>
     </resources>
 </document>

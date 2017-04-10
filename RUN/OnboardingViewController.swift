@@ -24,6 +24,19 @@ class OnboardingViewController: UIViewController {
         collectionView.register(UINib(nibName: OnboardingPermissionCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: OnboardingPermissionCollectionViewCell.nibName)
         collectionView.dataSource = self
         collectionView.delegate = self
+        pageControl.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = Settings.theme.statusBarStyle
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,6 +91,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
         if !percent.isNaN {
             let index = Int(percent)
             pageControl.currentPage = max(index, 0)
+            pageControl.isHidden = index == 0
         }
         // parallax
         for cell in collectionView.visibleCells {
@@ -97,6 +111,14 @@ extension OnboardingViewController: OnboardingSplashCollectionViewCellDelegate {
     func beginTapped(_ cell: OnboardingSplashCollectionViewCell) {
         let contentOffset = CGPoint(x: collectionView.bounds.width, y: 0)
         collectionView.setContentOffset(contentOffset, animated: true)
+    }
+    
+    func termsTapped(_ cell: OnboardingSplashCollectionViewCell) {
+        showURL(Constants.termsURL)
+    }
+    
+    func privacyTapped(_ cell: OnboardingSplashCollectionViewCell) {
+        showURL(Constants.privacyURL)
     }
     
 }

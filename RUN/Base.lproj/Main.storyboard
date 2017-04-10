@@ -529,6 +529,7 @@
                     <connections>
                         <outlet property="dataView" destination="ub9-qe-MYz" id="4hP-Ws-tq3"/>
                         <outlet property="distanceLabel" destination="sQb-Ta-j2r" id="Utp-QH-Caq"/>
+                        <outlet property="graphView" destination="CKM-tw-N7c" id="S6q-ri-bRn"/>
                         <outlet property="subTitleLabel" destination="UOQ-ui-Jrz" id="I6x-z3-SrT"/>
                         <outlet property="tableView" destination="xyP-Vc-rTo" id="AZ7-uF-LEe"/>
                         <outlet property="titleLabel" destination="BKg-FN-YrO" id="B9b-tM-ayM"/>

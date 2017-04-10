@@ -37,8 +37,27 @@ class WorkoutsViewController: UIViewController {
     @IBOutlet weak var workoutsInfoLabel: UILabel!
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var graphView: UIView!
     @IBOutlet weak var dataView: DataView!
     @IBOutlet weak var workoutDataSpanButtonStackView: UIStackView!
+    
+    lazy var noDataLabel: UILabel = {
+        let noDataLabel = UILabel()
+        noDataLabel.font = Style.Font.regular(of: 12)
+        noDataLabel.numberOfLines = 0
+        noDataLabel.textAlignment = .center
+        noDataLabel.text = "You don't have any runs yet. Get moving!"
+        return noDataLabel
+    }()
+
+    lazy var noDataView: UIView = {
+        let noDataView =  UIView(frame: CGRect(origin: .zero, size: CGSize(width: self.view.bounds.width, height: 200)))
+        self.noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        noDataView.addSubview(self.noDataLabel)
+        self.noDataLabel.centerXAnchor.constraint(equalTo: noDataView.centerXAnchor).isActive = true
+        self.noDataLabel.centerYAnchor.constraint(equalTo: noDataView.centerYAnchor).isActive = true
+        return noDataView
+    }()
     
     var workoutDataSpanButtons: [WorkoutDataSpanButton] {
         return workoutDataSpanButtonStackView.arrangedSubviews as! [WorkoutDataSpanButton]
@@ -212,6 +231,7 @@ extension WorkoutsViewController: DataViewDataSource {
         distanceLabel.text = Utils.longDistanceString(meters: totalDistance)
         let totalNumWorkouts = workouts?.count ?? 0
         workoutsInfoLabel.text = "\(totalNumWorkouts) run\(totalNumWorkouts == 1 ? "" : "s") this \(workoutDataSpan.title)"
+        tableView.tableHeaderView = totalNumWorkouts > 0 ? graphView : noDataView
         reloadData()
     }
     
