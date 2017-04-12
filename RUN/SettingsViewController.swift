@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import iRate
 import MessageUI
+import HealthKit
 
 protocol SettingsViewControllerDelegate: class {
     func settingsViewControllerTappedClose(_ vc: SettingsViewController)
@@ -18,6 +19,8 @@ protocol SettingsViewControllerDelegate: class {
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    let healthStore = HKHealthStore()
     
     weak var delegate: SettingsViewControllerDelegate?
 
@@ -90,6 +93,7 @@ class SettingsViewController: UIViewController {
     }
 
     private func setupTableView() {
+        tableView.register(UINib(nibName: ToggleTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.nibName)
         tableView.register(UINib(nibName: ReviewTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ReviewTableViewCell.nibName)
         tableView.register(UINib(nibName: ActionTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ActionTableViewCell.nibName)
         tableView.register(UINib(nibName: CustomizationTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: CustomizationTableViewCell.nibName)
@@ -139,9 +143,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             return 4
         case 2:
-            return 1
-        case 3:
-            return 1
+            return 2
         default:
             return 0
         }
@@ -171,13 +173,24 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
             switch indexPath.row {
-            default:
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: ActionTableViewCell.nibName, for: indexPath)
                 cell.textLabel?.text = "Import/Export data"
-                break
+                return cell
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.nibName, for: indexPath) as! ToggleTableViewCell
+                cell.titleLabel.text = "Sync Heartrate Data with HealthKit"
+                if let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate) {
+                    let status = healthStore.authorizationStatus(for: heartRateType)
+                    cell.toggle.isEnabled = status == .notDetermined
+                    cell.toggle.isOn = status == .sharingAuthorized
+                } else {
+                    cell.toggle.isEnabled = false
+                }
+                cell.delegate = self
+                return cell
             }
-            return cell
         case 3:
             switch indexPath.row {
             default:
@@ -218,8 +231,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case 2:
             switch indexPath.row {
-            default:
+            case 0:
                 showDataVC()
+            default:
+                break
             }
             return
         default:
@@ -286,6 +301,32 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         vc.popoverPresentationController?.delegate = self
     }
     
+}
+
+extension SettingsViewController: ToggleTableViewCellDelegate {
+    func toggleChanged(_ cell: ToggleTableViewCell, toggle: UISwitch) {
+        if toggle.isOn {
+            if HKHealthStore.isHealthDataAvailable() {
+                if let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate) {
+                    var readSet = Set<HKObjectType>()
+                    readSet.insert(heartRateType)
+                    var shareSet = Set<HKSampleType>()
+                    shareSet.insert(heartRateType)
+                    healthStore.requestAuthorization(toShare: shareSet, read: readSet, completion: { [weak self] (success, error) in
+                        DispatchQueue.main.async {
+                            if success {
+                                self?.showAlert(title: "HealthKit Successfully Set Up")
+                                self?.tableView.reloadData()
+                            } else {
+                                self?.showErrorAlert(error: error)
+                            }
+                        }
+                    })
+
+                }
+            }
+        }
+    }
 }
 
 extension SettingsViewController: SelectThemeTableViewControllerDelegate {
