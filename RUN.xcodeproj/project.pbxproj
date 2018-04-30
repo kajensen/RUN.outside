@@ -28,7 +28,6 @@
 		453B434C1E8DA97B0005F8DA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B434B1E8DA97B0005F8DA /* SplashViewController.swift */; };
 		454A15D01E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */; };
 		454A15D21E8CA5370098FB1E /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A15D11E8CA5370098FB1E /* SpeechManager.swift */; };
-		454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */; };
 		454F80591E8C8D1600BFF87A /* SelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */; };
 		454F805B1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */; };
 		455FF2D81E847438000C88A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FF2D71E847438000C88A9 /* AppDelegate.swift */; };
@@ -110,7 +109,6 @@
 		454A15CF1E8C8F050098FB1E /* SelectUpdateDistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateDistanceTableViewController.swift; sourceTree = "<group>"; };
 		454A15D11E8CA5370098FB1E /* SpeechManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		454A15D51E8CAB1D0098FB1E /* RUN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RUN.entitlements; sourceTree = "<group>"; };
-		454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		454F80581E8C8D1600BFF87A /* SelectThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		454F805A1E8C8D2A00BFF87A /* SelectUpdateTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUpdateTimeTableViewController.swift; sourceTree = "<group>"; };
 		455783381E8DAD59000B177A /* hero.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hero.mp4; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			files = (
 				4512555B1E9825A9000ED6D3 /* HealthKit.framework in Frameworks */,
 				082CEC9A2A8FCAE4C8DC383D /* Pods_RUN.framework in Frameworks */,
-				454A15DF1E8CB7530098FB1E /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +200,6 @@
 			children = (
 				4512555A1E9825A9000ED6D3 /* HealthKit.framework */,
 				451255581E9825A4000ED6D3 /* HealthKit.framework */,
-				454A15DE1E8CB7530098FB1E /* AudioToolbox.framework */,
 				4CA27B498B9A232E648AB2F1 /* Pods_RUN.framework */,
 				81C8FE6F61FA6686971B1907 /* Pods_watch.framework */,
 				C7C5DEA3DA3BD5D4A8FB167E /* Pods_watch_Extension.framework */,
@@ -573,7 +569,7 @@
 								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
